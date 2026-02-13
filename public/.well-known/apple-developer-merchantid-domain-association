@@ -1,0 +1,44 @@
+# Apple Pay Domain Verification File
+
+This is a placeholder file for Apple Pay domain verification.
+
+## How to Set Up Apple Pay Domain Verification
+
+1. **Register for Apple Pay in Stripe Dashboard:**
+   - Go to Stripe Dashboard → Settings → Payment methods
+   - Enable Apple Pay
+   - Follow the setup instructions
+
+2. **Download the Verification File:**
+   - Stripe will provide a domain verification file
+   - The file should be named `apple-developer-merchantid-domain-association`
+   - Replace this placeholder file with the actual verification file from Stripe
+
+3. **File Location:**
+   - The file must be accessible at: `https://yourdomain.com/.well-known/apple-developer-merchantid-domain-association`
+   - This file should be served without any file extension
+
+4. **Verify Domain in Stripe:**
+   - After deploying the file, verify your domain in the Stripe Dashboard
+   - Stripe will check for the file and confirm domain ownership
+
+5. **Production Requirements:**
+   - Your site must be served over HTTPS
+   - The domain must match exactly (including www vs non-www)
+
+## For Local Development
+
+Apple Pay requires HTTPS and won't work on localhost by default.
+For local testing, you can:
+- Use ngrok or similar tunneling service with HTTPS
+- Test on a staging environment with proper HTTPS
+
+## Stripe Documentation
+
+- [Apple Pay with Stripe](https://stripe.com/docs/apple-pay)
+- [Domain Verification](https://stripe.com/docs/apple-pay/setting-up)
+
+## Note
+
+DO NOT commit the actual verification file to version control if it contains sensitive data.
+Add the actual file to .gitignore and use environment-specific deployment.

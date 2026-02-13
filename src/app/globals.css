@@ -1,0 +1,374 @@
+@import "tailwindcss";
+
+/* ===========================================
+   Kids Petite Design System
+   =========================================== */
+
+/* ===========================================
+   CSS Custom Properties (Design Tokens)
+   =========================================== */
+:root {
+  /* Primary Colors */
+  --color-white: #FFFFFF;
+  --color-white-pure: #FFFFFF;
+  --color-yellow: #FFD700;
+  --color-yellow-dark: #E6C200;
+  --color-off-white: #FAFAFA;
+  --color-light-gray: #F5F5F5;
+  
+  /* Neutral Colors */
+  --color-gray-50: #F9FAFB;
+  --color-gray-100: #F3F4F6;
+  --color-gray-200: #E5E7EB;
+  --color-gray-300: #D1D5DB;
+  --color-gray-400: #9CA3AF;
+  --color-gray-500: #6B7280;
+  --color-gray-600: #4B5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1F2937;
+  --color-gray-900: #111827;
+  
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Font Sizes */
+  --text-h1: 32px;
+  --text-h2: 28px;
+  --text-h3: 24px;
+  --text-h4: 20px;
+  --text-h5: 18px;
+  --text-h6: 16px;
+  --text-body-lg: 16px;
+  --text-body: 14px;
+  --text-body-sm: 12px;
+  --text-caption: 11px;
+  
+  /* Line Heights */
+  --leading-h1: 40px;
+  --leading-h2: 36px;
+  --leading-h3: 32px;
+  --leading-h4: 28px;
+  --leading-h5: 24px;
+  --leading-h6: 20px;
+  --leading-body-lg: 24px;
+  --leading-body: 20px;
+  --leading-body-sm: 18px;
+  --leading-caption: 16px;
+  
+  /* Font Weights */
+  --font-light: 300;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  
+  /* Spacing */
+  --grid-gap-mobile: 8px;
+  --grid-gap-tablet: 12px;
+  --grid-gap-desktop: 12px;
+  
+  /* Border Radius */
+  --radius-card: 4px;
+  --radius-button: 4px;
+  --radius-input: 4px;
+  
+  /* Shadows */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-button: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-button-hover: 0 4px 8px rgba(0, 0, 0, 0.15);
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 200ms ease;
+  --transition-slow: 300ms ease;
+}
+
+/* ===========================================
+   Base Styles
+   =========================================== */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-white);
+  color: var(--color-gray-600);
+  min-height: 100vh;
+}
+
+/* ===========================================
+   Typography Styles
+   =========================================== */
+h1, .h1 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h1);
+  line-height: var(--leading-h1);
+  font-weight: var(--font-bold);
+  color: var(--color-gray-900);
+}
+
+h2, .h2 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h2);
+  line-height: var(--leading-h2);
+  font-weight: var(--font-semibold);
+  color: var(--color-gray-900);
+}
+
+h3, .h3 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h3);
+  line-height: var(--leading-h3);
+  font-weight: var(--font-semibold);
+  color: var(--color-gray-900);
+}
+
+h4, .h4 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h4);
+  line-height: var(--leading-h4);
+  font-weight: var(--font-semibold);
+  color: var(--color-gray-900);
+}
+
+h5, .h5 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h5);
+  line-height: var(--leading-h5);
+  font-weight: var(--font-medium);
+  color: var(--color-gray-900);
+}
+
+h6, .h6 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h6);
+  line-height: var(--leading-h6);
+  font-weight: var(--font-medium);
+  color: var(--color-gray-900);
+}
+
+p, .body {
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  font-weight: var(--font-regular);
+  color: var(--color-gray-600);
+}
+
+.body-lg {
+  font-family: var(--font-sans);
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-body-lg);
+  font-weight: var(--font-regular);
+  color: var(--color-gray-600);
+}
+
+.body-sm {
+  font-family: var(--font-sans);
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-body-sm);
+  font-weight: var(--font-regular);
+  color: var(--color-gray-600);
+}
+
+.caption {
+  font-family: var(--font-sans);
+  font-size: var(--text-caption);
+  line-height: var(--leading-caption);
+  font-weight: var(--font-regular);
+  color: var(--color-gray-400);
+}
+
+/* ===========================================
+   Link Styles
+   =========================================== */
+a {
+  color: var(--color-gray-600);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-gray-900);
+}
+
+/* ===========================================
+   Button Styles
+   =========================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  font-weight: var(--font-medium);
+  line-height: 1;
+  border-radius: var(--radius-button);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.btn-primary {
+  background-color: var(--color-yellow);
+  color: var(--color-gray-900);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-yellow-dark);
+  box-shadow: var(--shadow-button-hover);
+}
+
+.btn-secondary {
+  background-color: var(--color-white);
+  color: var(--color-gray-900);
+  border: 1px solid var(--color-gray-200);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-gray-50);
+  border-color: var(--color-gray-300);
+}
+
+/* ===========================================
+   Card Styles
+   =========================================== */
+.card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--transition-normal);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* ===========================================
+   Form Styles
+   =========================================== */
+input,
+textarea,
+select {
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  padding: 12px 16px;
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-input);
+  background-color: var(--color-white);
+  color: var(--color-gray-900);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-yellow);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-gray-400);
+}
+
+/* ===========================================
+   Utility Classes
+   =========================================== */
+.text-yellow {
+  color: var(--color-yellow);
+}
+
+.bg-yellow {
+  background-color: var(--color-yellow);
+}
+
+.border-yellow {
+  border-color: var(--color-yellow);
+}
+
+/* ===========================================
+   High-Density Grid System
+   =========================================== */
+.product-grid {
+  display: grid;
+  gap: var(--grid-gap-mobile);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 640px) {
+  .product-grid {
+    gap: var(--grid-gap-tablet);
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-grid {
+    gap: var(--grid-gap-desktop);
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .product-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (min-width: 1536px) {
+  .product-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* ===========================================
+   Focus States (Accessibility)
+   =========================================== */
+:focus-visible {
+  outline: 2px solid var(--color-yellow);
+  outline-offset: 2px;
+}
+
+/* ===========================================
+   Selection Styles
+   =========================================== */
+::selection {
+  background-color: var(--color-yellow);
+  color: var(--color-gray-900);
+}
+
+/* ===========================================
+   Scrollbar Styles
+   =========================================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-300);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-400);
+}

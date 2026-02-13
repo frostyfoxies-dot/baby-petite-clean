@@ -1,0 +1,28 @@
+{
+  "$schema": "https://railway.app/schema.json",
+  "name": "kids-petite",
+  "services": [
+    {
+      "name": "web",
+      "source": ".",
+      "build": {
+        "builder": "NIXPACKS_V1",
+        "buildCommand": "npm install && npm run db:generate && npm run build",
+        "startCommand": "npm run start"
+      },
+      "environment": {
+        "NODE_ENV": "production"
+      },
+      "domains": [
+        {
+          "name": "kids-petite.up.railway.app",
+          "forceSsl": true
+        }
+      ]
+    }
+  ],
+  "database": {
+    "name": "kids-petite-db",
+    "version": "16"
+  }
+}

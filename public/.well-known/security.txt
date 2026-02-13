@@ -1,0 +1,32 @@
+# Security Policy for Kids Petite
+# https://kidspetite.com/security-policy
+
+Contact: mailto:security@kidspetite.com
+Encryption: https://kidspetite.com/.well-known/pgp-key.asc
+Preferred-Languages: en
+Canonical: https://kidspetite.com/.well-known/security.txt
+Policy: https://kidspetite.com/security-policy
+
+# Encryption
+We provide a PGP key for encrypted communication. Download it from the encryption URL above.
+
+# Scope
+This policy applies to:
+- kidspetite.com
+- www.kidspetite.com
+- api.kidspetite.com
+
+# Out of Scope
+The following are not in scope for our security program:
+- Social engineering attacks
+- Physical security
+- Denial of service attacks
+- Issues in third-party services
+
+# Disclosure Timeline
+- We aim to acknowledge reports within 48 hours
+- We aim to provide a timeline for resolution within 7 days
+- We request that you give us reasonable time to fix issues before public disclosure
+
+# Bug Bounty
+We do not currently have a bug bounty program, but we appreciate responsible disclosure of security issues.

@@ -1,0 +1,1013 @@
+// Prisma Schema for Kids Petite E-commerce Platform
+// Version: 1.0
+// Last Updated: February 2026
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// ENUMS
+// ============================================
+
+enum UserRole {
+  CUSTOMER
+  ADMIN
+  STAFF
+}
+
+enum AddressType {
+  SHIPPING
+  BILLING
+  BOTH
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  REFUNDED
+  PARTIALLY_REFUNDED
+}
+
+enum FulfillmentStatus {
+  UNFULFILLED
+  PARTIALLY_FULFILLED
+  FULFILLED
+  RESTOCKED
+}
+
+enum NotificationType {
+  EMAIL
+  PUSH
+  SMS
+}
+
+enum RegistryStatus {
+  ACTIVE
+  COMPLETED
+  ARCHIVED
+}
+
+enum Priority {
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum EventType {
+  VIEW
+  CART_ADD
+  WISHLIST
+  PURCHASE
+}
+
+enum RecommendationSource {
+  COLLABORATIVE
+  CONTENT
+  RULE_BASED
+}
+
+enum SupplierStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+
+enum SourceStatus {
+  ACTIVE
+  UNAVAILABLE
+  DISCONTINUED
+  PRICE_CHANGED
+}
+
+enum InventoryStatus {
+  AVAILABLE
+  LOW_STOCK
+  OUT_OF_STOCK
+}
+
+enum DropshipOrderStatus {
+  PENDING
+  PLACED
+  CONFIRMED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+  ISSUE
+}
+
+// ============================================
+// CORE TABLES
+// ============================================
+
+/// User account information and authentication data
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  emailVerified DateTime?
+  firstName     String?
+  lastName      String?
+  password      String
+  phone         String?
+  avatar        String?
+  role          UserRole  @default(CUSTOMER)
+
+  // Relationships
+  cart          Cart?
+  addresses     Address[]
+  orders        Order[]
+  registry      Registry?
+  reviews       Review[]
+  wishlist      Wishlist?
+  notifications Notification[]
+  priceHistory  PriceHistory[]
+  userBehaviors UserBehavior[]
+  recommendationLogs RecommendationLog[]
+
+  // Timestamps
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  lastLoginAt   DateTime?
+
+  @@index([email])
+  @@index([role])
+}
+
+/// User shipping and billing addresses
+model Address {
+  id          String      @id @default(cuid())
+  userId      String
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  firstName   String
+  lastName    String
+  company     String?
+  line1       String
+  line2       String?
+  city        String
+  state       String
+  zip         String
+  country     String      @default("US")
+  phone       String?
+
+  isDefault   Boolean     @default(false)
+  type        AddressType @default(SHIPPING)
+
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([userId])
+  @@index([userId, isDefault])
+}
+
+/// Hierarchical product categories
+model Category {
+  id          String     @id @default(cuid())
+  name        String
+  slug        String     @unique
+  description String?
+  imageUrl    String?
+
+  parentId    String?
+  parent      Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children    Category[] @relation("CategoryHierarchy")
+
+  products    Product[]
+  productSources ProductSource[]
+
+  // Dropshipping pricing configuration
+  markupFactor      Float    @default(2.5)
+  shippingBuffer    Decimal  @db.Decimal(10, 2) @default(3.00)
+  minPrice          Decimal? @db.Decimal(10, 2)
+  maxPrice          Decimal? @db.Decimal(10, 2)
+
+  sortOrder   Int        @default(0)
+  isActive    Boolean    @default(true)
+
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@index([slug])
+  @@index([parentId])
+  @@index([isActive])
+}
+
+/// Product information and metadata
+model Product {
+  id               String   @id @default(cuid())
+  name             String
+  slug             String   @unique
+  description      String?
+  shortDescription String?
+
+  // Pricing
+  basePrice        Decimal  @db.Decimal(10, 2)
+  compareAtPrice   Decimal? @db.Decimal(10, 2)
+  costPrice        Decimal? @db.Decimal(10, 2)
+
+  // Product details
+  sku              String   @unique
+  barcode          String?
+
+  // Categorization
+  categoryId       String
+  category         Category @relation(fields: [categoryId], references: [id])
+  tags             String[]
+
+  // Status
+  isActive         Boolean  @default(true)
+  isFeatured       Boolean  @default(false)
+  isNew            Boolean  @default(false)
+  isOnSale         Boolean  @default(false)
+
+  // SEO
+  metaTitle        String?
+  metaDescription  String?
+  metaKeywords     String?
+
+  // AI/ML
+  popularityScore      Float    @default(0)
+  aiTags               String[]
+  recommendationScore  Float    @default(0)
+
+  // Relationships
+  variants        Variant[]
+  images          ProductImage[]
+  reviews         Review[]
+  wishlistItems   WishlistItem[]
+  registryItems   RegistryItem[]
+  userBehaviors   UserBehavior[]
+  recommendationLogs RecommendationLog[]
+
+  // Timestamps
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  publishedAt     DateTime?
+
+  @@index([slug])
+  @@index([categoryId])
+  @@index([sku])
+  @@index([isActive])
+  @@index([isFeatured])
+  @@index([isOnSale])
+  @@index([popularityScore])
+}
+
+/// Product variants (size, color, etc.)
+model Variant {
+  id            String    @id @default(cuid())
+  productId     String
+  product       Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  // Variant attributes
+  name          String
+  size          String
+  color         String?
+  colorCode     String?
+
+  // Pricing
+  price         Decimal   @db.Decimal(10, 2)
+  compareAtPrice Decimal? @db.Decimal(10, 2)
+
+  // Inventory
+  sku           String    @unique
+  barcode       String?
+  weight        Float?
+  dimensions    Json?
+
+  // Status
+  isActive      Boolean   @default(true)
+
+  // Relationships
+  inventory     Inventory?
+  priceHistory  PriceHistory[]
+  cartItems     CartItem[]
+  orderItems    OrderItem[]
+  registryItems RegistryItem[]
+  wishlistItems WishlistItem[]
+  userBehaviors UserBehavior[]
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([productId])
+  @@index([sku])
+  @@index([size])
+  @@index([color])
+  @@index([isActive])
+}
+
+/// Product image URLs and metadata
+model ProductImage {
+  id          String   @id @default(cuid())
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  variantId   String?
+  
+  url         String
+  altText     String?
+  width       Int?
+  height      Int?
+
+  sortOrder   Int      @default(0)
+  isPrimary   Boolean  @default(false)
+
+  createdAt   DateTime @default(now())
+
+  @@index([productId])
+  @@index([productId, isPrimary])
+}
+
+// ============================================
+// INVENTORY & PRICING
+// ============================================
+
+/// Inventory levels for variants
+model Inventory {
+  id                String   @id @default(cuid())
+  variantId         String   @unique
+  variant           Variant  @relation(fields: [variantId], references: [id], onDelete: Cascade)
+
+  quantity          Int      @default(0)
+  reservedQuantity  Int      @default(0)
+  available         Int      @default(0)
+
+  lowStockThreshold Int      @default(10)
+  reorderPoint      Int      @default(20)
+  reorderQuantity   Int      @default(50)
+
+  location          String?
+  warehouseId       String?
+
+  lastRestockedAt   DateTime?
+  nextRestockAt     DateTime?
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([variantId])
+  @@index([available])
+}
+
+/// Price change history for variants
+model PriceHistory {
+  id          String   @id @default(cuid())
+  productId   String
+  variantId   String
+  variant     Variant  @relation(fields: [variantId], references: [id], onDelete: Cascade)
+
+  oldPrice    Decimal  @db.Decimal(10, 2)
+  newPrice    Decimal  @db.Decimal(10, 2)
+
+  reason      String?
+  changedBy   String?
+
+  createdAt   DateTime @default(now())
+
+  @@index([variantId])
+  @@index([productId])
+  @@index([createdAt])
+}
+
+// ============================================
+// CART & CHECKOUT
+// ============================================
+
+/// User shopping carts
+model Cart {
+  id        String     @id @default(cuid())
+  userId    String?
+  sessionId String?
+  
+  items     CartItem[]
+  abandonment CartAbandonment?
+
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@index([userId])
+  @@index([sessionId])
+}
+
+/// Cart abandonment tracking for email sequences
+model CartAbandonment {
+  id            String   @id @default(cuid())
+  cartId        String   @unique
+  cart          Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  email         String
+  lastActivity  DateTime
+  email1SentAt  DateTime?
+  email2SentAt  DateTime?
+  email3SentAt  DateTime?
+  recoveredAt   DateTime?
+  unsubscribed  Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([email])
+  @@index([lastActivity])
+  @@index([unsubscribed])
+}
+
+/// Items in user's cart
+model CartItem {
+  id        String   @id @default(cuid())
+  cartId    String
+  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+
+  variantId String
+  variant   Variant  @relation(fields: [variantId], references: [id])
+
+  quantity  Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([cartId, variantId])
+  @@index([cartId])
+  @@index([variantId])
+}
+
+// ============================================
+// ORDERS
+// ============================================
+
+/// Customer orders
+model Order {
+  id                String            @id @default(cuid())
+  orderNumber       String            @unique
+
+  userId            String
+  user              User              @relation(fields: [userId], references: [id])
+
+  items             OrderItem[]
+
+  // Pricing
+  subtotal          Decimal           @db.Decimal(10, 2)
+  discountAmount    Decimal           @db.Decimal(10, 2) @default(0)
+  shippingAmount    Decimal           @db.Decimal(10, 2)
+  taxAmount         Decimal           @db.Decimal(10, 2)
+  total             Decimal           @db.Decimal(10, 2)
+  currency          String            @default("USD")
+
+  // Status
+  status            OrderStatus       @default(PENDING)
+  paymentStatus     PaymentStatus     @default(PENDING)
+  fulfillmentStatus FulfillmentStatus @default(UNFULFILLED)
+
+  // Addresses
+  shippingAddress   Json
+  billingAddress    Json
+
+  // Customer info
+  customerEmail     String
+  customerPhone     String?
+  notes             String?
+
+  // Discounts
+  couponCode        String?
+  discountId        String?
+
+  // Timestamps
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  confirmedAt       DateTime?
+  shippedAt         DateTime?
+  deliveredAt       DateTime?
+  cancelledAt       DateTime?
+
+  // Relationships
+  shipping          Shipping?
+  payment           Payment?
+  dropshipOrder     DropshipOrder?
+
+  @@index([userId])
+  @@index([orderNumber])
+  @@index([status])
+  @@index([paymentStatus])
+  @@index([createdAt])
+}
+
+/// Items in an order
+model OrderItem {
+  id            String   @id @default(cuid())
+  orderId       String
+  order         Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  variantId     String
+  variant       Variant  @relation(fields: [variantId], references: [id])
+
+  productName   String
+  variantName   String
+  sku           String
+
+  quantity      Int
+  unitPrice     Decimal  @db.Decimal(10, 2)
+  totalPrice    Decimal  @db.Decimal(10, 2)
+
+  createdAt     DateTime @default(now())
+
+  @@index([orderId])
+  @@index([variantId])
+}
+
+/// Shipping information for orders
+model Shipping {
+  id                String   @id @default(cuid())
+  orderId           String   @unique
+  order             Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  carrier           String?
+  service           String?
+  trackingNumber    String?
+  trackingUrl       String?
+
+  status            String?
+  estimatedDelivery DateTime?
+  actualDelivery    DateTime?
+
+  shippingLabel     String?
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([trackingNumber])
+}
+
+/// Payment information for orders
+model Payment {
+  id              String        @id @default(cuid())
+  orderId         String        @unique
+  order           Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  provider        String
+  stripePaymentIntentId String?
+
+  amount          Decimal       @db.Decimal(10, 2)
+  currency        String        @default("USD")
+
+  status          PaymentStatus @default(PENDING)
+
+  paymentMethod   String?
+  cardLast4       String?
+  cardBrand       String?
+
+  failureReason   String?
+  failureCode     String?
+
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([stripePaymentIntentId])
+  @@index([status])
+}
+
+// ============================================
+// REGISTRY & AI FEATURES
+// ============================================
+
+/// Baby registry information
+model Registry {
+  id                  String   @id @default(cuid())
+  userId              String   @unique
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name                String
+  description         String?
+  eventDate           DateTime?
+  
+  shareCode           String   @unique
+  isPublic            Boolean  @default(true)
+  status              RegistryStatus @default(ACTIVE)
+
+  // AI predictions
+  predictedSizes      Json?
+  recommendedProducts String[]
+
+  // Relationships
+  items               RegistryItem[]
+  growthEntries       GrowthEntry[]
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([userId])
+  @@index([shareCode])
+  @@index([eventDate])
+}
+
+/// Items in a registry
+model RegistryItem {
+  id          String   @id @default(cuid())
+  registryId  String
+  registry    Registry @relation(fields: [registryId], references: [id], onDelete: Cascade)
+
+  productId   String
+  productName String
+  productSlug String
+
+  // Variant support
+  variantId   String?
+  variantName String?
+
+  quantity    Int
+  quantityPurchased Int @default(0)
+
+  priority    Priority @default(MEDIUM)
+  notes       String?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([registryId])
+  @@index([productId])
+  @@index([variantId])
+}
+
+/// Baby growth measurements over time
+model GrowthEntry {
+  id                String   @id @default(cuid())
+  registryId        String
+  registry          Registry @relation(fields: [registryId], references: [id], onDelete: Cascade)
+
+  childName         String?
+  childBirthDate    DateTime?
+  
+  height            Float?
+  weight            Float?
+  headCircumference Float?
+  
+  recordedAt        DateTime @default(now())
+  notes             String?
+
+  createdAt         DateTime @default(now())
+
+  @@index([registryId])
+  @@index([recordedAt])
+}
+
+/// User notifications
+model Notification {
+  id          String            @id @default(cuid())
+  userId      String
+  user        User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  type        NotificationType
+  title       String
+  message     String
+  data        Json?
+
+  isRead      Boolean           @default(false)
+  sentAt      DateTime          @default(now())
+  readAt      DateTime?
+
+  createdAt   DateTime          @default(now())
+
+  @@index([userId])
+  @@index([isRead])
+  @@index([createdAt])
+}
+
+// ============================================
+// REVIEWS & WISHLIST
+// ============================================
+
+/// Product reviews
+model Review {
+  id              String   @id @default(cuid())
+  productId       String
+  product         Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+
+  rating          Int
+  title           String?
+  content         String?
+
+  isVerifiedPurchase Boolean @default(false)
+  isApproved      Boolean  @default(true)
+
+  helpfulCount    Int      @default(0)
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([productId])
+  @@index([userId])
+  @@index([rating])
+  @@index([isApproved])
+}
+
+/// User wishlists
+model Wishlist {
+  id        String         @id @default(cuid())
+  userId    String         @unique
+  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name      String         @default("My Wishlist")
+  isDefault Boolean        @default(true)
+
+  items     WishlistItem[]
+
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+
+  @@index([userId])
+}
+
+/// Items in a wishlist
+model WishlistItem {
+  id          String    @id @default(cuid())
+  wishlistId  String
+  wishlist    Wishlist  @relation(fields: [wishlistId], references: [id], onDelete: Cascade)
+
+  productId   String
+  variantId   String?
+  
+  notes       String?
+
+  createdAt   DateTime  @default(now())
+
+  @@unique([wishlistId, productId])
+  @@index([wishlistId])
+  @@index([productId])
+  @@index([variantId])
+}
+
+// ============================================
+// AI/ML TABLES
+// ============================================
+
+/// User behavior tracking for AI recommendations
+model UserBehavior {
+  id          String     @id @default(cuid())
+  userId      String?
+  user        User?      @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  sessionId   String?
+
+  eventType   EventType
+  productId   String?
+  product     Product?   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  variantId   String?
+  variant     Variant?   @relation(fields: [variantId], references: [id], onDelete: Cascade)
+
+  metadata    Json?
+
+  createdAt   DateTime   @default(now())
+
+  @@index([userId])
+  @@index([sessionId])
+  @@index([eventType])
+  @@index([productId])
+  @@index([variantId])
+  @@index([createdAt])
+}
+
+/// AI recommendation logs for analysis
+model RecommendationLog {
+  id          String             @id @default(cuid())
+  userId      String?
+  user        User?              @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  productId   String
+  product     Product            @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  source      RecommendationSource
+  score       Float
+  position    Int
+
+  wasClicked  Boolean            @default(false)
+  wasPurchased Boolean           @default(false)
+
+  createdAt   DateTime           @default(now())
+
+  @@index([userId])
+  @@index([productId])
+  @@index([source])
+  @@index([createdAt])
+}
+
+// ============================================
+// DROPSHIPPING MODELS
+// ============================================
+
+/// AliExpress supplier information
+model Supplier {
+  id              String   @id @default(cuid())
+  aliExpressId    String   @unique
+  name            String
+  storeUrl        String?
+  rating          Float?
+  totalOrders     Int      @default(0)
+  status          SupplierStatus @default(ACTIVE)
+  
+  lastOrderAt     DateTime?
+  
+  products        ProductSource[]
+  dropshipOrders  DropshipOrder[]
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([aliExpressId])
+  @@index([status])
+}
+
+/// Links Kids Petite products to AliExpress source
+model ProductSource {
+  id                String   @id @default(cuid())
+  
+  // Link to Sanity product
+  sanityProductId   String   @unique
+  productSlug       String
+  
+  // AliExpress identifiers
+  aliExpressProductId String
+  aliExpressUrl     String
+  aliExpressSku     String?
+  
+  // Supplier relationship
+  supplierId        String
+  supplier          Supplier @relation(fields: [supplierId], references: [id])
+  
+  // Pricing
+  originalPrice     Decimal  @db.Decimal(10, 2)
+  originalCurrency  String   @default("USD")
+  categoryId        String
+  category          Category @relation(fields: [categoryId], references: [id])
+  
+  // Source images for reference
+  originalImageUrls String[]
+  
+  // Sync tracking
+  lastSyncedAt      DateTime @default(now())
+  sourceStatus      SourceStatus @default(ACTIVE)
+  inventoryStatus   InventoryStatus @default(AVAILABLE)
+  
+  // Variant mapping stored as JSON
+  variantMapping    Json?
+  
+  // Relationships
+  dropshipOrderItems DropshipOrderItem[]
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@index([sanityProductId])
+  @@index([aliExpressProductId])
+  @@index([supplierId])
+  @@index([sourceStatus])
+  @@index([categoryId])
+  @@index([supplierId, sourceStatus])
+}
+
+/// Tracks orders placed on AliExpress for fulfillment
+model DropshipOrder {
+  id                String   @id @default(cuid())
+  
+  // Link to main order
+  orderId           String   @unique
+  order             Order    @relation(fields: [orderId], references: [id])
+  
+  // AliExpress order tracking
+  aliExpressOrderId String?
+  aliExpressOrderStatus String?
+  
+  // Fulfillment tracking
+  status            DropshipOrderStatus @default(PENDING)
+  
+  // Customer details for AliExpress order
+  customerEmail     String
+  customerPhone     String?
+  shippingAddress   Json
+  
+  // Tracking info from AliExpress
+  trackingNumber    String?
+  trackingUrl       String?
+  carrier           String?
+  estimatedDelivery DateTime?
+  actualDelivery    DateTime?
+  
+  // Cost tracking
+  totalCost         Decimal  @db.Decimal(10, 2)
+  shippingCost      Decimal  @db.Decimal(10, 2) @default(0)
+  
+  // Timestamps
+  placedAt          DateTime?
+  shippedAt         DateTime?
+  deliveredAt       DateTime?
+  
+  items             DropshipOrderItem[]
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@index([orderId])
+  @@index([aliExpressOrderId])
+  @@index([status])
+  @@index([status, createdAt])
+}
+
+/// Individual items in a dropship order
+model DropshipOrderItem {
+  id                String   @id @default(cuid())
+  
+  dropshipOrderId   String
+  dropshipOrder     DropshipOrder @relation(fields: [dropshipOrderId], references: [id], onDelete: Cascade)
+  
+  productSourceId   String
+  productSource     ProductSource @relation(fields: [productSourceId], references: [id])
+  
+  // Item details at time of order
+  aliExpressSku     String
+  quantity          Int
+  unitCost          Decimal  @db.Decimal(10, 2)
+  totalCost         Decimal  @db.Decimal(10, 2)
+  
+  // Link to original order item
+  orderItemId       String
+  
+  createdAt         DateTime @default(now())
+  
+  @@index([dropshipOrderId])
+  @@index([productSourceId])
+}
+
+// ============================================
+// IMPORT JOB TRACKING
+// ============================================
+
+/// Import job tracking for async product imports
+model ImportJob {
+  id            String   @id @default(cuid())
+  jobId         String   @unique
+  status        String   @default("pending") // pending, processing, completed, failed
+  progress      Int      @default(0)
+  currentStep   String?
+  result        Json?
+  error         String?
+  
+  // User who initiated the import
+  userId        String?
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  @@index([jobId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+/// Discount code for promotional pricing
+model DiscountCode {
+  id              String    @id @default(cuid())
+  code            String    @unique
+  description     String?
+  discountType    String    // percentage or fixed
+  discountValue   Decimal   @db.Decimal(10, 2)
+  
+  // Validity
+  isActive        Boolean   @default(true)
+  startsAt        DateTime?
+  expiresAt       DateTime?
+  
+  // Usage limits
+  maxUses         Int?
+  currentUses     Int       @default(0)
+  maxUsesPerUser  Int?
+  
+  // Minimum purchase requirements
+  minPurchaseAmount Decimal? @db.Decimal(10, 2)
+  
+  // Applicable categories/products (null means all)
+  applicableCategories String[]
+  applicableProducts   String[]
+  
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  @@index([code])
+  @@index([isActive])
+  @@index([expiresAt])
+}
