@@ -17,15 +17,15 @@ railway run npx prisma migrate deploy
 
 # 3. Sync Sanity → PostgreSQL
 echo "🔄 Syncing products from Sanity to database..."
-railway run ./node_modules/.bin/tsx src/scripts/sync-sanity-to-db.ts
+railway run node -r tsx/register src/scripts/sync-sanity-to-db.ts
 
 # 4. Index products to Algolia
 echo "🔍 Indexing products to Algolia..."
-railway run ./node_modules/.bin/tsx src/scripts/index-products-to-algolia.ts
+railway run node -r tsx/register src/scripts/index-products-to-algolia.ts
 
 # 5. Validate environment
 echo "🔐 Validating environment variables..."
-railway run ./node_modules/.bin/tsx src/scripts/validate-env.ts
+railway run node -r tsx/register src/scripts/validate-env.ts
 
 echo ""
 echo "✅ Deployment steps complete!"
