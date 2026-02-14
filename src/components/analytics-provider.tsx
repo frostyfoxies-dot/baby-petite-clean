@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { initGA4, Analytics } from '@/lib/analytics';
+import { initGA4, getPageInfo } from '@/lib/analytics/ga4';
 
 /**
  * Analytics Provider
@@ -15,9 +15,12 @@ export function AnalyticsProvider() {
     initGA4();
 
     // Track initial page view
-    const pageInfo = Analytics.getPageInfo();
+    const pageInfo = getPageInfo();
     if (pageInfo) {
-      Analytics.event('page_view', {
+      // Use ga4Event directly
+      const { ga4Event } = require('@/lib/analytics/ga4');
+      ga4Event({
+        event_name: 'page_view',
         page_title: pageInfo.page_title,
         page_location: pageInfo.page_location,
         page_path: pageInfo.page_path,

@@ -6,6 +6,8 @@ import { FulfillmentClient } from './fulfillment-client';
  * 
  * Admin page for managing dropship order fulfillment.
  */
+export const dynamic = 'force-dynamic';
+
 export default async function FulfillmentPage() {
   // Fetch dropship orders with related data
   const orders = await prisma.dropshipOrder.findMany({

@@ -5,7 +5,7 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { MobileBottomNav } from '@/components/layout/mobile-bottom-nav';
 import { ToastProvider } from '@/components/ui/toast';
-import { CartDrawer } from '@/components/cart/cart-drawer';
+import { CartDrawerWrapper } from '@/components/cart/cart-drawer-wrapper';
 import { ExitIntentProvider } from '@/components/exit-intent/exit-intent-provider';
 import { ChatProvider, LazyLiveChat } from '@/components/chat';
 import { AnalyticsProvider } from '@/components/analytics-provider';
@@ -197,7 +197,7 @@ export default function RootLayout({
                   ]}
                 />
               </div>
-              <CartDrawer />
+              <CartDrawerWrapper />
               {/* Mobile Bottom Navigation - visible only on mobile */}
               <MobileBottomNav />
               {/* Live Chat Widget - lazy loaded for performance */}

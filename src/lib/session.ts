@@ -1,6 +1,7 @@
-import { auth as nextAuthAuth } from 'next-auth/next';
+import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 import { UserRole } from '@prisma/client';
+import { authOptions } from '@/lib/auth';
 
 /**
  * Session Management Utilities
@@ -60,7 +61,7 @@ export interface Session {
  */
 export async function getServerSession(): Promise<Session | null> {
   try {
-    const session = await nextAuthAuth();
+    const session = await getServerSession(authOptions);
     
     if (!session?.user) {
       return null;

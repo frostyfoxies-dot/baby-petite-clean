@@ -7,6 +7,8 @@ import { OrderDetailClient } from './order-detail-client';
  * 
  * Shows detailed information about a specific dropship order.
  */
+export const dynamic = 'force-dynamic';
+
 export default async function OrderDetailPage({
   params,
 }: {

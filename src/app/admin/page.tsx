@@ -6,6 +6,8 @@ import { DashboardClient } from './dashboard-client';
  * 
  * Main admin dashboard with overview statistics and quick actions.
  */
+export const dynamic = 'force-dynamic';
+
 export default async function AdminDashboardPage() {
   // Fetch statistics
   const [

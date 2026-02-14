@@ -7,6 +7,8 @@ import { Supplier } from '@prisma/client';
  * 
  * Admin page for viewing and managing AliExpress suppliers.
  */
+export const dynamic = 'force-dynamic';
+
 export default async function SuppliersPage() {
   // Fetch all suppliers with product count
   const suppliers = await prisma.supplier.findMany({
