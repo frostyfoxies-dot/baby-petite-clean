@@ -58,7 +58,7 @@
     "@types/bcryptjs": "2.x",
     "@types/node": "20.x",
     "@types/react": "19.x",
-    "@types/react-dom": "19.x",
+    "@types/react-dom": "19.",
     "@types/styled-components": "^5.1.36",
     "autoprefixer": "10.x",
     "eslint": "9.x",
@@ -66,6 +66,7 @@
     "postcss": "8.x",
     "prisma": "6.x",
     "tailwindcss": "4.x",
+    "tsx": "4.19.2",
     "typescript": "5.x",
     "vitest": "2.x"
   }
