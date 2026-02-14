@@ -7,19 +7,23 @@ set -e
 
 echo "🚀 Starting Kids Petite deployment steps..."
 
-# 1. Run database migrations
+# 1. Generate Prisma client (needed at runtime)
+echo "📦 Generating Prisma client..."
+railway run npx prisma generate
+
+# 2. Run database migrations
 echo "📦 Running database migrations..."
 railway run npx prisma migrate deploy
 
-# 2. Sync Sanity → PostgreSQL
+# 3. Sync Sanity → PostgreSQL
 echo "🔄 Syncing products from Sanity to database..."
 railway run npx tsx src/scripts/sync-sanity-to-db.ts
 
-# 3. Index products to Algolia
+# 4. Index products to Algolia
 echo "🔍 Indexing products to Algolia..."
 railway run npx tsx src/scripts/index-products-to-algolia.ts
 
-# 4. Validate environment
+# 5. Validate environment
 echo "🔐 Validating environment variables..."
 railway run npx tsx src/scripts/validate-env.ts
 
