@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:scripts": "tsc -p tsconfig.scripts.json",
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
@@ -50,7 +49,6 @@
     "stripe": "17.x",
     "styled-components": "^6.3.9",
     "tailwind-merge": "2.x",
-    "tsx": "4.19.2",
     "zod": "3.x",
     "zustand": "5.x"
   },
@@ -68,6 +66,7 @@
     "postcss": "8.x",
     "prisma": "6.x",
     "tailwindcss": "4.x",
+    "tsx": "4.19.2",
     "typescript": "5.x",
     "vitest": "2.x"
   }

@@ -11,19 +11,23 @@ echo "🚀 Starting Kids Petite deployment steps..."
 echo "📦 Generating Prisma client..."
 railway run npx prisma generate
 
-# 2. Run database migrations
+# 2. Compile TypeScript deploy scripts to JavaScript (avoid tsx runtime issues)
+echo "🛠️ Compiling deploy scripts..."
+railway run npx tsc -p tsconfig.scripts.json
+
+# 3. Run database migrations
 echo "📦 Running database migrations..."
 railway run npx prisma migrate deploy
 
-# 3. Sync Sanity → PostgreSQL
+# 4. Sync Sanity → PostgreSQL
 echo "🔄 Syncing products from Sanity to database..."
 railway run node dist/scripts/sync-sanity-to-db.js
 
-# 4. Index products to Algolia
+# 5. Index products to Algolia
 echo "🔍 Indexing products to Algolia..."
 railway run node dist/scripts/index-products-to-algolia.js
 
-# 5. Validate environment
+# 6. Validate environment
 echo "🔐 Validating environment variables..."
 railway run node dist/scripts/validate-env.js
 
