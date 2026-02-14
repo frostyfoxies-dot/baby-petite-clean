@@ -13,8 +13,9 @@
  *   - ALGOLIA_ADMIN_KEY
  */
 
-import { AlgoliaClient } from 'algoliasearch';
-import { prisma } from '@/lib/prisma';
+import algoliasearch, { type SearchClient } from 'algoliasearch';
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 
 interface AlgoliaProductRecord {
   objectID: string;
@@ -33,7 +34,6 @@ interface AlgoliaProductRecord {
   isFeatured: boolean;
   isNew: boolean;
   updatedAt: number;
-  // Add more fields as needed
 }
 
 async function indexProducts() {
@@ -45,7 +45,7 @@ async function indexProducts() {
     process.exit(1);
   }
 
-  const client = new AlgoliaClient({ appId, apiKey: adminKey });
+  const client: SearchClient = algoliasearch(appId, adminKey);
   const index = client.initIndex('products');
 
   console.log('Fetching products from database...');

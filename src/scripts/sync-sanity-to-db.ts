@@ -14,7 +14,8 @@
  */
 
 import { createClient } from '@sanity/client';
-import { prisma } from '@/lib/prisma';
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 
 // Sanity client configuration
 const client = createClient({
