@@ -155,7 +155,7 @@ export async function generateMetadata({
       images: category.imageUrl ? [{ url: category.imageUrl }] : [],
     },
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_APP_URL || 'https://kidspetite.com'}/category/${category.slug}`,
+      canonical: `${process.env.NEXT_PUBLIC_APP_URL || 'https://babypetite.com'}/category/${category.slug}`,
     },
   };
 }
@@ -300,7 +300,7 @@ export default async function CategoryPage({
             '@type': 'CollectionPage',
             name: category.name,
             description: category.description,
-            url: `${process.env.NEXT_PUBLIC_APP_URL || 'https://kidspetite.com'}/category/${category.slug}`,
+            url: `${process.env.NEXT_PUBLIC_APP_URL || 'https://babypetite.com'}/category/${category.slug}`,
             image: category.imageUrl,
             numberOfItems: category.productCount,
             mainEntity: {
@@ -308,7 +308,7 @@ export default async function CategoryPage({
               itemListElement: products.map((product, index) => ({
                 '@type': 'ListItem',
                 position: index + 1,
-                url: `${process.env.NEXT_PUBLIC_APP_URL || 'https://kidspetite.com'}/products/${product.slug}`,
+                url: `${process.env.NEXT_PUBLIC_APP_URL || 'https://babypetite.com'}/products/${product.slug}`,
               })),
             },
           }),

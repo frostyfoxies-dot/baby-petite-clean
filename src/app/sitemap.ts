@@ -2,11 +2,16 @@ import { MetadataRoute } from 'next';
 import { prisma } from '@/lib/prisma';
 
 /**
+ * Force dynamic rendering - sitemap requires database access
+ */
+export const dynamic = 'force-dynamic';
+
+/**
  * Dynamic sitemap for Kids Petite
  * Generates a sitemap.xml file for search engines
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://kidspetite.com';
+  const baseUrl = 'https://babypetite.com';
 
   // Fetch products and categories from database
   const [products, categories] = await Promise.all([

@@ -1,4 +1,4 @@
-import { handlers } from '@/lib/auth';
+import NextAuth from 'next-auth';
 
 /**
  * NextAuth API Route Handler
@@ -13,11 +13,18 @@ import { handlers } from '@/lib/auth';
  * The route is located at /api/auth/[...nextauth] which is the standard
  * NextAuth.js route pattern.
  *
- * @see https://authjs.dev/getting-started/installation
+ * @see https://next-auth.js.org/configuration
  */
+
+/**
+ * Import auth options and create the NextAuth handler
+ */
+import { authOptions } from '@/lib/auth';
+
+const NextAuthHandler = NextAuth(authOptions);
 
 /**
  * Export GET and POST handlers from NextAuth
  * These handlers manage all authentication requests
  */
-export const { GET, POST } = handlers;
+export { NextAuthHandler as GET, NextAuthHandler as POST };

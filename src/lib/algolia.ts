@@ -1,4 +1,4 @@
-import algoliasearch, { SearchClient, SearchIndex } from 'algoliasearch';
+import { algoliasearch, type SearchClient } from 'algoliasearch';
 
 /**
  * Algolia Search Client Configuration
@@ -9,19 +9,29 @@ import algoliasearch, { SearchClient, SearchIndex } from 'algoliasearch';
  * @see https://www.algolia.com/doc/api-client/getting-started/what-is-the-api-client/javascript/
  */
 
-// Validate required environment variables
-if (!process.env.NEXT_PUBLIC_ALGOLIA_APP_ID) {
-  throw new Error('NEXT_PUBLIC_ALGOLIA_APP_ID environment variable is not set');
+// Lazy-initialized client
+let algoliaClientInstance: SearchClient | null = null;
+
+function getAlgoliaClient(): SearchClient {
+  if (!algoliaClientInstance) {
+    const appId = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
+    const adminKey = process.env.ALGOLIA_ADMIN_KEY;
+    
+    if (!appId || !adminKey) {
+      throw new Error('Algolia environment variables are not set');
+    }
+    
+    algoliaClientInstance = algoliasearch(appId, adminKey);
+  }
+  return algoliaClientInstance;
 }
 
-if (!process.env.ALGOLIA_ADMIN_KEY) {
-  throw new Error('ALGOLIA_ADMIN_KEY environment variable is not set');
-}
-
-export const algoliaClient: SearchClient = algoliasearch(
-  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
-  process.env.ALGOLIA_ADMIN_KEY
-);
+// Export the client getter for use in the application
+export const algoliaClient: SearchClient = new Proxy({} as SearchClient, {
+  get(_target, prop) {
+    return getAlgoliaClient()[prop as keyof SearchClient];
+  },
+});
 
 // Index names as constants for consistency
 export const INDEX_NAMES = {
@@ -29,11 +39,6 @@ export const INDEX_NAMES = {
   CATEGORIES: 'categories',
   COLLECTIONS: 'collections',
 } as const;
-
-// Initialize indices
-export const productsIndex: SearchIndex = algoliaClient.initIndex(INDEX_NAMES.PRODUCTS);
-export const categoriesIndex: SearchIndex = algoliaClient.initIndex(INDEX_NAMES.CATEGORIES);
-export const collectionsIndex: SearchIndex = algoliaClient.initIndex(INDEX_NAMES.COLLECTIONS);
 
 /**
  * Product document structure for Algolia indexing
@@ -115,8 +120,9 @@ export interface SearchResult<T> {
  */
 export async function indexProduct(product: AlgoliaProduct): Promise<{ objectID: string }> {
   try {
-    const result = await productsIndex.saveObject(product, {
-      autoGenerateObjectIDIfNotExist: false,
+    const result = await algoliaClient.saveObject({
+      indexName: INDEX_NAMES.PRODUCTS,
+      body: product,
     });
     return { objectID: result.objectID };
   } catch (error) {
@@ -134,8 +140,9 @@ export async function indexProducts(
   products: AlgoliaProduct[]
 ): Promise<{ objectIDs: string[] }> {
   try {
-    const result = await productsIndex.saveObjects(products, {
-      autoGenerateObjectIDIfNotExist: false,
+    const result = await algoliaClient.saveObjects({
+      indexName: INDEX_NAMES.PRODUCTS,
+      objects: products,
     });
     return { objectIDs: result.objectIDs };
   } catch (error) {
@@ -151,7 +158,10 @@ export async function indexProducts(
  */
 export async function deleteProduct(productId: string): Promise<{ deletedAt: string }> {
   try {
-    await productsIndex.deleteObject(productId);
+    await algoliaClient.deleteObject({
+      indexName: INDEX_NAMES.PRODUCTS,
+      objectID: productId,
+    });
     return { deletedAt: new Date().toISOString() };
   } catch (error) {
     console.error('Failed to delete product:', error);
@@ -166,7 +176,10 @@ export async function deleteProduct(productId: string): Promise<{ deletedAt: str
  */
 export async function deleteProducts(productIds: string[]): Promise<{ deletedCount: number }> {
   try {
-    await productsIndex.deleteObjects(productIds);
+    await algoliaClient.deleteObjects({
+      indexName: INDEX_NAMES.PRODUCTS,
+      objectIDs: productIds,
+    });
     return { deletedCount: productIds.length };
   } catch (error) {
     console.error('Failed to delete products batch:', error);
@@ -201,15 +214,15 @@ export async function searchProducts(
   } = options;
 
   // Select index based on sort option
-  let index = productsIndex;
+  let indexName = INDEX_NAMES.PRODUCTS;
   if (sort === 'price_asc') {
-    index = algoliaClient.initIndex(`${INDEX_NAMES.PRODUCTS}_price_asc`);
+    indexName = `${INDEX_NAMES.PRODUCTS}_price_asc`;
   } else if (sort === 'price_desc') {
-    index = algoliaClient.initIndex(`${INDEX_NAMES.PRODUCTS}_price_desc`);
+    indexName = `${INDEX_NAMES.PRODUCTS}_price_desc`;
   } else if (sort === 'newest') {
-    index = algoliaClient.initIndex(`${INDEX_NAMES.PRODUCTS}_created_desc`);
+    indexName = `${INDEX_NAMES.PRODUCTS}_created_desc`;
   } else if (sort === 'rating') {
-    index = algoliaClient.initIndex(`${INDEX_NAMES.PRODUCTS}_rating_desc`);
+    indexName = `${INDEX_NAMES.PRODUCTS}_rating_desc`;
   }
 
   const searchParams: Record<string, unknown> = {
@@ -230,7 +243,24 @@ export async function searchProducts(
   }
 
   try {
-    return await index.search<AlgoliaProduct>(query, searchParams);
+    const result = await algoliaClient.search<AlgoliaProduct>({
+      requests: [{
+        indexName,
+        query,
+        ...searchParams,
+      }],
+    });
+    
+    const firstResult = result.results[0];
+    return {
+      hits: firstResult.hits,
+      nbHits: firstResult.nbHits,
+      page: firstResult.page,
+      nbPages: firstResult.nbPages,
+      hitsPerPage: firstResult.hitsPerPage,
+      processingTimeMS: firstResult.processingTimeMS,
+      query,
+    };
   } catch (error) {
     console.error('Product search failed:', error);
     throw new Error('Failed to search products');
@@ -253,10 +283,25 @@ export async function searchCategories(
   const { page = 0, hitsPerPage = 20 } = options;
 
   try {
-    return await categoriesIndex.search<AlgoliaCategory>(query, {
-      page,
-      hitsPerPage,
+    const result = await algoliaClient.search<AlgoliaCategory>({
+      requests: [{
+        indexName: INDEX_NAMES.CATEGORIES,
+        query,
+        page,
+        hitsPerPage,
+      }],
     });
+    
+    const firstResult = result.results[0];
+    return {
+      hits: firstResult.hits,
+      nbHits: firstResult.nbHits,
+      page: firstResult.page,
+      nbPages: firstResult.nbPages,
+      hitsPerPage: firstResult.hitsPerPage,
+      processingTimeMS: firstResult.processingTimeMS,
+      query,
+    };
   } catch (error) {
     console.error('Category search failed:', error);
     throw new Error('Failed to search categories');
@@ -270,8 +315,9 @@ export async function searchCategories(
  */
 export async function indexCategory(category: AlgoliaCategory): Promise<{ objectID: string }> {
   try {
-    const result = await categoriesIndex.saveObject(category, {
-      autoGenerateObjectIDIfNotExist: false,
+    const result = await algoliaClient.saveObject({
+      indexName: INDEX_NAMES.CATEGORIES,
+      body: category,
     });
     return { objectID: result.objectID };
   } catch (error) {
@@ -289,8 +335,9 @@ export async function indexCollection(
   collection: AlgoliaCollection
 ): Promise<{ objectID: string }> {
   try {
-    const result = await collectionsIndex.saveObject(collection, {
-      autoGenerateObjectIDIfNotExist: false,
+    const result = await algoliaClient.saveObject({
+      indexName: INDEX_NAMES.COLLECTIONS,
+      body: collection,
     });
     return { objectID: result.objectID };
   } catch (error) {
@@ -310,11 +357,16 @@ export async function getProductSuggestions(
   limit: number = 5
 ): Promise<AlgoliaProduct[]> {
   try {
-    const result = await productsIndex.search<AlgoliaProduct>(query, {
-      hitsPerPage: limit,
-      attributesToRetrieve: ['objectID', 'name', 'slug', 'price', 'images', 'category'],
+    const result = await algoliaClient.search<AlgoliaProduct>({
+      requests: [{
+        indexName: INDEX_NAMES.PRODUCTS,
+        query,
+        hitsPerPage: limit,
+        attributesToRetrieve: ['objectID', 'name', 'slug', 'price', 'images', 'category'],
+      }],
     });
-    return result.hits;
+    
+    return result.results[0].hits;
   } catch (error) {
     console.error('Failed to get product suggestions:', error);
     return [];

@@ -262,4 +262,4 @@ MIT
 
 ## Support
 
-For support, please open an issue on GitHub or contact support@kidspetite.com
+For support, please open an issue on GitHub or contact support@babypetite.com

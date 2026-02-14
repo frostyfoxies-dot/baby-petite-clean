@@ -69,7 +69,7 @@ export default function Error({
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="mailto:support@kidspetite.com"
+              href="mailto:support@babypetite.com"
               className="text-sm text-yellow-dark hover:underline"
             >
               Contact Support

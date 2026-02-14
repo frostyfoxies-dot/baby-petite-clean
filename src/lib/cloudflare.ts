@@ -186,8 +186,8 @@ export async function purgeAllCache(): Promise<PurgeResult> {
  * @example
  * ```ts
  * const result = await purgeCacheByUrls([
- *   'https://kidspetite.com/products/baby-romper',
- *   'https://kidspetite.com/category/newborn',
+ *   'https://babypetite.com/products/baby-romper',
+ *   'https://babypetite.com/category/newborn',
  * ]);
  * ```
  */
@@ -313,7 +313,7 @@ export async function purgeCacheByTags(tags: string[]): Promise<PurgeResult> {
  *
  * @example
  * ```ts
- * const result = await purgeCacheByHosts(['kidspetite.com', 'www.kidspetite.com']);
+ * const result = await purgeCacheByHosts(['babypetite.com', 'www.babypetite.com']);
  * ```
  */
 export async function purgeCacheByHosts(hosts: string[]): Promise<PurgeResult> {
@@ -374,12 +374,12 @@ export async function purgeCacheByHosts(hosts: string[]): Promise<PurgeResult> {
  *
  * @example
  * ```ts
- * const result = await purgeProductCache('baby-romper', 'https://kidspetite.com');
+ * const result = await purgeProductCache('baby-romper', 'https://babypetite.com');
  * ```
  */
 export async function purgeProductCache(
   slug: string,
-  baseUrl: string = process.env.NEXT_PUBLIC_BASE_URL || 'https://kidspetite.com'
+  baseUrl: string = process.env.NEXT_PUBLIC_BASE_URL || 'https://babypetite.com'
 ): Promise<PurgeResult> {
   return purgeCacheByUrls([
     `${baseUrl}/products/${slug}`,
@@ -396,12 +396,12 @@ export async function purgeProductCache(
  *
  * @example
  * ```ts
- * const result = await purgeCategoryCache('newborn', 'https://kidspetite.com');
+ * const result = await purgeCategoryCache('newborn', 'https://babypetite.com');
  * ```
  */
 export async function purgeCategoryCache(
   slug: string,
-  baseUrl: string = process.env.NEXT_PUBLIC_BASE_URL || 'https://kidspetite.com'
+  baseUrl: string = process.env.NEXT_PUBLIC_BASE_URL || 'https://babypetite.com'
 ): Promise<PurgeResult> {
   return purgeCacheByUrls([
     `${baseUrl}/category/${slug}`,
@@ -417,12 +417,12 @@ export async function purgeCategoryCache(
  *
  * @example
  * ```ts
- * const result = await purgeCollectionCache('summer-sale', 'https://kidspetite.com');
+ * const result = await purgeCollectionCache('summer-sale', 'https://babypetite.com');
  * ```
  */
 export async function purgeCollectionCache(
   slug: string,
-  baseUrl: string = process.env.NEXT_PUBLIC_BASE_URL || 'https://kidspetite.com'
+  baseUrl: string = process.env.NEXT_PUBLIC_BASE_URL || 'https://babypetite.com'
 ): Promise<PurgeResult> {
   return purgeCacheByUrls([
     `${baseUrl}/collection/${slug}`,
@@ -437,11 +437,11 @@ export async function purgeCollectionCache(
  *
  * @example
  * ```ts
- * const result = await purgeHomepageCache('https://kidspetite.com');
+ * const result = await purgeHomepageCache('https://babypetite.com');
  * ```
  */
 export async function purgeHomepageCache(
-  baseUrl: string = process.env.NEXT_PUBLIC_BASE_URL || 'https://kidspetite.com'
+  baseUrl: string = process.env.NEXT_PUBLIC_BASE_URL || 'https://babypetite.com'
 ): Promise<PurgeResult> {
   return purgeCacheByUrls([
     baseUrl,
@@ -464,7 +464,7 @@ export async function purgeHomepageCache(
  * ```
  */
 export async function purgeAllProductsCache(
-  baseUrl: string = process.env.NEXT_PUBLIC_BASE_URL || 'https://kidspetite.com'
+  baseUrl: string = process.env.NEXT_PUBLIC_BASE_URL || 'https://babypetite.com'
 ): Promise<PurgeResult> {
   // Purge product listing pages
   const urls = [
@@ -505,7 +505,7 @@ export async function purgeAllProductsCache(
 export async function handleSanityWebhook(
   documentType: string,
   slug?: string,
-  baseUrl: string = process.env.NEXT_PUBLIC_BASE_URL || 'https://kidspetite.com'
+  baseUrl: string = process.env.NEXT_PUBLIC_BASE_URL || 'https://babypetite.com'
 ): Promise<PurgeResult> {
   switch (documentType) {
     case 'product':

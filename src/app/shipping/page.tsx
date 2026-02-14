@@ -163,7 +163,7 @@ export default function ShippingPage() {
                 <li>Countries under trade sanctions</li>
               </ul>
               <p>
-                If you have questions about shipping to your location, please contact our customer service team at support@kidspetite.com.
+                If you have questions about shipping to your location, please contact our customer service team at support@babypetite.com.
               </p>
             </div>
           </div>

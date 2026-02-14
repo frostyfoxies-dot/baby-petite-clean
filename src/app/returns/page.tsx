@@ -253,7 +253,7 @@ export default function ReturnsPage() {
                   <strong>Return Address:</strong> Please use the return label provided. Do not send returns to our corporate address.
                 </p>
                 <p>
-                  <strong>Questions?</strong> If you have any questions about our return policy, please contact our customer service team at support@kidspetite.com.
+                  <strong>Questions?</strong> If you have any questions about our return policy, please contact our customer service team at support@babypetite.com.
                 </p>
               </div>
             </div>

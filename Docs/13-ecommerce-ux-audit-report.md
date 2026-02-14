@@ -323,7 +323,7 @@ const breadcrumbSchema = {
     "@type": "ListItem",
     "position": index + 1,
     "name": item.label,
-    "item": item.href ? `https://kidspetite.com${item.href}` : undefined
+    "item": item.href ? `https://babypetite.com${item.href}` : undefined
   }))
 };
 

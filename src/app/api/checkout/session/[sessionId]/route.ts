@@ -91,7 +91,7 @@ export async function GET(
     const user = await getCurrentUser();
 
     // Get checkout session from our database
-    const checkoutSession = await prisma.checkoutSession.findUnique({
+    const checkoutSession = await (prisma as any).checkoutSession.findUnique({
       where: { id: sessionId },
       include: {
         cart: {

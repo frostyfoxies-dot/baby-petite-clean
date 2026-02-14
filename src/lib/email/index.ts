@@ -41,3 +41,15 @@ export {
   type CartItem,
   type CartAbandonmentEmailProps,
 } from './templates/cart-abandonment';
+export {
+  OrderConfirmationEmail,
+  type OrderConfirmationProps,
+} from './templates/order-confirmation';
+export {
+  ShippingUpdateEmail,
+  type ShippingUpdateProps,
+} from './templates/shipping-update';
+export {
+  RegistryInviteEmail,
+  type RegistryInviteProps,
+} from './templates/registry-invite';

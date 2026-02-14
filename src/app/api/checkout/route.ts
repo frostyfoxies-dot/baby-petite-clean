@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma';
 import { getCurrentUser } from '@/lib/session';
 import { createCheckoutSession, formatAmountForStripe } from '@/lib/stripe';
 import { z } from 'zod';
+import { calculateTax } from '@/lib/tax';
 import {
   AppError,
   BadRequestError,
@@ -69,7 +70,7 @@ async function getSessionId(): Promise<string | null> {
 
 async function getCart(userId: string | null, sessionId: string | null) {
   if (userId) {
-    return prisma.cart.findUnique({
+    return prisma.cart.findFirst({
       where: { userId },
       include: {
         items: {
@@ -95,7 +96,7 @@ async function getCart(userId: string | null, sessionId: string | null) {
     });
   }
   if (sessionId) {
-    return prisma.cart.findUnique({
+    return prisma.cart.findFirst({
       where: { sessionId },
       include: {
         items: {
@@ -218,10 +219,30 @@ export async function POST(request: NextRequest) {
       });
     }
 
+    // Calculate tax based on shipping destination
+    const shippingCountry = checkoutData.shippingAddress.country;
+    const shippingState = checkoutData.shippingAddress.state || null;
+    const tax = calculateTax(subtotal, shippingMethod.price, shippingCountry, shippingState);
+
+    // Add tax as a line item if nonzero
+    if (tax > 0) {
+      lineItems.push({
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: 'Tax',
+            description: `Sales tax for ${shippingCountry}${shippingState ? `, ${shippingState}` : ''}`,
+          },
+          unit_amount: formatAmountForStripe(tax),
+        },
+        quantity: 1,
+      });
+    }
+
     // Apply discount if provided
     let discountAmount = 0;
     if (checkoutData.discountCode) {
-      const discount = await prisma.discount.findUnique({
+      const discount = await (prisma as any).discount.findUnique({
         where: { code: checkoutData.discountCode.toUpperCase() },
       });
 
@@ -271,7 +292,7 @@ export async function POST(request: NextRequest) {
 
     // Create Stripe checkout session
     const stripeSession = await createCheckoutSession({
-      lineItems,
+      lineItems: lineItems as any,
       successUrl,
       cancelUrl,
       customerId: user?.id ? undefined : undefined, // Would fetch Stripe customer ID if exists
@@ -290,7 +311,7 @@ export async function POST(request: NextRequest) {
     });
 
     // Store checkout data in database for later retrieval
-    await prisma.checkoutSession.create({
+    await (prisma as any).checkoutSession.create({
       data: {
         id: stripeSession.id,
         cartId: cart.id,

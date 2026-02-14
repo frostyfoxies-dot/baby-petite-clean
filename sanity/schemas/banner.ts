@@ -89,7 +89,7 @@ export default defineType({
       group: 'media',
       options: {
         hotspot: true,
-        metadata: ['dimensions', 'lqip', 'palette'],
+        metadata: ['lqip', 'palette'],
       },
       validation: (Rule) => Rule.required(),
     }),
@@ -100,7 +100,7 @@ export default defineType({
       group: 'media',
       options: {
         hotspot: true,
-        metadata: ['dimensions', 'lqip', 'palette'],
+        metadata: ['lqip', 'palette'],
       },
       description: 'Optional separate image for mobile devices',
     }),

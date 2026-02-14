@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${product.name} | Kids Petite`,
     description: product.metaDescription || product.shortDescription || product.description?.slice(0, 160) || 'Product details',
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_APP_URL || 'https://kidspetite.com'}/products/${product.slug}`,
+      canonical: `${process.env.NEXT_PUBLIC_APP_URL || 'https://babypetite.com'}/products/${product.slug}`,
     },
   };
 }
@@ -158,7 +158,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     },
     offers: {
       '@type': 'Offer',
-      url: `${process.env.NEXT_PUBLIC_APP_URL || 'https://kidspetite.com'}/products/${product.slug}`,
+      url: `${process.env.NEXT_PUBLIC_APP_URL || 'https://babypetite.com'}/products/${product.slug}`,
       priceCurrency: 'USD',
       price: product.basePrice,
       priceValidUntil: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
@@ -284,6 +284,89 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <p className="text-gray-600 leading-relaxed">
               {product.shortDescription || product.description || 'No description available.'}
             </p>
+
+            {/* Compliance & Safety Information */}
+            {(product.compliance?.minAge !== null ||
+              product.compliance?.maxAge !== null ||
+              product.compliance?.chokingHazard ||
+              product.compliance?.certifications?.length ||
+              product.compliance?.countryOfOrigin ||
+              product.compliance?.careInstructions) && (
+              <div className="border-t border-gray-200 pt-4 space-y-3">
+                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                  Safety & Compliance
+                </h3>
+
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  {/* Age Range */}
+                  {(product.compliance?.minAge !== null || product.compliance?.maxAge !== null) && (
+                    <div>
+                      <span className="text-gray-600">Age:</span>{' '}
+                      <span className="font-medium">
+                        {product.compliance?.minAge !== null
+                          ? `${product.compliance.minAge}m`
+                          : ''}
+                        {product.compliance?.minAge !== null &&
+                          product.compliance?.maxAge !== null &&
+                          ' – '}
+                        {product.compliance?.maxAge !== null
+                          ? `${product.compliance.maxAge}m`
+                          : ''}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Country of Origin */}
+                  {product.compliance?.countryOfOrigin && (
+                    <div>
+                      <span className="text-gray-600">Made in:</span>{' '}
+                      <span className="font-medium">{product.compliance.countryOfOrigin}</span>
+                    </div>
+                  )}
+
+                  {/* Certifications */}
+                  {product.compliance?.certifications?.length && (
+                    <div className="col-span-2">
+                      <span className="text-gray-600">Certifications: </span>
+                      {product.compliance.certifications.map((cert, i) => (
+                        <span
+                          key={i}
+                          className="inline-block bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs mr-2 mt-1"
+                        >
+                          {cert}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Choking Hazard Warning */}
+                  {product.compliance?.chokingHazard && (
+                    <div className="col-span-2">
+                      <div className="bg-red-50 border border-red-200 rounded-md p-3">
+                        <p className="text-red-800 font-medium text-sm">
+                          ⚠️ Choking Hazard
+                        </p>
+                        <p className="text-red-700 text-sm mt-1">
+                          {product.compliance?.chokingHazardText || 'Small parts. Not for children under 3 years.'}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Care Instructions */}
+                  {product.compliance?.careInstructions && (
+                    <div className="col-span-2">
+                      <span className="text-gray-600 block mb-1">Care Instructions:</span>
+                      <p className="text-sm text-gray-700 whitespace-pre-line">
+                        {typeof product.compliance.careInstructions === 'string'
+                          ? product.compliance.careInstructions
+                          : JSON.stringify(product.compliance.careInstructions)}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
 
             {/* Variant selector */}
             {variantGroups.length > 0 && (

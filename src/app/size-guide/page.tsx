@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { Container } from '@/components/layout/container';
-import { Ruler, Baby, Shirt, Pants } from 'lucide-react';
+import { Ruler, Baby, Shirt } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Size Guide | Kids Petite',
@@ -61,7 +61,7 @@ export default function SizeGuidePage() {
 
               <div className="border border-gray-200 rounded-lg p-6">
                 <div className="w-12 h-12 bg-yellow/20 rounded-full flex items-center justify-center mb-4">
-                  <Pants className="w-6 h-6 text-yellow-dark" />
+                  <Shirt className="w-6 h-6 text-yellow-dark" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
                   Waist
@@ -435,7 +435,7 @@ export default function SizeGuidePage() {
                   Need Help?
                 </h3>
                 <p className="text-gray-900">
-                  If you're unsure about sizing, our customer service team is happy to help. Contact us at support@kidspetite.com.
+                  If you're unsure about sizing, our customer service team is happy to help. Contact us at support@babypetite.com.
                 </p>
               </div>
             </div>

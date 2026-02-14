@@ -221,7 +221,7 @@ export function DashboardClient({
                     </div>
                     <div className="text-right">
                       <StatusBadge 
-                        status={product.sourceStatus.toLowerCase() as 'active' | 'unavailable'} 
+                        status={product.sourceStatus.toLowerCase() as any} 
                         size="sm" 
                       />
                       <p className="text-xs text-gray-400 mt-1">

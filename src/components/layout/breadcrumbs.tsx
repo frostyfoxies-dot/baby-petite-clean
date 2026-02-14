@@ -206,7 +206,7 @@ const Breadcrumbs = React.memo(function Breadcrumbs({
 }: BreadcrumbsProps) {
   // Memoize base URL
   const baseUrl = React.useMemo(
-    () => process.env.NEXT_PUBLIC_SITE_URL || 'https://kidspetite.com',
+    () => process.env.NEXT_PUBLIC_SITE_URL || 'https://babypetite.com',
     []
   );
   
@@ -278,7 +278,7 @@ const Breadcrumbs = React.memo(function Breadcrumbs({
  * @example
  * ```tsx
  * <BreadcrumbsServer
- *   baseUrl="https://kidspetite.com"
+ *   baseUrl="https://babypetite.com"
  *   items={[
  *     { label: 'Products', href: '/products' },
  *     { label: 'Current Item' }
@@ -293,7 +293,7 @@ const BreadcrumbsServer = React.memo(function BreadcrumbsServer({
   className,
 }: BreadcrumbsServerProps) {
   const siteUrl = React.useMemo(
-    () => baseUrl || process.env.NEXT_PUBLIC_SITE_URL || 'https://kidspetite.com',
+    () => baseUrl || process.env.NEXT_PUBLIC_SITE_URL || 'https://babypetite.com',
     [baseUrl]
   );
   

@@ -139,7 +139,7 @@ export interface EmailHeaderProps {
  * Email header with brand logo
  */
 export function EmailHeader({
-  logoUrl = 'https://kidspetite.com/logo.png',
+  logoUrl = 'https://babypetite.com/logo.png',
   logoAlt = 'Kids Petite',
   logoWidth = 150,
   logoHeight = 40,
@@ -635,33 +635,33 @@ export function EmailFooter({
       {showSocial && (
         <Section style={{ marginBottom: '16px' }}>
           <Link
-            href="https://facebook.com/kidspetite"
+            href="https://facebook.com/babypetite"
             style={{ margin: '0 8px', display: 'inline-block' }}
           >
             <Img
-              src="https://kidspetite.com/icons/facebook.png"
+              src="https://babypetite.com/icons/facebook.png"
               alt="Facebook"
               width={24}
               height={24}
             />
           </Link>
           <Link
-            href="https://instagram.com/kidspetite"
+            href="https://instagram.com/babypetite"
             style={{ margin: '0 8px', display: 'inline-block' }}
           >
             <Img
-              src="https://kidspetite.com/icons/instagram.png"
+              src="https://babypetite.com/icons/instagram.png"
               alt="Instagram"
               width={24}
               height={24}
             />
           </Link>
           <Link
-            href="https://pinterest.com/kidspetite"
+            href="https://pinterest.com/babypetite"
             style={{ margin: '0 8px', display: 'inline-block' }}
           >
             <Img
-              src="https://kidspetite.com/icons/pinterest.png"
+              src="https://babypetite.com/icons/pinterest.png"
               alt="Pinterest"
               width={24}
               height={24}
@@ -709,7 +709,7 @@ export function EmailFooter({
           </Link>{' '}
           ·{' '}
           <Link
-            href="https://kidspetite.com/privacy"
+            href="https://babypetite.com/privacy"
             style={{
               color: brandColors.textLight,
               textDecoration: 'underline',

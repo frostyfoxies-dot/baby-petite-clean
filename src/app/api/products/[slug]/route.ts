@@ -31,6 +31,14 @@ export interface ProductDetailResponse {
   metaTitle: string | null;
   metaDescription: string | null;
   metaKeywords: string | null;
+  // Compliance
+  minAge?: number | null;
+  maxAge?: number | null;
+  chokingHazard?: boolean;
+  chokingHazardText?: string | null;
+  certifications?: string[];
+  countryOfOrigin?: string | null;
+  careInstructions?: string | null;
   popularityScore: number;
   aiTags: string[];
   images: Array<{
@@ -139,6 +147,7 @@ export async function GET(
               },
             },
           },
+          orderBy: { sortOrder: 'asc' },
         },
         reviews: {
           where: { isApproved: true },
@@ -205,6 +214,14 @@ export async function GET(
       metaTitle: product.metaTitle,
       metaDescription: product.metaDescription,
       metaKeywords: product.metaKeywords,
+      // Compliance
+      minAge: product.minAge ?? null,
+      maxAge: product.maxAge ?? null,
+      chokingHazard: product.chokingHazard,
+      chokingHazardText: product.chokingHazardText ?? null,
+      certifications: product.certifications ?? [],
+      countryOfOrigin: product.countryOfOrigin ?? null,
+      careInstructions: product.careInstructions ?? null,
       popularityScore: product.popularityScore,
       aiTags: product.aiTags,
       images: product.images,

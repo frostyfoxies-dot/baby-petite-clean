@@ -27,8 +27,6 @@ if (SENTRY_DSN) {
     integrations: [
       // Add HTTP integration for tracing HTTP requests
       Sentry.httpIntegration(),
-      // Add native node integration
-      Sentry.nodeProfilingIntegration(),
     ],
 
     // Ignore specific errors that are not actionable

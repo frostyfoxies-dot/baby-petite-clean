@@ -134,7 +134,7 @@ export async function updateProfile(input: UpdateProfileInput): Promise<ActionRe
  *   password: 'currentPassword',
  * });
  */
-export async function updateEmail(input: UpdateEmailInput): Promise<ActionResult> {
+export async function updateEmail(input: UpdateEmailInput): Promise<ActionResult<{ message: string }>> {
   try {
     // Get current user
     const user = await getCurrentUser();

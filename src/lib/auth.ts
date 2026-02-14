@@ -7,7 +7,7 @@ import { z } from 'zod';
 import crypto from 'crypto';
 
 /**
- * NextAuth.js v5 Configuration
+ * NextAuth.js v4 Configuration
  *
  * Configures authentication for the Kids Petite e-commerce platform with:
  * - Credentials provider (email/password)
@@ -16,7 +16,7 @@ import crypto from 'crypto';
  * - Custom JWT callback
  * - Custom pages (sign in, sign up, error)
  *
- * @see https://authjs.dev/getting-started/installation
+ * @see https://next-auth.js.org/configuration
  */
 
 /**
@@ -55,7 +55,7 @@ const credentialsSchema = z.object({
 /**
  * Configure NextAuth with providers and callbacks
  */
-export const { handlers, auth, signIn, signOut } = NextAuth({
+export const authOptions = {
   providers: [
     /**
      * Credentials Provider
@@ -311,11 +311,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
    * Secret for JWT signing
    */
   secret: process.env.NEXTAUTH_SECRET,
-});
+};
 
-/**
- * Type definitions for NextAuth
- */
+/* Type definitions for NextAuth */
 declare module 'next-auth' {
   interface Session {
     user: {
@@ -345,3 +343,18 @@ declare module 'next-auth/jwt' {
     emailVerified?: Date | null;
   }
 }
+
+// Create the NextAuth instance
+const nextAuthInstance = NextAuth(authOptions);
+
+// Export the NextAuth instance for v4
+export default nextAuthInstance;
+
+// Export auth function that works in both client and server components
+// This is a wrapper that ensures proper export
+export async function auth() {
+  return nextAuthInstance.auth();
+}
+
+// Export signIn and signOut by accessing them from the instance
+export { nextAuthInstance as signIn, nextAuthInstance as signOut };

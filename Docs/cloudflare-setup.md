@@ -47,7 +47,7 @@ User Request → Cloudflare DNS → Cloudflare CDN/WAF → Vercel Edge → Next.
    - Click "Add a site"
 
 2. **Enter your domain**
-   - Enter: `kidspetite.com`
+   - Enter: `babypetite.com`
    - Select plan: **Pro Plan** (recommended for e-commerce)
 
 3. **Update Nameservers**
@@ -70,7 +70,7 @@ User Request → Cloudflare DNS → Cloudflare CDN/WAF → Vercel Edge → Next.
 |------|------|---------|--------------|-----|
 | A | @ | 76.76.21.21 | Proxied | Auto |
 | A | www | 76.76.21.21 | Proxied | Auto |
-| CNAME | api | kidspetite.vercel.app | Proxied | Auto |
+| CNAME | api | babypetite.vercel.app | Proxied | Auto |
 | CNAME | sanity | cdn.sanity.io | DNS Only | Auto |
 | TXT | @ | (SPF record) | DNS Only | Auto |
 | TXT | _dmarc | (DMARC record) | DNS Only | Auto |
@@ -141,7 +141,7 @@ Navigate to **Rules → Page Rules** and create the following:
 #### Rule 1: Static Assets - Aggressive Caching
 
 ```
-URL Pattern: kidspetite.com/_next/static/*
+URL Pattern: babypetite.com/_next/static/*
 Settings:
   - Cache Level: Cache Everything
   - Edge Cache TTL: 1 year
@@ -151,7 +151,7 @@ Settings:
 #### Rule 2: Images - Long Cache with Optimization
 
 ```
-URL Pattern: kidspetite.com/_next/image*
+URL Pattern: babypetite.com/_next/image*
 Settings:
   - Cache Level: Cache Everything
   - Edge Cache TTL: 1 month
@@ -172,7 +172,7 @@ Settings:
 #### Rule 4: API Routes - No Caching
 
 ```
-URL Pattern: kidspetite.com/api/*
+URL Pattern: babypetite.com/api/*
 Settings:
   - Cache Level: Bypass
   - Disable Performance
@@ -181,7 +181,7 @@ Settings:
 #### Rule 5: Checkout - Security Focus
 
 ```
-URL Pattern: kidspetite.com/checkout/*
+URL Pattern: babypetite.com/checkout/*
 Settings:
   - Cache Level: Bypass
   - Security Level: High
@@ -191,7 +191,7 @@ Settings:
 #### Rule 6: Admin - Maximum Security
 
 ```
-URL Pattern: kidspetite.com/admin/*
+URL Pattern: babypetite.com/admin/*
 Settings:
   - Cache Level: Bypass
   - Security Level: I'm Under Attack
@@ -367,9 +367,9 @@ Navigate to **Rules → Redirect Rules**:
 
 ```yaml
 Name: Redirect www to non-www
-Expression: (http.host eq "www.kidspetite.com")
+Expression: (http.host eq "www.babypetite.com")
 Action: Redirect
-Target URL: https://kidspetite.com${http.request.uri}
+Target URL: https://babypetite.com${http.request.uri}
 Status Code: 301
 ```
 
@@ -521,8 +521,8 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/{zone_id}/purge_cache" 
   -H "Content-Type: application/json" \
   --data '{
     "files": [
-      "https://kidspetite.com/products/example-product",
-      "https://kidspetite.com/category/baby-clothes"
+      "https://babypetite.com/products/example-product",
+      "https://babypetite.com/category/baby-clothes"
     ]
   }'
 

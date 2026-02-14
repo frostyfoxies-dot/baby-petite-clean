@@ -425,7 +425,7 @@ export async function sendTestEmail(
   const sampleItems: CartItem[] = [
     {
       name: 'Baby Cotton Onesie',
-      image: 'https://kidspetite.com/products/onesie.jpg',
+      image: 'https://babypetite.com/products/onesie.jpg',
       price: 24.99,
       quantity: 2,
       variant: 'Size: 6-12M, Color: Pink',
@@ -433,7 +433,7 @@ export async function sendTestEmail(
     },
     {
       name: 'Soft Knit Booties',
-      image: 'https://kidspetite.com/products/booties.jpg',
+      image: 'https://babypetite.com/products/booties.jpg',
       price: 14.99,
       quantity: 1,
       variant: 'Size: 0-6M',

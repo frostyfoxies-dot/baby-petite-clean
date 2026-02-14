@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma';
 import { getCurrentUser } from '@/lib/session';
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { UnauthorizedError, NotFoundError, ValidationError, ForbiddenError } from '@/lib/errors';
-import { DropshipOrderStatus, OrderStatus } from '@prisma/client';
+import { DropshipOrderStatus, OrderStatus, Order } from '@prisma/client';
 import { FulfillmentService } from '@/services/fulfillment/fulfillment-service';
 import { FulfillmentNotificationService } from '@/services/fulfillment/notifications';
 
@@ -448,7 +448,11 @@ export async function markOrderShipped(
     const dropshipOrder = await prisma.dropshipOrder.findUnique({
       where: { id: orderId },
       include: {
-        order: true,
+        order: {
+          include: {
+            items: true,
+          },
+        },
       },
     });
 
@@ -457,7 +461,7 @@ export async function markOrderShipped(
     }
 
     // Validate status transition
-    const validStatuses = [DropshipOrderStatus.CONFIRMED, DropshipOrderStatus.PLACED];
+    const validStatuses: DropshipOrderStatus[] = [DropshipOrderStatus.CONFIRMED, DropshipOrderStatus.PLACED];
     if (!validStatuses.includes(dropshipOrder.status)) {
       return {
         success: false,
@@ -504,7 +508,7 @@ export async function markOrderShipped(
     try {
       const notificationService = new FulfillmentNotificationService();
       await notificationService.sendShippingNotification(
-        dropshipOrder.order,
+        dropshipOrder.order as any,
         trackingNumber,
         carrier
       );
@@ -606,7 +610,7 @@ export async function markOrderDelivered(orderId: string): Promise<ActionResult>
     // Send delivery notification
     try {
       const notificationService = new FulfillmentNotificationService();
-      await notificationService.sendDeliveryNotification(dropshipOrder.order);
+      await notificationService.sendDeliveryNotification(dropshipOrder.order as any);
     } catch (notificationError) {
       // Log but don't fail the operation
       console.error('Failed to send delivery notification:', notificationError);
@@ -685,7 +689,7 @@ export async function reportFulfillmentIssue(
     // Send issue notification
     try {
       const notificationService = new FulfillmentNotificationService();
-      await notificationService.sendIssueNotification(dropshipOrder.order, issue);
+      await notificationService.sendIssueNotification(dropshipOrder.order as any, issue);
     } catch (notificationError) {
       // Log but don't fail the operation
       console.error('Failed to send issue notification:', notificationError);

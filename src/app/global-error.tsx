@@ -69,10 +69,10 @@ export default function GlobalError({
                   If this problem persists, please contact our support team.
                 </p>
                 <a
-                  href="mailto:support@kidspetite.com"
+                  href="mailto:support@babypetite.com"
                   className="text-sm text-yellow-dark hover:underline mt-2 inline-block"
                 >
-                  support@kidspetite.com
+                  support@babypetite.com
                 </a>
               </div>
             </div>

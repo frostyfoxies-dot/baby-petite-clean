@@ -78,7 +78,7 @@ async function getCart() {
   const sessionId = cookieStore.get('cart_session')?.value;
 
   if (userId) {
-    return prisma.cart.findUnique({
+    return prisma.cart.findFirst({
       where: { userId },
       include: {
         items: {
@@ -96,7 +96,7 @@ async function getCart() {
   }
 
   if (sessionId) {
-    return prisma.cart.findUnique({
+    return prisma.cart.findFirst({
       where: { sessionId },
       include: {
         items: {
@@ -275,14 +275,14 @@ export async function createCheckoutSession(input: CreateCheckoutSessionInput): 
 
     // Initialize Stripe
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-      apiVersion: '2023-10-16',
+      apiVersion: '2025-02-24.acacia',
     });
 
     // Create Stripe checkout session
     // Note: Apple Pay requires domain verification via .well-known file
     // Google Pay works automatically with Stripe
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card', 'apple_pay', 'google_pay'],
+      payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
       success_url: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,

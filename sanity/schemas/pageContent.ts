@@ -132,7 +132,7 @@ export const imageBlock = defineType({
       type: 'image',
       options: {
         hotspot: true,
-        metadata: ['dimensions', 'lqip', 'palette'],
+        metadata: ['lqip', 'palette'],
       },
       validation: (Rule) => Rule.required(),
     }),
@@ -233,7 +233,7 @@ export const heroBlock = defineType({
       type: 'image',
       options: {
         hotspot: true,
-        metadata: ['dimensions', 'lqip', 'palette'],
+        metadata: ['lqip', 'palette'],
       },
       validation: (Rule) => Rule.required(),
     }),

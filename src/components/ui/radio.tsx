@@ -234,3 +234,32 @@ export const RadioGroup = React.forwardRef<HTMLFieldSetElement, RadioGroupProps>
 );
 
 RadioGroup.displayName = 'RadioGroup';
+
+/**
+ * Individual radio button component
+ * Used within a RadioGroup or standalone with proper styling
+ */
+export const Radio = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
+  ({ className, ...props }, ref) => {
+    return (
+      <div className="relative flex items-center">
+        <input
+          type="radio"
+          ref={ref}
+          className={cn(
+            'peer appearance-none border rounded-full bg-white transition-all duration-200',
+            'focus:outline-none focus:ring-2 focus:ring-yellow focus:ring-offset-2',
+            'disabled:bg-gray-50 disabled:border-gray-200',
+            'border-gray-300',
+            'checked:border-yellow',
+            'w-5 h-5',
+            className
+          )}
+          {...props}
+        />
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none bg-gray-900 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity" />
+      </div>
+    );
+  }
+);
+Radio.displayName = 'Radio';

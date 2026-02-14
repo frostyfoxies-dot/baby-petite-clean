@@ -54,7 +54,7 @@ export type SubmitContactFormInput = z.infer<typeof submitContactFormSchema>;
  *   message: 'I have a question about my recent order...',
  * });
  */
-export async function submitContactForm(input: SubmitContactFormInput): Promise<ActionResult> {
+export async function submitContactForm(input: SubmitContactFormInput): Promise<ActionResult<void>> {
   try {
     // Validate input
     const validatedFields = submitContactFormSchema.safeParse(input);
@@ -102,7 +102,7 @@ export async function submitContactForm(input: SubmitContactFormInput): Promise<
 
     // TODO: Send email notification to support team
     // await sendContactNotification({
-    //   to: 'support@kidspetite.com',
+    //   to: 'support@babypetite.com',
     //   subject: `New Contact Form: ${subject}`,
     //   name,
     //   email,
@@ -122,7 +122,6 @@ export async function submitContactForm(input: SubmitContactFormInput): Promise<
 
     return {
       success: true,
-      data: { message: 'Your message has been sent. We will get back to you soon!' },
     };
   } catch (error) {
     console.error('Submit contact form error:', error);
@@ -155,7 +154,7 @@ export async function submitSupportRequest(input: {
   productId?: string;
   subject: string;
   message: string;
-}): Promise<ActionResult> {
+}): Promise<ActionResult<void>> {
   try {
     // Get current user
     const user = await getCurrentUser();
@@ -246,7 +245,6 @@ export async function submitSupportRequest(input: {
 
     return {
       success: true,
-      data: { message: 'Your support request has been submitted. We will get back to you soon!' },
     };
   } catch (error) {
     console.error('Submit support request error:', error);
@@ -283,7 +281,7 @@ export async function reportProductIssue(input: {
   issueType: 'DAMAGED' | 'WRONG_ITEM' | 'MISSING' | 'DEFECTIVE' | 'OTHER';
   description: string;
   images?: string[];
-}): Promise<ActionResult> {
+}): Promise<ActionResult<{ message: string }>> {
   try {
     // Get current user
     const user = await getCurrentUser();
@@ -406,7 +404,7 @@ export async function requestReturn(input: {
   variantId: string;
   reason: string;
   description: string;
-}): Promise<ActionResult> {
+}): Promise<ActionResult<{ message: string }>> {
   try {
     // Get current user
     const user = await getCurrentUser();

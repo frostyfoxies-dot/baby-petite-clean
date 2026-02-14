@@ -5,7 +5,7 @@ import { MetadataRoute } from 'next';
  * Controls which pages search engines can crawl
  */
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://kidspetite.com';
+  const baseUrl = 'https://babypetite.com';
 
   return {
     rules: [

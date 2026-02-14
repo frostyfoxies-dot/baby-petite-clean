@@ -118,7 +118,7 @@ ALTER TABLE "RegistryItem" ADD COLUMN "variantOptions" JSONB;
 STRIPE_WEBHOOK_SECRET=whsec_xxx
 
 # Email Service
-SENDGRID_FROM_EMAIL=noreply@kidspetite.com
+SENDGRID_FROM_EMAIL=noreply@babypetite.com
 
 # AI Integration
 OPENAI_MODEL=gpt-4-turbo

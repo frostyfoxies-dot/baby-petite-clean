@@ -7,6 +7,11 @@ import { Input } from '@/components/ui/input';
 import { OrderStatus } from '@prisma/client';
 
 /**
+ * Force dynamic rendering - page requires session/auth
+ */
+export const dynamic = 'force-dynamic';
+
+/**
  * Account orders page - Server Component
  * Displays user's order history
  */
@@ -174,7 +179,7 @@ function OrderStatusProgress({ status }: { status: OrderStatus }) {
   ];
 
   const getStepStatus = (stepKey: string) => {
-    const statusOrder = [OrderStatus.PENDING, OrderStatus.CONFIRMED, OrderStatus.PROCESSING, OrderStatus.SHIPPED, OrderStatus.DELIVERED];
+    const statusOrder: OrderStatus[] = [OrderStatus.PENDING, OrderStatus.CONFIRMED, OrderStatus.PROCESSING, OrderStatus.SHIPPED, OrderStatus.DELIVERED, OrderStatus.CANCELLED];
     const currentIndex = statusOrder.indexOf(status);
     const stepIndex = steps.findIndex(s => s.key === stepKey);
     

@@ -8,6 +8,11 @@ export const metadata: Metadata = {
 };
 
 /**
+ * Force dynamic rendering to avoid prerendering issues
+ */
+export const dynamic = 'force-dynamic';
+
+/**
  * Privacy page component
  */
 export default function PrivacyPage() {
@@ -218,7 +223,7 @@ export default function PrivacyPage() {
                 <li><strong>Restriction:</strong> Request restriction of processing</li>
               </ul>
               <p>
-                To exercise these rights, please contact us at privacy@kidspetite.com. We will respond to your request within 30 days.
+                To exercise these rights, please contact us at privacy@babypetite.com. We will respond to your request within 30 days.
               </p>
             </div>
           </div>
@@ -275,7 +280,7 @@ export default function PrivacyPage() {
                 If you have any questions about this Privacy Policy or our data practices, please contact us:
               </p>
               <p>
-                <strong>Email:</strong> privacy@kidspetite.com<br />
+                <strong>Email:</strong> privacy@babypetite.com<br />
                 <strong>Address:</strong> 123 Fashion Street, New York, NY 10001, United States
               </p>
             </div>

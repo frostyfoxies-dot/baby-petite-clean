@@ -8,6 +8,11 @@ import { getUserOrders } from '@/actions/orders';
 import { getUserAddresses } from '@/actions/addresses';
 
 /**
+ * Force dynamic rendering - page requires session/auth
+ */
+export const dynamic = 'force-dynamic';
+
+/**
  * Account dashboard page component
  * Displays user profile, recent orders, and quick actions
  */

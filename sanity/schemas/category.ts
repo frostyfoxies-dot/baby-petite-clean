@@ -68,7 +68,7 @@ export default defineType({
       group: 'media',
       options: {
         hotspot: true,
-        metadata: ['dimensions', 'lqip', 'palette'],
+        metadata: ['lqip', 'palette'],
       },
     }),
     

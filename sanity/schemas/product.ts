@@ -76,7 +76,7 @@ export default defineType({
       group: 'media',
       options: {
         hotspot: true,
-        metadata: ['dimensions', 'lqip', 'palette'],
+        metadata: ['lqip', 'palette'],
       },
       validation: (Rule) => Rule.required(),
     }),
@@ -90,7 +90,7 @@ export default defineType({
           type: 'image',
           options: {
             hotspot: true,
-            metadata: ['dimensions', 'lqip', 'palette'],
+            metadata: ['lqip', 'palette'],
           },
           fields: [
             defineField({
@@ -229,6 +229,65 @@ export default defineType({
           options: {
             hotspot: true,
           },
+        }),
+      ],
+    }),
+    
+    // Compliance Group
+    defineField({
+      name: 'compliance',
+      title: 'Compliance & Safety',
+      type: 'object',
+      group: 'compliance',
+      fields: [
+        defineField({
+          name: 'minAge',
+          title: 'Minimum Age',
+          type: 'number',
+          description: 'Minimum recommended age in months (e.g., 0 for newborns)',
+          validation: (Rule) => Rule.min(0).max(72),
+        }),
+        defineField({
+          name: 'maxAge',
+          title: 'Maximum Age',
+          type: 'number',
+          description: 'Maximum recommended age in months (e.g., 36 for 3 years)',
+          validation: (Rule) => Rule.min(0).max(180),
+        }),
+        defineField({
+          name: 'chokingHazard',
+          title: 'Choking Hazard Warning',
+          type: 'boolean',
+          description: 'Does this product contain small parts?',
+        }),
+        defineField({
+          name: 'chokingHazardDetails',
+          title: 'Choking Hazard Details',
+          type: 'text',
+          description: 'Detailed warning text (e.g., "Small parts. Not for children under 3 years.")',
+        }),
+        defineField({
+          name: 'certifications',
+          title: 'Safety Certifications',
+          type: 'array',
+          of: [{ type: 'string' }],
+          options: {
+            layout: 'tags',
+          },
+          description: 'e.g., CPSIA, ASTM F963, CE, EN71',
+        }),
+        defineField({
+          name: 'countryOfOrigin',
+          title: 'Country of Origin',
+          type: 'string',
+          description: 'Where was this product manufactured?',
+        }),
+        defineField({
+          name: 'careInstructions',
+          title: 'Care Instructions',
+          type: 'array',
+          of: [{ type: 'block' }],
+          description: 'Washing and care guidelines',
         }),
       ],
     }),
@@ -402,6 +461,18 @@ export interface ProductDocument {
   isNew?: boolean;
   isFeatured?: boolean;
   isBestseller?: boolean;
+  compliance?: {
+    minAge?: number;
+    maxAge?: number;
+    chokingHazard?: boolean;
+    chokingHazardDetails?: string;
+    certifications?: string[];
+    countryOfOrigin?: string;
+    careInstructions?: Array<{
+      _type: 'block';
+      children: Array<{ text: string }>;
+    }>;
+  };
   seo?: {
     title?: string;
     description?: string;

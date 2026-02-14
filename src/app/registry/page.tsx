@@ -5,6 +5,11 @@ import { getUserRegistry } from '@/actions/registry';
 import { RegistryStatus } from '@prisma/client';
 
 /**
+ * Force dynamic rendering - page requires session/auth
+ */
+export const dynamic = 'force-dynamic';
+
+/**
  * Registry list page component
  * Server component that fetches user's registry data
  */

@@ -167,18 +167,18 @@ export default async function AccountOrderDetailsPage({ params }: OrderDetailsPa
           </div>
           <div className="text-sm text-gray-600">
             <p className="font-medium text-gray-900">
-              {(order.shippingAddress as Record<string, unknown>)?.firstName} {(order.shippingAddress as Record<string, unknown>)?.lastName}
+              {(order.shippingAddress as Record<string, string>)?.firstName} {(order.shippingAddress as Record<string, string>)?.lastName}
             </p>
-            <p>{(order.shippingAddress as Record<string, unknown>)?.line1 as string}</p>
-            {(order.shippingAddress as Record<string, unknown>)?.line2 && (
-              <p>{(order.shippingAddress as Record<string, unknown>)?.line2 as string}</p>
+            <p>{(order.shippingAddress as Record<string, string>)?.line1 as string}</p>
+            {(order.shippingAddress as Record<string, string>)?.line2 && (
+              <p>{(order.shippingAddress as Record<string, string>)?.line2 as string}</p>
             )}
             <p>
-              {(order.shippingAddress as Record<string, unknown>)?.city as string}, {(order.shippingAddress as Record<string, unknown>)?.state as string} {(order.shippingAddress as Record<string, unknown>)?.zip as string}
+              {(order.shippingAddress as Record<string, string>)?.city as string}, {(order.shippingAddress as Record<string, string>)?.state as string} {(order.shippingAddress as Record<string, string>)?.zip as string}
             </p>
-            <p>{(order.shippingAddress as Record<string, unknown>)?.country as string}</p>
-            {(order.shippingAddress as Record<string, unknown>)?.phone && (
-              <p className="mt-2">{(order.shippingAddress as Record<string, unknown>)?.phone as string}</p>
+            <p>{(order.shippingAddress as Record<string, string>)?.country as string}</p>
+            {(order.shippingAddress as Record<string, string>)?.phone && (
+              <p className="mt-2">{(order.shippingAddress as Record<string, string>)?.phone as string}</p>
             )}
           </div>
           {order.shipping?.carrier && (

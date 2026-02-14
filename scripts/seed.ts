@@ -166,7 +166,7 @@ async function cleanDatabase() {
   await prisma.registry.deleteMany();
   await prisma.wishlistItem.deleteMany();
   await prisma.review.deleteMany();
-  await prisma.productVariant.deleteMany();
+  await prisma.variant.deleteMany();
   await prisma.product.deleteMany();
   await prisma.category.deleteMany();
   await prisma.address.deleteMany();
@@ -180,9 +180,16 @@ async function seedUsers() {
   
   const hashedPassword = await hash(DEFAULT_PASSWORD, SALT_ROUNDS);
   
-  const users = [
+  const users: Array<{
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    role: 'ADMIN' | 'CUSTOMER' | 'STAFF';
+    emailVerified: Date;
+  }> = [
     {
-      email: 'admin@kidspetite.com',
+      email: 'admin@babypetite.com',
       password: hashedPassword,
       firstName: 'Admin',
       lastName: 'User',
@@ -281,7 +288,7 @@ async function seedProducts() {
       }
     }
     
-    await prisma.productVariant.createMany({
+    await prisma.variant.createMany({
       data: variantsToCreate,
     });
   }
@@ -322,7 +329,7 @@ async function seedOrders() {
   const users = await prisma.user.findMany({
     where: { role: 'CUSTOMER' },
   });
-  const variants = await prisma.productVariant.findMany({
+  const variants = await prisma.variant.findMany({
     take: 10,
     include: { product: true },
   });
@@ -336,7 +343,7 @@ async function seedOrders() {
       const orderItems = variants.slice(0, Math.floor(Math.random() * 3) + 1);
       
       const subtotal = orderItems.reduce(
-        (sum, item) => sum + item.price * 2,
+        (sum: number, item: { price: number }) => sum + item.price * 2,
         0
       );
       
@@ -358,7 +365,7 @@ async function seedOrders() {
             country: 'US',
           },
           items: {
-            create: orderItems.map((item) => ({
+            create: orderItems.map((item: { productId: string; id: string; product: { name: string; images: { url: string }[] }; name: string; sku: string; price: number }) => ({
               productId: item.productId,
               variantId: item.id,
               productName: item.product.name,
@@ -383,7 +390,7 @@ async function seedRegistries() {
   const users = await prisma.user.findMany({
     where: { role: 'CUSTOMER' },
   });
-  const variants = await prisma.productVariant.findMany({
+  const variants = await prisma.variant.findMany({
     take: 5,
     include: { product: true },
   });
@@ -403,7 +410,7 @@ async function seedRegistries() {
         dueDate,
         isPublic: true,
         items: {
-          create: variants.map((variant, index) => ({
+          create: variants.map((variant: { productId: string; id: string }, index: number) => ({
             productId: variant.productId,
             variantId: variant.id,
             quantity: 2,
@@ -475,7 +482,7 @@ async function main() {
     console.log('🎉 Database seed completed successfully!');
     console.log('');
     console.log('Test accounts:');
-    console.log('  Admin: admin@kidspetite.com / Password123');
+    console.log('  Admin: admin@babypetite.com / Password123');
     console.log('  Customer: customer@example.com / Password123');
     console.log('  Customer: jane@example.com / Password123');
   } catch (error) {

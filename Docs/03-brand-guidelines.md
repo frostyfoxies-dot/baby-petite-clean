@@ -578,7 +578,7 @@ Shop at link in bio.
 │  KIDS PETITE                                                │
 │  Curated Style for Little Ones                              │
 │                                                             │
-│  kidspetite.com                                             │
+│  babypetite.com                                             │
 │  [Link]                                                     │
 │                                                             │
 │  Posts  Following  Followers                               │
@@ -741,9 +741,9 @@ These guidelines will be reviewed and updated:
 
 For brand-related questions or approvals:
 
-**Brand Team:** brand@kidspetite.com  
-**Design Team:** design@kidspetite.com  
-**Marketing Team:** marketing@kidspetite.com
+**Brand Team:** brand@babypetite.com  
+**Design Team:** design@babypetite.com  
+**Marketing Team:** marketing@babypetite.com
 
 ---
 

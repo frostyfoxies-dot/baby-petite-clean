@@ -310,7 +310,7 @@ export async function moveWishlistToCart(itemId: string, quantity: number = 1): 
     // Add to cart
     // Note: This would typically call the cart action, but to avoid circular dependencies,
     // we'll implement the cart logic here
-    const cart = await prisma.cart.findUnique({
+    const cart = await prisma.cart.findFirst({
       where: { userId: user.id },
     });
 
@@ -320,7 +320,7 @@ export async function moveWishlistToCart(itemId: string, quantity: number = 1): 
       });
     }
 
-    const cartId = cart?.id || (await prisma.cart.findUnique({ where: { userId: user.id } }))!.id;
+    const cartId = cart?.id || (await prisma.cart.findFirst({ where: { userId: user.id } }))!.id;
 
     // Check if item already exists in cart
     const existingCartItem = await prisma.cartItem.findUnique({

@@ -59,7 +59,7 @@ export default defineType({
       type: 'image',
       group: 'branding',
       options: {
-        metadata: ['dimensions'],
+        metadata: ['lqip'],
       },
       description: 'Main site logo',
     }),

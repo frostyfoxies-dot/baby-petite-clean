@@ -106,7 +106,7 @@ export async function createReview(input: CreateReviewInput): Promise<ActionResu
       };
     }
 
-    const { productId, rating, title, content, pros, cons, recommend } = validatedFields.data;
+    const { productId, rating, title, content } = validatedFields.data;
 
     // Verify product exists
     const product = await prisma.product.findUnique({
@@ -153,9 +153,6 @@ export async function createReview(input: CreateReviewInput): Promise<ActionResu
         rating,
         title,
         content,
-        pros: pros || [],
-        cons: cons || [],
-        recommend: recommend ?? true,
         isVerifiedPurchase: !!hasPurchased,
       },
     });
@@ -416,16 +413,14 @@ export async function getProductReviews(
     rating: number;
     title: string;
     content: string;
-    pros: string[];
-    cons: string[];
-    recommend: boolean;
     isVerifiedPurchase: boolean;
     helpfulCount: number;
     createdAt: Date;
     updatedAt: Date;
     user: {
       id: string;
-      name: string | null;
+      firstName: string | null;
+      lastName: string | null;
       avatar: string | null;
     };
   }>;
@@ -451,7 +446,8 @@ export async function getProductReviews(
           user: {
             select: {
               id: true,
-              name: true,
+              firstName: true,
+              lastName: true,
               avatar: true,
             },
           },
@@ -499,16 +495,14 @@ export async function getProductReviews(
           rating: review.rating,
           title: review.title || '',
           content: review.content || '',
-          pros: review.pros,
-          cons: review.cons,
-          recommend: review.recommend,
           isVerifiedPurchase: review.isVerifiedPurchase,
           helpfulCount: review.helpfulCount,
           createdAt: review.createdAt,
           updatedAt: review.updatedAt,
           user: {
             id: review.user.id,
-            name: review.user.name,
+            firstName: review.user.firstName,
+            lastName: review.user.lastName,
             avatar: review.user.avatar,
           },
         })),
@@ -547,7 +541,6 @@ export async function getUserReviews(options?: {
     rating: number;
     title: string;
     content: string;
-    recommend: boolean;
     isVerifiedPurchase: boolean;
     helpfulCount: number;
     createdAt: Date;
@@ -605,7 +598,6 @@ export async function getUserReviews(options?: {
           rating: review.rating,
           title: review.title || '',
           content: review.content || '',
-          recommend: review.recommend,
           isVerifiedPurchase: review.isVerifiedPurchase,
           helpfulCount: review.helpfulCount,
           createdAt: review.createdAt,
@@ -647,16 +639,14 @@ export async function getReview(reviewId: string): Promise<ActionResult<{
   rating: number;
   title: string;
   content: string;
-  pros: string[];
-  cons: string[];
-  recommend: boolean;
   isVerifiedPurchase: boolean;
   helpfulCount: number;
   createdAt: Date;
   updatedAt: Date;
   user: {
     id: string;
-    name: string | null;
+    firstName: string | null;
+    lastName: string | null;
     avatar: string | null;
   };
   product: {
@@ -673,7 +663,8 @@ export async function getReview(reviewId: string): Promise<ActionResult<{
         user: {
           select: {
             id: true,
-            name: true,
+            firstName: true,
+            lastName: true,
             avatar: true,
           },
         },
@@ -698,16 +689,14 @@ export async function getReview(reviewId: string): Promise<ActionResult<{
         rating: review.rating,
         title: review.title || '',
         content: review.content || '',
-        pros: review.pros,
-        cons: review.cons,
-        recommend: review.recommend,
         isVerifiedPurchase: review.isVerifiedPurchase,
         helpfulCount: review.helpfulCount,
         createdAt: review.createdAt,
         updatedAt: review.updatedAt,
         user: {
           id: review.user.id,
-          name: review.user.name,
+          firstName: review.user.firstName,
+          lastName: review.user.lastName,
           avatar: review.user.avatar,
         },
         product: {

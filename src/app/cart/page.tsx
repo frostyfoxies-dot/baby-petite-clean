@@ -2,6 +2,11 @@ import { getCart } from '@/actions/cart';
 import { CartContent } from '@/components/cart/cart-content';
 
 /**
+ * Force dynamic rendering - cart requires cookies/session access
+ */
+export const dynamic = 'force-dynamic';
+
+/**
  * Cart page component
  * Server component that fetches cart data and passes it to the client component
  */

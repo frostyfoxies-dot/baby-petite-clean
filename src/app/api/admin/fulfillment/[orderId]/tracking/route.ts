@@ -90,7 +90,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       try {
         const notificationService = new FulfillmentNotificationService();
         await notificationService.sendShippingNotification(
-          dropshipOrder.order,
+          dropshipOrder.order as any,
           trackingNumber,
           carrier || undefined
         );

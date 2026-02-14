@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { constructWebhookEvent } from '@/lib/stripe';
 import { prisma } from '@/lib/prisma';
+import { getTaxRate, calculateTax, formatTaxRate } from '@/lib/tax';
 import { OrderStatus, PaymentStatus, FulfillmentStatus } from '@prisma/client';
 import Stripe from 'stripe';
+import { sendEmail } from '@/lib/email/service';
+import { OrderConfirmationEmail } from '@/lib/email/templates/order-confirmation';
+import { render } from '@react-email/render';
 
 // ============================================================================
 // TYPES
@@ -77,162 +81,84 @@ export async function POST(request: NextRequest): Promise<NextResponse<WebhookRe
 
     return NextResponse.json({ received: true, message: 'Webhook processed' });
   } catch (error) {
-    console.error('Error processing webhook:', error);
-    return NextResponse.json(
-      { received: false, error: 'Internal server error' },
-      { status: 500 }
-    );
+    console.error('Error creating order in transaction:', error);
+    throw error;
   }
-}
 
-// ============================================================================
-// EVENT HANDLERS
-// ============================================================================
+  console.log(`Order created: ${order.orderNumber} from checkout session: ${session.id}`);
 
-/**
- * Handle checkout.session.completed event
- * This is triggered when a customer completes a checkout session
- */
-async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session): Promise<void> {
-  console.log(`Processing checkout session: ${session.id}`);
-
-  // Find the checkout session in our database
-  const checkoutSession = await prisma.checkoutSession.findUnique({
-    where: { id: session.id },
-    include: {
-      cart: {
-        include: {
-          items: {
-            include: {
-              variant: {
-                include: {
-                  product: {
-                    select: { id: true, name: true },
-                  },
+  // Send order confirmation email asynchronously (do not block)
+  try {
+    // Fetch order with items for email
+    const orderWithDetails = await prisma.order.findUnique({
+      where: { id: order.id },
+      include: {
+        items: {
+          include: {
+            variant: {
+              include: {
+                product: {
+                  select: { name: true },
+                },
+                images: {
+                  where: { isPrimary: true },
+                  take: 1,
                 },
               },
             },
           },
         },
+        shipping: true,
       },
-    },
-  });
+    });
 
-  if (!checkoutSession) {
-    console.log(`Checkout session not found in database: ${session.id}`);
-    return;
-  }
-
-  // If order already exists, skip
-  if (checkoutSession.orderId) {
-    console.log(`Order already exists for checkout session: ${session.id}`);
-    return;
-  }
-
-  // Generate order number
-  const orderNumber = generateOrderNumber();
-
-  // Calculate totals
-  const subtotal = checkoutSession.subtotal;
-  const shipping = checkoutSession.shipping;
-  const discount = checkoutSession.discount;
-  const tax = subtotal * 0.08;
-  const total = subtotal + shipping + tax - discount;
-
-  // Create order in transaction
-  const order = await prisma.$transaction(async (tx) => {
-    // Create order
-    const newOrder = await tx.order.create({
-      data: {
-        orderNumber,
-        userId: checkoutSession.userId || undefined,
-        subtotal,
-        discountAmount: discount,
-        shippingAmount: shipping,
-        taxAmount: tax,
-        total,
-        currency: 'USD',
-        status: OrderStatus.CONFIRMED,
-        paymentStatus: PaymentStatus.PROCESSING,
-        fulfillmentStatus: FulfillmentStatus.UNFULFILLED,
-        shippingAddress: checkoutSession.shippingAddress,
-        billingAddress: checkoutSession.billingAddress,
-        customerEmail: checkoutSession.email,
-        customerPhone: checkoutSession.shippingAddress.phone || null,
-        notes: checkoutSession.notes,
-        couponCode: checkoutSession.discountCode,
-        confirmedAt: new Date(),
-        items: {
-          create: checkoutSession.cart.items.map((item) => ({
-            variantId: item.variantId,
-            productName: item.variant.product.name,
-            variantName: item.variant.name,
-            sku: item.variant.sku,
+    if (orderWithDetails) {
+      const emailHtml = render(
+        OrderConfirmationEmail({
+          orderNumber: order.orderNumber,
+          customerName: order.customerEmail.split('@')[0],
+          customerEmail: order.customerEmail,
+          items: orderWithDetails.items.map((item) => ({
+            name: item.productName,
+            variant: item.variantName,
             quantity: item.quantity,
-            unitPrice: item.variant.price,
-            totalPrice: item.variant.price.mul(item.quantity),
+            unitPrice: item.unitPrice.toNumber(),
+            totalPrice: item.totalPrice.toNumber(),
+            imageUrl: item.variant.images[0]?.url || undefined,
           })),
-        },
-      },
-    });
-
-    // Create shipping record
-    await tx.shipping.create({
-      data: {
-        orderId: newOrder.id,
-        service: checkoutSession.shippingMethod,
-      },
-    });
-
-    // Create payment record
-    await tx.payment.create({
-      data: {
-        orderId: newOrder.id,
-        provider: 'stripe',
-        stripePaymentIntentId: session.payment_intent as string || undefined,
-        amount: total,
-        currency: 'USD',
-        status: PaymentStatus.PROCESSING,
-      },
-    });
-
-    // Update inventory (reserve items)
-    for (const item of checkoutSession.cart.items) {
-      const inventory = await tx.inventory.findUnique({
-        where: { variantId: item.variantId },
-      });
-
-      if (inventory) {
-        await tx.inventory.update({
-          where: { variantId: item.variantId },
-          data: {
-            reservedQuantity: { increment: item.quantity },
-            available: { decrement: item.quantity },
+          subtotal: order.subtotal.toNumber(),
+          shipping: order.shippingAmount.toNumber(),
+          tax: order.taxAmount.toNumber(),
+          discount: order.discountAmount.toNumber(),
+          total: order.total.toNumber(),
+          shippingAddress: order.shippingAddress as any,
+          billingAddress: order.billingAddress as any,
+          shippingMethod: {
+            name: orderWithDetails.shipping?.service || 'Standard Shipping',
+            estimatedDays: '5-7 business days',
           },
-        });
-      }
+          orderDate: order.createdAt,
+        })
+      );
+
+      await sendEmail({
+        to: order.customerEmail,
+        subject: `Your Kids Petite Order ${order.orderNumber} is Confirmed!`,
+        html: emailHtml,
+      });
+      console.log(`Order confirmation email sent to ${order.customerEmail}`);
     }
-
-    // Clear cart items
-    await tx.cartItem.deleteMany({
-      where: { cartId: checkoutSession.cartId },
-    });
-
-    // Update checkout session
-    await tx.checkoutSession.update({
-      where: { id: session.id },
-      data: {
-        status: 'COMPLETED',
-        orderId: newOrder.id,
-        completedAt: new Date(),
-      },
-    });
-
-    return newOrder;
-  });
-
-  console.log(`Order created: ${order.orderNumber} from checkout session: ${session.id}`);
+  } catch (emailError) {
+    console.error('Failed to send order confirmation email:', emailError);
+    // Do not throw – order creation succeeded, email failure is non-critical
+  }
 }
+
+/**
+ * Handle payment_intent.succeeded event
+ * This is triggered when a payment is successful
+ */
+async function handlePaymentIntentSucceeded(paymentIntent: Stripe.PaymentIntent): Promise<void> {
 
 /**
  * Handle payment_intent.succeeded event

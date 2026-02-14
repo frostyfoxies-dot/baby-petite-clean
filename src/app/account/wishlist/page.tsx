@@ -4,6 +4,11 @@ import { getWishlist } from '@/actions/wishlist';
 import WishlistClient from './wishlist-client';
 
 /**
+ * Force dynamic rendering to avoid session errors during build
+ */
+export const dynamic = 'force-dynamic';
+
+/**
  * Account wishlist page - Server Component
  * Fetches user's wishlist and passes to client component
  */

@@ -22,7 +22,7 @@ import {
   createJob,
   updateJob,
   getJob,
-} from '@/app/api/admin/import/status/[jobId]/route';
+} from '@/lib/import-job';
 
 // ============================================
 // TYPE DEFINITIONS

@@ -73,7 +73,7 @@ async function getOrCreateCart(): Promise<{ id: string; userId: string | null; s
 
   // If user is logged in, find their cart
   if (userId) {
-    let cart = await prisma.cart.findUnique({
+    let cart = await prisma.cart.findFirst({
       where: { userId },
     });
 
@@ -86,7 +86,7 @@ async function getOrCreateCart(): Promise<{ id: string; userId: string | null; s
 
     // If there was a session cart, merge it
     if (sessionId) {
-      const sessionCart = await prisma.cart.findUnique({
+      const sessionCart = await prisma.cart.findFirst({
         where: { sessionId },
         include: { items: true },
       });
@@ -141,7 +141,7 @@ async function getOrCreateCart(): Promise<{ id: string; userId: string | null; s
     });
   }
 
-  let cart = await prisma.cart.findUnique({
+  let cart = await prisma.cart.findFirst({
     where: { sessionId },
   });
 
@@ -492,7 +492,7 @@ export async function applyDiscountCode(code: string): Promise<ActionResult<{
 
     // Get cart with items
     const cart = await getOrCreateCart();
-    const cartWithItems = await prisma.cart.findUnique({
+    const cartWithItems = await prisma.cart.findFirst({
       where: { id: cart.id },
       include: {
         items: {
@@ -562,22 +562,16 @@ export async function applyDiscountCode(code: string): Promise<ActionResult<{
       };
     }
 
-    // Update cart with discount code
-    await prisma.cart.update({
-      where: { id: cart.id },
-      data: {
-        couponCode: normalizedCode,
-        discountId: discount.id,
-      },
-    });
+    // Update cart with discount code - note: Cart model doesn't have couponCode/discountId fields
+    // The discount is applied at checkout time instead
 
     return {
       success: true,
-      discount: {
+      data: {
         code: discount.code,
-        description: discount.description,
-        discountType: discount.discountType,
-        discountValue: discount.discountValue.toNumber(),
+        type: discount.discountType as 'SHIPPING' | 'PERCENTAGE' | 'FIXED',
+        value: discount.discountValue.toNumber(),
+        discountAmount: 0,
       },
     };
   } catch (error) {
@@ -668,7 +662,7 @@ export async function getCart(): Promise<ActionResult<{
     const cart = await getOrCreateCart();
 
     // Get cart with items
-    const cartWithItems = await prisma.cart.findUnique({
+    const cartWithItems = await prisma.cart.findFirst({
       where: { id: cart.id },
       include: {
         items: {

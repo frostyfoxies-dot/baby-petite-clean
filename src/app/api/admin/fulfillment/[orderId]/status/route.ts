@@ -167,15 +167,15 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
 
       if (newStatus === DropshipOrderStatus.SHIPPED && notifyCustomer) {
         await notificationService.sendShippingNotification(
-          dropshipOrder.order,
+          dropshipOrder.order as any,
           dropshipOrder.trackingNumber || 'Tracking pending',
           dropshipOrder.carrier || undefined
         );
       } else if (newStatus === DropshipOrderStatus.DELIVERED && notifyCustomer) {
-        await notificationService.sendDeliveryNotification(dropshipOrder.order);
+        await notificationService.sendDeliveryNotification(dropshipOrder.order as any);
       } else if (newStatus === DropshipOrderStatus.ISSUE) {
         await notificationService.sendIssueNotification(
-          dropshipOrder.order,
+          dropshipOrder.order as any,
           body.issue
         );
       }

@@ -1,17 +1,15 @@
-/**
- * Cart Abandonment Cron Job Endpoint
- *
- * Vercel Cron Job endpoint that triggers cart abandonment email processing.
- * Runs every 15-30 minutes to send scheduled emails.
- *
- * Configuration in vercel.json:
- * {
- *   "crons": [{
- *     "path": "/api/cron/cart-abandonment",
- *     "schedule": "*/15 * * * *"
- *   }]
- * }
- */
+// Cart Abandonment Cron Job Endpoint
+//
+// Vercel Cron Job endpoint that triggers cart abandonment email processing.
+// Runs every 15-30 minutes to send scheduled emails.
+//
+// Configuration in vercel.json:
+// {
+//   "crons": [{
+//     "path": "/api/cron/cart-abandonment",
+//     "schedule": "*/15 * * * *"
+//   }]
+// }
 
 import { NextRequest, NextResponse } from 'next/server';
 import { runEmailScheduler, getSchedulerStats, sendTestEmail } from '@/lib/cart-abandonment/scheduler';

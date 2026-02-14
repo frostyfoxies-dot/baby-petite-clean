@@ -50,10 +50,10 @@ export class FulfillmentNotificationService {
       client.setApiKey(process.env.SENDGRID_API_KEY);
     }
 
-    this.fromEmail = process.env.SENDGRID_FROM_EMAIL || 'noreply@kidspetite.com';
-    this.adminEmail = process.env.ADMIN_EMAIL || 'admin@kidspetite.com';
+    this.fromEmail = process.env.SENDGRID_FROM_EMAIL || 'noreply@babypetite.com';
+    this.adminEmail = process.env.ADMIN_EMAIL || 'admin@babypetite.com';
     this.storeName = process.env.STORE_NAME || 'Kids Petite';
-    this.storeUrl = process.env.NEXT_PUBLIC_STORE_URL || 'https://kidspetite.com';
+    this.storeUrl = process.env.NEXT_PUBLIC_STORE_URL || 'https://babypetite.com';
   }
 
   /**

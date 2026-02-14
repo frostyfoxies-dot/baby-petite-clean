@@ -61,10 +61,10 @@ export function getEmailProvider(): EmailProvider {
  */
 export const emailConfig: EmailConfig = {
   provider: getEmailProvider(),
-  fromEmail: process.env.EMAIL_FROM || 'noreply@kidspetite.com',
+  fromEmail: process.env.EMAIL_FROM || 'noreply@babypetite.com',
   fromName: process.env.EMAIL_FROM_NAME || 'Kids Petite',
-  supportEmail: process.env.SUPPORT_EMAIL || 'support@kidspetite.com',
-  baseUrl: process.env.NEXT_PUBLIC_BASE_URL || 'https://kidspetite.com',
+  supportEmail: process.env.SUPPORT_EMAIL || 'support@babypetite.com',
+  baseUrl: process.env.NEXT_PUBLIC_BASE_URL || 'https://babypetite.com',
 };
 
 /**

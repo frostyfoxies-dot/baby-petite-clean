@@ -1,5 +1,3 @@
-'use client';
-
 import * as React from 'react';
 import { Metadata } from 'next';
 import { Container } from '@/components/layout/container';
@@ -9,6 +7,11 @@ export const metadata: Metadata = {
   title: 'FAQ | Kids Petite',
   description: 'Find answers to frequently asked questions about Kids Petite products, orders, shipping, returns, and more.',
 };
+
+/**
+ * Force dynamic rendering to avoid prerendering issues
+ */
+export const dynamic = 'force-dynamic';
 
 /**
  * FAQ page component
@@ -32,7 +35,7 @@ export default function FAQPage() {
         },
         {
           question: 'Can I change my order after it has been placed?',
-          answer: 'Orders can be modified within 1 hour of placing them. After that, please contact our customer service team at support@kidspetite.com and we will do our best to accommodate your request.',
+          answer: 'Orders can be modified within 1 hour of placing them. After that, please contact our customer service team at support@babypetite.com and we will do our best to accommodate your request.',
         },
       ],
     },
@@ -175,7 +178,7 @@ export default function FAQPage() {
                 Can't find the answer you're looking for? Our friendly team is here to help.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="mailto:support@kidspetite.com" className="inline-flex items-center justify-center px-6 py-3 bg-yellow-dark text-white font-medium rounded-md hover:bg-yellow transition-colors">
+                <a href="mailto:support@babypetite.com" className="inline-flex items-center justify-center px-6 py-3 bg-yellow-dark text-white font-medium rounded-md hover:bg-yellow transition-colors">
                   Email Us
                 </a>
                 <a href="tel:+15551234567" className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-gray-900 font-medium rounded-md hover:bg-gray-50 transition-colors">

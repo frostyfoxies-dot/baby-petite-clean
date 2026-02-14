@@ -42,7 +42,7 @@ export interface RegistryShareProps {
  * <RegistryShare
  *   isOpen={isOpen}
  *   onClose={() => setIsOpen(false)}
- *   shareUrl={`https://kidspetite.com/registry/${shareCode}`}
+ *   shareUrl={`https://babypetite.com/registry/${shareCode}`}
  *   registryTitle="Baby Smith's Registry"
  *   onShare={(platform) => shareTo(platform)}
  * />

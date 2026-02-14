@@ -9,6 +9,11 @@ import { SlidersHorizontal, X } from 'lucide-react';
 import { PaginatedProductsResponse } from '@/app/api/products/route';
 
 /**
+ * Force dynamic rendering to avoid session errors during build
+ */
+export const dynamic = 'force-dynamic';
+
+/**
  * Fetch products from API
  */
 async function getProducts(searchParams: {

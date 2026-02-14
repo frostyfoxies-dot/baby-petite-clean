@@ -359,7 +359,7 @@ const handleGuestCheckout = React.useCallback(() => {
 #### Lighthouse Audits
 ```bash
 # Run Lighthouse CI on critical pages
-lighthouse https://kidspetite.com/checkout --output=json --output-path=./lighthouse-report.json
+lighthouse https://babypetite.com/checkout --output=json --output-path=./lighthouse-report.json
 ```
 
 **Recommended audit schedule:**

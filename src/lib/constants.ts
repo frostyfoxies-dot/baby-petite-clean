@@ -602,11 +602,11 @@ export const DEFAULT_TIMEZONE = TIMEZONES.US_EASTERN;
  * Social media URLs
  */
 export const SOCIAL_MEDIA = {
-  INSTAGRAM: 'https://instagram.com/kidspetite',
-  FACEBOOK: 'https://facebook.com/kidspetite',
-  TWITTER: 'https://twitter.com/kidspetite',
-  PINTEREST: 'https://pinterest.com/kidspetite',
-  TIKTOK: 'https://tiktok.com/@kidspetite',
+  INSTAGRAM: 'https://instagram.com/babypetite',
+  FACEBOOK: 'https://facebook.com/babypetite',
+  TWITTER: 'https://twitter.com/babypetite',
+  PINTEREST: 'https://pinterest.com/babypetite',
+  TIKTOK: 'https://tiktok.com/@babypetite',
 } as const;
 
 // ============================================================================
@@ -617,7 +617,7 @@ export const SOCIAL_MEDIA = {
  * Support contact information
  */
 export const SUPPORT = {
-  EMAIL: 'support@kidspetite.com',
+  EMAIL: 'support@babypetite.com',
   PHONE: '+1-800-KIDS-PET',
   HOURS: 'Mon-Fri 9am-6pm EST',
 } as const;

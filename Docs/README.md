@@ -300,7 +300,7 @@ ALGOLIA_ADMIN_KEY=your_admin_key
 
 # SendGrid
 SENDGRID_API_KEY=your_api_key
-SENDGRID_FROM_EMAIL=noreply@kidspetite.com  # Default sender email address for transactional emails
+SENDGRID_FROM_EMAIL=noreply@babypetite.com  # Default sender email address for transactional emails
 
 # OpenAI
 OPENAI_API_KEY=your_api_key
@@ -312,7 +312,7 @@ NEXTAUTH_SECRET=your_secret
 NEXTAUTH_URL=your_app_url
 
 # App
-NEXT_PUBLIC_BASE_URL=https://kidspetite.com
+NEXT_PUBLIC_BASE_URL=https://babypetite.com
 
 # Sentry (NEW - Required for error tracking)
 NEXT_PUBLIC_SENTRY_DSN=your_sentry_dsn
@@ -361,15 +361,15 @@ GOOGLE_PAY_MERCHANT_NAME=Kids Petite
 
 ### Preview Deployments
 - Automatic on every pull request
-- URL: `https://<branch-name>.kidspetite.vercel.app`
+- URL: `https://<branch-name>.babypetite.vercel.app`
 
 ### Staging
 - Manual deployment from `develop` branch
-- URL: `https://staging.kidspetite.com`
+- URL: `https://staging.babypetite.com`
 
 ### Production
 - Manual deployment from `main` branch
-- URL: `https://kidspetite.com`
+- URL: `https://babypetite.com`
 
 ### Deployment Checklist
 
@@ -392,24 +392,24 @@ GOOGLE_PAY_MERCHANT_NAME=Kids Petite
 - **Uptime Monitoring:** Site availability
 
 ### Support Channels
-- **Email:** support@kidspetite.com
-- **Documentation:** https://docs.kidspetite.com
-- **Status Page:** https://status.kidspetite.com
+- **Email:** support@babypetite.com
+- **Documentation:** https://docs.babypetite.com
+- **Status Page:** https://status.babypetite.com
 
 ---
 
 ## Contact
 
 ### Development Team
-- **Product Manager:** product@kidspetite.com
-- **Engineering Lead:** engineering@kidspetite.com
-- **Design Lead:** design@kidspetite.com
-- **AI/ML Lead:** ai@kidspetite.com
+- **Product Manager:** product@babypetite.com
+- **Engineering Lead:** engineering@babypetite.com
+- **Design Lead:** design@babypetite.com
+- **AI/ML Lead:** ai@babypetite.com
 
 ### Business Team
-- **CEO:** ceo@kidspetite.com
-- **CTO:** cto@kidspetite.com
-- **Marketing:** marketing@kidspetite.com
+- **CEO:** ceo@babypetite.com
+- **CTO:** cto@babypetite.com
+- **Marketing:** marketing@babypetite.com
 
 ---
 

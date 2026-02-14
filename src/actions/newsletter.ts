@@ -68,7 +68,7 @@ export type UpdatePreferencesInput = z.infer<typeof updatePreferencesSchema>;
  * @example
  * const result = await subscribe({ email: 'user@example.com' });
  */
-export async function subscribe(input: SubscribeInput): Promise<ActionResult> {
+export async function subscribe(input: SubscribeInput): Promise<ActionResult<{ message: string }>> {
   try {
     // Validate input
     const validatedFields = subscribeSchema.safeParse(input);
@@ -138,7 +138,7 @@ export async function subscribe(input: SubscribeInput): Promise<ActionResult> {
  * @example
  * const result = await unsubscribe({ email: 'user@example.com' });
  */
-export async function unsubscribe(input: UnsubscribeInput): Promise<ActionResult> {
+export async function unsubscribe(input: UnsubscribeInput): Promise<ActionResult<{ message: string }>> {
   try {
     // Validate input
     const validatedFields = unsubscribeSchema.safeParse(input);
@@ -212,7 +212,7 @@ export async function unsubscribe(input: UnsubscribeInput): Promise<ActionResult
  *   },
  * });
  */
-export async function updatePreferences(input: UpdatePreferencesInput): Promise<ActionResult> {
+export async function updatePreferences(input: UpdatePreferencesInput): Promise<ActionResult<{ message: string }>> {
   try {
     // Validate input
     const validatedFields = updatePreferencesSchema.safeParse(input);
@@ -341,7 +341,7 @@ export async function getSubscriptionStatus(email: string): Promise<ActionResult
  * @example
  * const result = await confirmSubscription('confirmation-token-123');
  */
-export async function confirmSubscription(token: string): Promise<ActionResult> {
+export async function confirmSubscription(token: string): Promise<ActionResult<{ message: string }>> {
   try {
     // In a real implementation, you would:
     // 1. Validate the token
@@ -477,7 +477,7 @@ export async function updateUserNewsletterPreferences(preferences: {
   promotions?: boolean;
   tipsAndAdvice?: boolean;
   events?: boolean;
-}): Promise<ActionResult> {
+}): Promise<ActionResult<{ message: string }>> {
   try {
     // Get current user
     const user = await getCurrentUser();

@@ -1,17 +1,11 @@
 'use client';
 
 import * as React from 'react';
-import { Metadata } from 'next';
 import { Container } from '@/components/layout/container';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
-
-export const metadata: Metadata = {
-  title: 'Contact Us | Kids Petite',
-  description: 'Get in touch with Kids Petite. We\'re here to help with any questions about our products, orders, or services.',
-};
 
 /**
  * Contact page component
@@ -141,8 +135,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
-                    <p className="text-gray-600">hello@kidspetite.com</p>
-                    <p className="text-gray-600">support@kidspetite.com</p>
+                    <p className="text-gray-600">hello@babypetite.com</p>
+                    <p className="text-gray-600">support@babypetite.com</p>
                   </div>
                 </div>
 

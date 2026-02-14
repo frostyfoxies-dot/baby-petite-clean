@@ -20,9 +20,9 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
  * Email configuration constants
  */
 export const EMAIL_CONFIG = {
-  FROM_EMAIL: process.env.SENDGRID_FROM_EMAIL || 'noreply@kidspetite.com',
+  FROM_EMAIL: process.env.SENDGRID_FROM_EMAIL || 'noreply@babypetite.com',
   FROM_NAME: 'Kids Petite',
-  SUPPORT_EMAIL: process.env.SUPPORT_EMAIL || 'support@kidspetite.com',
+  SUPPORT_EMAIL: process.env.SUPPORT_EMAIL || 'support@babypetite.com',
 } as const;
 
 /**

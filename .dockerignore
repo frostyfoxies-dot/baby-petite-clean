@@ -1,0 +1,20 @@
+# Exclude from build context to reduce size and memory usage
+node_modules
+.next
+out
+coverage
+.DS_Store
+*.log
+docs
+scripts
+src/test
+e2e
+tests
+test
+*.md
+.git
+.gitignore
+.npmrc
+.prettierrc
+.eslintrc
+.thoughts

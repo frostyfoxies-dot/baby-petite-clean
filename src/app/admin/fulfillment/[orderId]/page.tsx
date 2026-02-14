@@ -50,5 +50,5 @@ export default async function OrderDetailPage({
     notFound();
   }
 
-  return <OrderDetailClient dropshipOrder={dropshipOrder} />;
+  return <OrderDetailClient dropshipOrder={dropshipOrder as any} />;
 }

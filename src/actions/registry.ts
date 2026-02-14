@@ -780,7 +780,7 @@ export async function shareRegistry(input: ShareRegistryInput): Promise<ActionRe
     }
 
     // Get user info for the email
-    const userName = [user.firstName, user.lastName].filter(Boolean).join(' ') || 'Someone';
+    const userName = [(user as any).firstName, (user as any).lastName].filter(Boolean).join(' ') || 'Someone';
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com';
     const shareUrl = `${siteUrl}/registry/${registry.shareCode}`;
 

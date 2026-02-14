@@ -420,7 +420,7 @@ function predictSize(birthDate: Date, currentWeight: number, currentHeight: numb
 
 - Open a discussion for questions
 - Join our Discord community
-- Email: dev@kidspetite.com
+- Email: dev@babypetite.com
 
 ## Recognition
 

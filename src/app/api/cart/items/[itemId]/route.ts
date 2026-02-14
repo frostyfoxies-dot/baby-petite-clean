@@ -30,14 +30,14 @@ async function getSessionId(): Promise<string | null> {
 
 async function getCartId(userId: string | null, sessionId: string | null): Promise<string | null> {
   if (userId) {
-    const cart = await prisma.cart.findUnique({
+    const cart = await prisma.cart.findFirst({
       where: { userId },
       select: { id: true },
     });
     return cart?.id || null;
   }
   if (sessionId) {
-    const cart = await prisma.cart.findUnique({
+    const cart = await prisma.cart.findFirst({
       where: { sessionId },
       select: { id: true },
     });
@@ -47,7 +47,7 @@ async function getCartId(userId: string | null, sessionId: string | null): Promi
 }
 
 async function buildCartResponse(cartId: string) {
-  const cart = await prisma.cart.findUnique({
+  const cart = await prisma.cart.findFirst({
     where: { id: cartId },
     include: {
       items: {

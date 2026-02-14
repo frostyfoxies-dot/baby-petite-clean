@@ -96,14 +96,15 @@ export async function createAddress(input: AddressInput): Promise<ActionResult<{
 
     // If this is set as default, unset any existing default of the same type
     if (data.isDefault) {
+      const addressType = data.type as AddressType;
       await prisma.address.updateMany({
         where: {
           userId: user.id,
           isDefault: true,
           OR: [
-            { type: data.type },
+            { type: addressType },
             { type: 'BOTH' },
-            ...(data.type === 'BOTH' ? [{ type: 'SHIPPING' }, { type: 'BILLING' }] : []),
+            ...(addressType === 'BOTH' ? [{ type: 'SHIPPING' as const }, { type: 'BILLING' as const }] : []),
           ],
         },
         data: { isDefault: false },
@@ -213,7 +214,7 @@ export async function updateAddress(
 
     // If setting as default, unset any existing default of the same type
     if (data.isDefault) {
-      const addressType = data.type || existingAddress.type;
+      const addressType = (data.type || existingAddress.type) as AddressType;
       await prisma.address.updateMany({
         where: {
           userId: user.id,
@@ -221,8 +222,8 @@ export async function updateAddress(
           id: { not: addressId },
           OR: [
             { type: addressType },
-            { type: 'BOTH' },
-            ...(addressType === 'BOTH' ? [{ type: 'SHIPPING' }, { type: 'BILLING' }] : []),
+            { type: 'BOTH' as const },
+            ...(addressType === 'BOTH' ? [{ type: 'SHIPPING' as const }, { type: 'BILLING' as const }] : []),
           ],
         },
         data: { isDefault: false },
@@ -392,14 +393,15 @@ export async function setDefaultAddress(
     }
 
     // Unset any existing defaults of the same type
+    const addressType = type as AddressType;
     await prisma.address.updateMany({
       where: {
         userId: user.id,
         isDefault: true,
         OR: [
-          { type: type },
-          { type: 'BOTH' },
-          ...(type === 'BOTH' ? [{ type: 'SHIPPING' }, { type: 'BILLING' }] : []),
+          { type: addressType },
+          { type: 'BOTH' as const },
+          ...(addressType === 'BOTH' ? [{ type: 'SHIPPING' as const }, { type: 'BILLING' as const }] : []),
         ],
       },
       data: { isDefault: false },

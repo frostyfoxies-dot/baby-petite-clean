@@ -364,7 +364,7 @@ export default function TermsPage() {
                 If you have any questions about these Terms, please contact us:
               </p>
               <p>
-                <strong>Email:</strong> legal@kidspetite.com<br />
+                <strong>Email:</strong> legal@babypetite.com<br />
                 <strong>Address:</strong> 123 Fashion Street, New York, NY 10001, United States
               </p>
             </div>

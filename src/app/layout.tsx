@@ -8,6 +8,7 @@ import { ToastProvider } from '@/components/ui/toast';
 import { CartDrawer } from '@/components/cart/cart-drawer';
 import { ExitIntentProvider } from '@/components/exit-intent/exit-intent-provider';
 import { ChatProvider, LazyLiveChat } from '@/components/chat';
+import { AnalyticsProvider } from '@/components/analytics-provider';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -30,11 +31,11 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://kidspetite.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://babypetite.com'),
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://kidspetite.com',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://babypetite.com',
     siteName: 'Kids Petite',
     title: 'Kids Petite - Curated Style for Little Ones',
     description: 'Discover curated children\'s clothing at Kids Petite. High-quality, adorable pieces for every occasion.',
@@ -52,7 +53,7 @@ export const metadata: Metadata = {
     title: 'Kids Petite - Curated Style for Little Ones',
     description: 'Discover curated children\'s clothing at Kids Petite.',
     images: ['/og-image.jpg'],
-    creator: '@kidspetite',
+    creator: '@babypetite',
   },
   robots: {
     index: true,
@@ -85,7 +86,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://kidspetite.com';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://babypetite.com';
   
   // Organization and WebSite JSON-LD schema for SEO
   const organizationSchema = {
@@ -95,9 +96,9 @@ export default function RootLayout({
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
     sameAs: [
-      'https://instagram.com/kidspetite',
-      'https://facebook.com/kidspetite',
-      'https://twitter.com/kidspetite',
+      'https://instagram.com/babypetite',
+      'https://facebook.com/babypetite',
+      'https://twitter.com/babypetite',
     ],
   };
 
@@ -135,14 +136,12 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+        {/* Analytics initialization (client-side) */}
+        <AnalyticsProvider />
         <ExitIntentProvider
           variant="discount"
           discountPercent={10}
           disabledRoutes={['/checkout/*', '/auth/*', '/account/*']}
-          onEmailSubmit={async (email) => {
-            // This would typically call a newsletter subscription API
-            console.log('Exit intent email capture:', email);
-          }}
         >
           <ToastProvider>
             <ChatProvider>
@@ -156,18 +155,6 @@ export default function RootLayout({
                     { label: 'Registry', href: '/registry' },
                     { label: 'About', href: '/about' },
                   ]}
-                  onSearch={(query) => {
-                    window.location.href = `/search?q=${encodeURIComponent(query)}`;
-                  }}
-                  onCartClick={() => {
-                    // Cart drawer will be controlled by state
-                  }}
-                  onWishlistClick={() => {
-                    window.location.href = '/account/wishlist';
-                  }}
-                  onUserClick={() => {
-                    window.location.href = '/account';
-                  }}
                 />
                 <main id="main-content" className="flex-1 pb-16 md:pb-0">
                   {children}
@@ -204,9 +191,9 @@ export default function RootLayout({
                     },
                   ]}
                   socialLinks={[
-                    { platform: 'instagram', href: 'https://instagram.com/kidspetite', label: 'Instagram' },
-                    { platform: 'facebook', href: 'https://facebook.com/kidspetite', label: 'Facebook' },
-                    { platform: 'twitter', href: 'https://twitter.com/kidspetite', label: 'Twitter' },
+                    { platform: 'instagram', href: 'https://instagram.com/babypetite', label: 'Instagram' },
+                    { platform: 'facebook', href: 'https://facebook.com/babypetite', label: 'Facebook' },
+                    { platform: 'twitter', href: 'https://twitter.com/babypetite', label: 'Twitter' },
                   ]}
                 />
               </div>

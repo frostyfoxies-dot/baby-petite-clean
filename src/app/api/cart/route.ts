@@ -62,14 +62,14 @@ export interface CartResponse {
 async function getOrCreateCart(userId: string | null, sessionId: string | null): Promise<{ id: string; isNew: boolean }> {
   // Try to find existing cart
   if (userId) {
-    const existingCart = await prisma.cart.findUnique({
+    const existingCart = await prisma.cart.findFirst({
       where: { userId },
     });
     if (existingCart) {
       return { id: existingCart.id, isNew: false };
     }
   } else if (sessionId) {
-    const existingCart = await prisma.cart.findUnique({
+    const existingCart = await prisma.cart.findFirst({
       where: { sessionId },
     });
     if (existingCart) {
@@ -107,7 +107,7 @@ async function getSessionId(): Promise<string> {
 }
 
 async function buildCartResponse(cartId: string): Promise<CartResponse> {
-  const cart = await prisma.cart.findUnique({
+  const cart = await prisma.cart.findFirst({
     where: { id: cartId },
     include: {
       items: {
@@ -198,12 +198,12 @@ export async function GET(request: NextRequest) {
     // Find existing cart
     let cart = null;
     if (user) {
-      cart = await prisma.cart.findUnique({
+      cart = await prisma.cart.findFirst({
         where: { userId: user.id },
       });
     }
     if (!cart && sessionId) {
-      cart = await prisma.cart.findUnique({
+      cart = await prisma.cart.findFirst({
         where: { sessionId },
       });
     }
@@ -368,12 +368,12 @@ export async function DELETE(request: NextRequest) {
     // Find cart
     let cart = null;
     if (user) {
-      cart = await prisma.cart.findUnique({
+      cart = await prisma.cart.findFirst({
         where: { userId: user.id },
       });
     }
     if (!cart && sessionId) {
-      cart = await prisma.cart.findUnique({
+      cart = await prisma.cart.findFirst({
         where: { sessionId },
       });
     }

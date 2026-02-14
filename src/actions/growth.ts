@@ -439,7 +439,7 @@ Format your response as JSON with the following structure:
       await prisma.registry.update({
         where: { id: registry.id },
         data: {
-          predictedSizes: prediction,
+          predictedSizes: prediction as any,
         },
       });
 
@@ -465,7 +465,7 @@ Format your response as JSON with the following structure:
       await prisma.registry.update({
         where: { id: registry.id },
         data: {
-          predictedSizes: fallbackPrediction,
+          predictedSizes: fallbackPrediction as any,
         },
       });
 

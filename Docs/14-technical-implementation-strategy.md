@@ -915,11 +915,11 @@ export async function sendAbandonmentEmail(
   };
   
   await resend.emails.send({
-    from: 'Kids Petite <hello@kidspetite.com>',
+    from: 'Kids Petite <hello@babypetite.com>',
     to: cart.user?.email || cart.guestEmail,
     template: templates[type],
     data: {
-      cartUrl: `https://kidspetite.com/cart?recover=${cart.id}`,
+      cartUrl: `https://babypetite.com/cart?recover=${cart.id}`,
       items: cart.items,
       total: calculateTotal(cart.items),
     },

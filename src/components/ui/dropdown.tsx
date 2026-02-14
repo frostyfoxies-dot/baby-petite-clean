@@ -347,3 +347,5 @@ export function DropdownLabel({ className, children, ...props }: DropdownLabelPr
     </div>
   );
 }
+
+export const DropdownContent = DropdownMenu;

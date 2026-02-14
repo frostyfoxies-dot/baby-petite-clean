@@ -94,7 +94,7 @@ export async function createOrder(checkoutSessionId: string): Promise<ActionResu
 
     // Initialize Stripe
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-      apiVersion: '2023-10-16',
+      apiVersion: '2025-02-24.acacia' as any,
     });
 
     // Retrieve checkout session
@@ -108,7 +108,7 @@ export async function createOrder(checkoutSessionId: string): Promise<ActionResu
     }
 
     // Check if order already exists for this session
-    const existingPayment = await prisma.payment.findUnique({
+    const existingPayment = await prisma.payment.findFirst({
       where: { stripePaymentIntentId: session.payment_intent as string },
     });
 
@@ -443,7 +443,7 @@ export async function cancelOrder(orderNumber: string): Promise<ActionResult> {
       // Process refund if payment was completed
       if (order.payment && order.payment.status === PaymentStatus.COMPLETED) {
         const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-          apiVersion: '2023-10-16',
+          apiVersion: '2025-02-24.acacia' as any,
         });
 
         // Create refund

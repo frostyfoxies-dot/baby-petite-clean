@@ -252,7 +252,7 @@ export async function POST(request: NextRequest) {
     const { checkoutSessionId } = validationResult.data;
 
     // Get checkout session
-    const checkoutSession = await prisma.checkoutSession.findUnique({
+    const checkoutSession = await (prisma as any).checkoutSession.findUnique({
       where: { id: checkoutSessionId },
       include: {
         cart: {

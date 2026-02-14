@@ -1,4 +1,4 @@
-import { auth } from './auth';
+import { auth as nextAuthAuth } from 'next-auth/next';
 import { redirect } from 'next/navigation';
 import { UserRole } from '@prisma/client';
 
@@ -60,7 +60,7 @@ export interface Session {
  */
 export async function getServerSession(): Promise<Session | null> {
   try {
-    const session = await auth();
+    const session = await nextAuthAuth();
     
     if (!session?.user) {
       return null;
