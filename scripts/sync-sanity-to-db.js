@@ -1,12 +1,13 @@
 /**
  * Sync Products from Sanity CMS to PostgreSQL
- * Plain JavaScript version (CommonJS) for Railway deployment
+ * Plain JavaScript (CommonJS) version
  */
 
 const { createClient } = require('@sanity/client');
-const { prisma } = require('@/lib/prisma');
+const { PrismaClient } = require('@prisma/client');
 
-// Sanity client configuration
+const prisma = new PrismaClient();
+
 const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: process.env.SANITY_DATASET || 'production',
@@ -81,9 +82,122 @@ async function syncProducts() {
   console.log(`Fetched ${products.length} products from Sanity.`);
 
   for (const product of products) {
-    // Implementation simplified for brevity; see TypeScript version for full logic
-    // This placeholder just logs
-    console.log(`Processing product: ${product.name} (${product._id})`);
+    // Upsert categories
+    for (const cat of product.categories || []) {
+      await prisma.category.upsert({
+        where: { id: cat._id },
+        update: { name: cat.name, slug: cat.slug },
+        create: { id: cat._id, name: cat.name, slug: cat.slug, isActive: true },
+      });
+    }
+
+    // Upsert product
+    const slug = typeof product.slug === 'string' ? product.slug : product.slug.current;
+    const description = product.description?.[0]?.children?.map((c) => c.text).join('\n') || '';
+
+    const dbProduct = await prisma.product.upsert({
+      where: { id: product._id },
+      update: {
+        name: product.name,
+        slug,
+        description,
+        shortDescription: product.shortDescription,
+        basePrice: product.price || 0,
+        compareAtPrice: product.compareAtPrice || null,
+        sku: product.sku,
+        categoryId: product.categories[0]?._id || null,
+        isActive: true,
+        isFeatured: product.isFeatured || false,
+        isNew: product.isNew || false,
+        isOnSale: !!product.compareAtPrice,
+        metaTitle: product.seo?.title || null,
+        metaDescription: product.seo?.description || null,
+        metaKeywords: product.seo?.keywords?.join(', ') || null,
+        minAge: product.minAge ?? null,
+        maxAge: product.maxAge ?? null,
+        chokingHazard: product.chokingHazard || false,
+        chokingHazardText: product.chokingHazardText || null,
+        certifications: product.certifications || [],
+        countryOfOrigin: product.countryOfOrigin || null,
+        careInstructions: typeof product.careInstructions === 'string'
+          ? product.careInstructions
+          : JSON.stringify(product.careInstructions),
+        popularityScore: 0,
+        aiTags: [],
+      },
+      create: {
+        id: product._id,
+        name: product.name,
+        slug,
+        description,
+        shortDescription: product.shortDescription,
+        basePrice: product.price || 0,
+        compareAtPrice: product.compareAtPrice || null,
+        sku: product.sku,
+        categoryId: product.categories[0]?._id || null,
+        isActive: true,
+        isFeatured: product.isFeatured || false,
+        isNew: product.isNew || false,
+        isOnSale: !!product.compareAtPrice,
+        metaTitle: product.seo?.title || null,
+        metaDescription: product.seo?.description || null,
+        metaKeywords: product.seo?.keywords?.join(', ') || null,
+        minAge: product.minAge ?? null,
+        maxAge: product.maxAge ?? null,
+        chokingHazard: product.chokingHazard || false,
+        chokingHazardText: product.chokingHazardText || null,
+        certifications: product.certifications || [],
+        countryOfOrigin: product.countryOfOrigin || null,
+        careInstructions: typeof product.careInstructions === 'string'
+          ? product.careInstructions
+          : JSON.stringify(product.careInstructions),
+        popularityScore: 0,
+        aiTags: [],
+      },
+    });
+
+    // Clear old images and variants
+    await prisma.productImage.deleteMany({ where: { productId: dbProduct.id } });
+    await prisma.variant.deleteMany({ where: { productId: dbProduct.id } });
+
+    // Insert images
+    for (const img of product.images || []) {
+      await prisma.productImage.create({
+        data: {
+          id: `${dbProduct.id}-${img._key}`,
+          productId: dbProduct.id,
+          url: img.url,
+          altText: img.alt || product.name,
+          width: 0,
+          height: 0,
+          sortOrder: 0,
+          isPrimary: img.isPrimary || false,
+        },
+      });
+    }
+
+    // Insert variants
+    for (const v of product.variants || []) {
+      await prisma.variant.create({
+        data: {
+          id: `${dbProduct.id}-${v._key}`,
+          productId: dbProduct.id,
+          name: v.name,
+          size: v.size,
+          color: v.color,
+          colorCode: v.colorCode,
+          sku: v.sku,
+          barcode: v.barcode,
+          price: v.price || 0,
+          compareAtPrice: v.compareAtPrice || null,
+          weight: v.weight ? parseFloat(v.weight) : null,
+          dimensions: typeof v.dimensions === 'string' ? v.dimensions : JSON.stringify(v.dimensions),
+          isActive: v.isActive !== false,
+        },
+      });
+    }
+
+    console.log(`Synced product: ${product.name}`);
   }
 
   console.log('✅ Sanity → PostgreSQL sync complete!');
