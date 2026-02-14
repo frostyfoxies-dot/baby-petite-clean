@@ -170,7 +170,7 @@ export default async function HomePage() {
   return (
     <>
       {/* H1 tag for SEO - visually hidden but accessible to screen readers */}
-      <h1 className="sr-only">Kids Petite - Curated Style for Little Ones</h1>
+      <h1 className="sr-only">Baby Petite - Curated Style for Little Ones</h1>
 
       {/* Hero Carousel */}
       <BannerCarousel

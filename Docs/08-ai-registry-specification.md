@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-This document defines the AI-powered Registry service for the Kids Petite children's clothing platform. The registry leverages machine learning to provide predictive sizing, smart product recommendations, and automated inventory management. This differentiates Kids Petite from competitors by offering a truly intelligent registry experience that anticipates parents' needs.
+This document defines the AI-powered Registry service for the Baby Petite children's clothing platform. The registry leverages machine learning to provide predictive sizing, smart product recommendations, and automated inventory management. This differentiates Baby Petite from competitors by offering a truly intelligent registry experience that anticipates parents' needs.
 
 ---
 
@@ -1038,7 +1038,7 @@ The AI-Powered Baby Registry provides:
 ✅ **Growth Tracking:** Monitor baby's development  
 ✅ **Collaborative Sharing:** Easy sharing with gift-givers  
 
-This feature differentiates Kids Petite from competitors by offering a truly intelligent registry experience that anticipates parents' needs and helps them prepare for their baby's arrival.
+This feature differentiates Baby Petite from competitors by offering a truly intelligent registry experience that anticipates parents' needs and helps them prepare for their baby's arrival.
 
 ---
 

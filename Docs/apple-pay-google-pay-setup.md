@@ -1,6 +1,6 @@
 # Apple Pay & Google Pay Setup Guide
 
-This document provides step-by-step instructions for enabling Apple Pay and Google Pay payment methods in the Kids Petite e-commerce platform.
+This document provides step-by-step instructions for enabling Apple Pay and Google Pay payment methods in the Baby Petite e-commerce platform.
 
 ## Overview
 
@@ -68,7 +68,7 @@ APPLE_PAY_MERCHANT_IDENTIFIER=merchant.com.yourdomain
 
 # Google Pay Configuration (Optional)
 GOOGLE_PAY_MERCHANT_ID=your_merchant_id
-GOOGLE_PAY_MERCHANT_NAME=Kids Petite
+GOOGLE_PAY_MERCHANT_NAME=Baby Petite
 ```
 
 ## Implementation Details

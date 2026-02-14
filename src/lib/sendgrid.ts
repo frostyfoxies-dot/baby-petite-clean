@@ -21,7 +21,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
  */
 export const EMAIL_CONFIG = {
   FROM_EMAIL: process.env.SENDGRID_FROM_EMAIL || 'noreply@babypetite.com',
-  FROM_NAME: 'Kids Petite',
+  FROM_NAME: 'Baby Petite',
   SUPPORT_EMAIL: process.env.SUPPORT_EMAIL || 'support@babypetite.com',
 } as const;
 
@@ -338,7 +338,7 @@ export async function sendWelcomeEmail(
     },
     templateId: TEMPLATE_IDS.WELCOME_EMAIL,
     dynamicTemplateData: {
-      subject: data.subject || 'Welcome to Kids Petite!',
+      subject: data.subject || 'Welcome to Baby Petite!',
       customer_name: data.customerName,
       login_url: data.loginUrl,
       discount_code: data.discountCode,

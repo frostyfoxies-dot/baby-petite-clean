@@ -1,4 +1,4 @@
-// Prisma Schema for Kids Petite E-commerce Platform
+// Prisma Schema for Baby Petite E-commerce Platform
 // Version: 1.0
 // Last Updated: February 2026
 
@@ -853,7 +853,7 @@ model Supplier {
   @@index([status])
 }
 
-/// Links Kids Petite products to AliExpress source
+/// Links Baby Petite products to AliExpress source
 model ProductSource {
   id String @id @default(cuid())
 

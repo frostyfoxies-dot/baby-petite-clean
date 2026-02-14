@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-This document presents a comprehensive audit of the Kids Petite e-commerce platform's user experience implementation. The audit evaluates the current state against industry best practices documented in `Docs/10-ecommerce-ux-best-practices.md`.
+This document presents a comprehensive audit of the Baby Petite e-commerce platform's user experience implementation. The audit evaluates the current state against industry best practices documented in `Docs/10-ecommerce-ux-best-practices.md`.
 
 ### Overall Assessment
 

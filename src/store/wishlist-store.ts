@@ -100,7 +100,7 @@ export const useWishlistStore = create<WishlistStore>()(
       },
     }),
     {
-      name: 'kids-petite-wishlist-storage',
+      name: 'baby-petite-wishlist-storage',
       partialize: (state) => ({
         items: state.items,
       }),

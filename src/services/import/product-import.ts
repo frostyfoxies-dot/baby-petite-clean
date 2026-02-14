@@ -1,6 +1,6 @@
 /**
  * Product Import Service
- * Main service for importing products from AliExpress to Kids Petite
+ * Main service for importing products from AliExpress to Baby Petite
  */
 
 import { prisma } from '@/lib/prisma';
@@ -121,7 +121,7 @@ interface SupplierInfo {
 
 /**
  * Product Import Service
- * Orchestrates the complete import flow from AliExpress to Kids Petite
+ * Orchestrates the complete import flow from AliExpress to Baby Petite
  */
 export class ProductImportService {
   private transformer: ProductTransformer;

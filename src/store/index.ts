@@ -1,5 +1,5 @@
 /**
- * Kids Petite State Management
+ * Baby Petite State Management
  * Central export for all Zustand stores
  */
 

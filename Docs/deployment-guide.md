@@ -5,13 +5,13 @@
 ### Option 1: Create New Repository
 
 1. Go to [github.com/new](https://github.com/new)
-2. Repository name: `kids-petite`
+2. Repository name: `baby-petite`
 3. Public or Private
 4. Click "Create repository"
 5. Run these commands locally:
 
 ```bash
-git remote add origin https://github.com/YOUR_USERNAME/kids-petite.git
+git remote add origin https://github.com/YOUR_USERNAME/baby-petite.git
 git branch -M main
 git push -u origin main
 ```
@@ -20,7 +20,7 @@ git push -u origin main
 
 ```bash
 gh auth login
-gh repo create kids-petite --public --source=. --push
+gh repo create baby-petite --public --source=. --push
 ```
 
 ---
@@ -42,7 +42,7 @@ railway init
 ```
 
 Follow prompts:
-- Name: `kids-petite`
+- Name: `baby-petite`
 - Select "Empty Project"
 
 ### Step 3: Add PostgreSQL
@@ -64,8 +64,8 @@ railway variables set NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_value
 railway variables set ALGOLIA_ADMIN_KEY=your_value
 railway variables set SENDGRID_API_KEY=your_value
 railway variables set NEXTAUTH_SECRET=$(openssl rand -base64 32)
-railway variables set NEXTAUTH_URL=https://kids-petite.up.railway.app
-railway variables set NEXT_PUBLIC_BASE_URL=https://kids-petite.up.railway.app
+railway variables set NEXTAUTH_URL=https://baby-petite.up.railway.app
+railway variables set NEXT_PUBLIC_BASE_URL=https://baby-petite.up.railway.app
 railway variables set NODE_ENV=production
 ```
 
@@ -104,9 +104,9 @@ Or connect GitHub repo in Railway dashboard for automatic deploys.
 
 2. **Setup Stripe Webhook:**
    ```
-   Your endpoint: https://kids-petite.up.railway.app/api/webhooks/stripe
+   Your endpoint: https://baby-petite.up.railway.app/api/webhooks/stripe
    Events: checkout.session.completed, payment_intent.succeeded
    ```
 
 3. **Verify Deployment:**
-   Visit `https://kids-petite.up.railway.app`
+   Visit `https://baby-petite.up.railway.app`

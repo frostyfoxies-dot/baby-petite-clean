@@ -1,5 +1,5 @@
 /**
- * API response types for the Kids Petite e-commerce platform
+ * API response types for the Baby Petite e-commerce platform
  */
 
 /**

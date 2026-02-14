@@ -14,8 +14,8 @@ import { schemas } from './schemas';
  * Sanity Studio configuration
  */
 export default defineConfig({
-  name: 'kids-petite',
-  title: 'Kids Petite CMS',
+  name: 'baby-petite',
+  title: 'Baby Petite CMS',
   
   // Project ID from environment
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_PROJECT_ID || '',

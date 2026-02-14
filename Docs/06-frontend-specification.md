@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-This document defines the complete frontend specification for the Kids Petite children's clothing e-commerce platform. Built with Next.js 15, React 19, and Tailwind CSS, the frontend is designed to be performant, accessible, and maintainable with a high-density, minimalist aesthetic. The specification covers component hierarchy, state management, routing, and accessibility standards.
+This document defines the complete frontend specification for the Baby Petite children's clothing e-commerce platform. Built with Next.js 15, React 19, and Tailwind CSS, the frontend is designed to be performant, accessible, and maintainable with a high-density, minimalist aesthetic. The specification covers component hierarchy, state management, routing, and accessibility standards.
 
 **Design Philosophy:** High product density, minimalist interface, white/yellow color palette, color vibrancy from product photography only.
 
@@ -614,7 +614,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="text-lg font-semibold text-gray-900">
-          KIDS PETITE
+          BABY PETITE
         </Link>
         
         {/* Navigation - Text-based */}
@@ -1016,7 +1016,7 @@ describe('Button', () => {
 
 ## 13. Conclusion
 
-The Kids Petite frontend specification provides:
+The Baby Petite frontend specification provides:
 
 ✅ **High-Density Layout:** Maximized product visibility with compact grids  
 ✅ **Minimalist Interface:** Clean design with white/yellow palette  

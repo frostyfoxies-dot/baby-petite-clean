@@ -4,8 +4,8 @@ import { Container } from '@/components/layout/container';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 export const metadata: Metadata = {
-  title: 'FAQ | Kids Petite',
-  description: 'Find answers to frequently asked questions about Kids Petite products, orders, shipping, returns, and more.',
+  title: 'FAQ | Baby Petite',
+  description: 'Find answers to frequently asked questions about Baby Petite products, orders, shipping, returns, and more.',
 };
 
 /**
@@ -135,7 +135,7 @@ export default function FAQPage() {
               Frequently Asked Questions
             </h1>
             <p className="text-lg text-gray-600">
-              Find answers to common questions about Kids Petite
+              Find answers to common questions about Baby Petite
             </p>
           </div>
         </Container>

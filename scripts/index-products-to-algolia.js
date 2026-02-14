@@ -1,43 +1,11 @@
 /**
  * Index Products to Algolia
- *
- * One-time script to populate the `products` index from PostgreSQL.
- * Run after setting up Algolia and before going live.
- *
- * Usage:
- *   npx tsx src/scripts/index-products-to-algolia.ts
- *
- * Requirements:
- *   - DATABASE_URL (PostgreSQL)
- *   - NEXT_PUBLIC_ALGOLIA_APP_ID
- *   - ALGOLIA_ADMIN_KEY
+ * Plain JavaScript (CommonJS) – no TypeScript, no tsx
  */
 
-import algoliasearch = require('algoliasearch');
-import { PrismaClient } from '@prisma/client';
+const algoliasearch = require('algoliasearch');
+const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
-
-// Cast to any to avoid type issues
-const client: any = algoliasearch;
-
-interface AlgoliaProductRecord {
-  objectID: string;
-  name: string;
-  slug: string;
-  description: string;
-  basePrice: number;
-  compareAtPrice: number | null;
-  category: string;
-  categoryId: string;
-  categorySlug: string;
-  colors: string[];
-  sizes: string[];
-  inStock: boolean;
-  isActive: boolean;
-  isFeatured: boolean;
-  isNew: boolean;
-  updatedAt: number;
-}
 
 async function indexProducts() {
   const appId = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
@@ -48,7 +16,7 @@ async function indexProducts() {
     process.exit(1);
   }
 
-  const client: any = algoliasearch(appId, adminKey);
+  const client = algoliasearch(appId, adminKey);
   const index = client.initIndex('products');
 
   console.log('Fetching products from database...');
@@ -75,10 +43,10 @@ async function indexProducts() {
 
   console.log(`Fetched ${products.length} products. Transforming...`);
 
-  const records: AlgoliaProductRecord[] = products.map((product) => {
-    const colors = [...new Set(product.variants.map((v) => v.color).filter(Boolean))];
-    const sizes = [...new Set(product.variants.map((v) => v.size))];
-    const inStock = product.variants.some((v) => v.inventory?.available && v.inventory.available > 0);
+  const records = products.map((product) => {
+    const colors = [...new Set(product.variants.map(v => v.color).filter(Boolean))];
+    const sizes = [...new Set(product.variants.map(v => v.size))];
+    const inStock = product.variants.some(v => v.inventory?.available && v.inventory.available > 0);
 
     return {
       objectID: product.id,
@@ -90,8 +58,8 @@ async function indexProducts() {
       category: product.category.name,
       categoryId: product.category.id,
       categorySlug: product.category.slug,
-      colors: colors as string[],
-      sizes: sizes as string[],
+      colors,
+      sizes,
       inStock,
       isActive: product.isActive,
       isFeatured: product.isFeatured,
@@ -102,7 +70,6 @@ async function indexProducts() {
 
   console.log(`Uploading ${records.length} records to Algolia...`);
 
-  // Batch upload (Algolia allows up to 1000 objects per batch)
   const batchSize = 1000;
   for (let i = 0; i < records.length; i += batchSize) {
     const batch = records.slice(i, i + batchSize);
@@ -112,15 +79,16 @@ async function indexProducts() {
 
   console.log('✅ Indexing complete!');
 
-  // Print index stats
   const stats = await index.getStats();
   console.log('Index stats:', {
     entries: stats.entries,
     pendingTasks: stats.pendingTasks,
   });
+
+  await prisma.$disconnect();
 }
 
-indexProducts().catch((err) => {
+indexProducts().catch(err => {
   console.error('Indexing failed:', err);
   process.exit(1);
 });

@@ -4,8 +4,8 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'About Kids Petite | Premium Children\'s Clothing',
-  description: 'Learn about Kids Petite\'s mission to provide premium, sustainable children\'s clothing that grows with your little ones.',
+  title: 'About Baby Petite | Premium Children\'s Clothing',
+  description: 'Learn about Baby Petite\'s mission to provide premium, sustainable children\'s clothing that grows with your little ones.',
 };
 
 /**
@@ -19,7 +19,7 @@ export default function AboutPage() {
         <Container>
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              About Kids Petite
+              About Baby Petite
             </h1>
             <p className="text-lg text-gray-600">
               Premium children's clothing that grows with your little ones
@@ -37,13 +37,13 @@ export default function AboutPage() {
             </h2>
             <div className="prose prose-lg text-gray-600 space-y-4">
               <p>
-                Kids Petite was born from a simple observation: children grow fast, but their clothes shouldn't have to be replaced just as quickly. Founded in 2020, we set out to create a children's clothing brand that combines premium quality, sustainable practices, and thoughtful design.
+                Baby Petite was born from a simple observation: children grow fast, but their clothes shouldn't have to be replaced just as quickly. Founded in 2020, we set out to create a children's clothing brand that combines premium quality, sustainable practices, and thoughtful design.
               </p>
               <p>
                 Our journey began when our founder, a parent herself, struggled to find clothing that was both durable enough for active play and stylish enough for special occasions. She noticed that most children's clothing was either too expensive or too disposable, neither of which aligned with her values.
               </p>
               <p>
-                Today, Kids Petite is proud to offer a curated collection of children's clothing that meets the highest standards of quality, sustainability, and style. Every piece in our collection is carefully selected to ensure it can withstand the adventures of childhood while looking beautiful.
+                Today, Baby Petite is proud to offer a curated collection of children's clothing that meets the highest standards of quality, sustainability, and style. Every piece in our collection is carefully selected to ensure it can withstand the adventures of childhood while looking beautiful.
               </p>
             </div>
           </div>
@@ -111,7 +111,7 @@ export default function AboutPage() {
             </h2>
             <div className="prose prose-lg text-gray-600 space-y-4">
               <p>
-                At Kids Petite, we're committed to making a positive impact on the world. Here's how we're doing it:
+                At Baby Petite, we're committed to making a positive impact on the world. Here's how we're doing it:
               </p>
               <ul className="space-y-2">
                 <li>
@@ -137,7 +137,7 @@ export default function AboutPage() {
         <Container>
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Join the Kids Petite Family
+              Join the Baby Petite Family
             </h2>
             <p className="text-lg text-gray-700 mb-8">
               Discover our collection of premium children's clothing and experience the difference quality makes.

@@ -1,6 +1,6 @@
 /**
  * Import Services - Main Entry Point
- * Exports all services for the AliExpress-to-Kids Petite import pipeline
+ * Exports all services for the AliExpress-to-Baby Petite import pipeline
  */
 
 // ============================================

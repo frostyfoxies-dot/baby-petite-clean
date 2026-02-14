@@ -39,7 +39,7 @@ export default function SignUpPage() {
           Create Account
         </h1>
         <p className="text-gray-600">
-          Join Kids Petite today
+          Join Baby Petite today
         </p>
       </div>
 

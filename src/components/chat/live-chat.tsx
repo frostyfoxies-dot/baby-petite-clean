@@ -235,7 +235,7 @@ function OfflineMessage({
           <ChatIcon className="w-5 h-5 text-gray-500" />
         </div>
         <div className="flex-1">
-          <h3 className="text-sm font-semibold text-gray-900">Kids Petite Support</h3>
+          <h3 className="text-sm font-semibold text-gray-900">Baby Petite Support</h3>
           <p className="mt-1 text-sm text-gray-600">{message}</p>
         </div>
       </div>

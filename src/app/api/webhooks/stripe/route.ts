@@ -143,7 +143,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<WebhookRe
 
       await sendEmail({
         to: order.customerEmail,
-        subject: `Your Kids Petite Order ${order.orderNumber} is Confirmed!`,
+        subject: `Your Baby Petite Order ${order.orderNumber} is Confirmed!`,
         html: emailHtml,
       });
       console.log(`Order confirmation email sent to ${order.customerEmail}`);

@@ -186,7 +186,7 @@ export const useFilterStore = create<FilterStore>()(
       },
     }),
     {
-      name: 'kids-petite-filter-storage',
+      name: 'baby-petite-filter-storage',
       partialize: (state) => ({
         priceRange: state.priceRange,
         selectedSizes: state.selectedSizes,

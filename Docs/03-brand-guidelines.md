@@ -1,4 +1,4 @@
-# Brand Guidelines - Kids Petite
+# Brand Guidelines - Baby Petite
 
 **Document Version:** 2.0  
 **Date:** February 2026  
@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-This document establishes the comprehensive brand identity for Kids Petite, a high-density, minimalist e-commerce platform for children's clothing. The brand prioritizes efficiency, product visibility, and a clean aesthetic where color vibrancy comes exclusively from product photography.
+This document establishes the comprehensive brand identity for Baby Petite, a high-density, minimalist e-commerce platform for children's clothing. The brand prioritizes efficiency, product visibility, and a clean aesthetic where color vibrancy comes exclusively from product photography.
 
 ---
 
@@ -17,13 +17,13 @@ This document establishes the comprehensive brand identity for Kids Petite, a hi
 
 ### 1.1 Brand Name
 
-**Primary Name:** Kids Petite  
+**Primary Name:** Baby Petite  
 **Tagline:** Curated Style for Little Ones  
 **Short Tagline:** Small Style, Big Impact
 
 ### 1.2 Brand Positioning Statement
 
-> "For style-conscious parents seeking a curated, efficient shopping experience, Kids Petite is the high-density children's clothing platform that maximizes product discovery through minimalist design. Unlike traditional retailers, we eliminate visual noise and let the products speak for themselves, delivering a streamlined shopping experience that respects your time and showcases exceptional variety."
+> "For style-conscious parents seeking a curated, efficient shopping experience, Baby Petite is the high-density children's clothing platform that maximizes product discovery through minimalist design. Unlike traditional retailers, we eliminate visual noise and let the products speak for themselves, delivering a streamlined shopping experience that respects your time and showcases exceptional variety."
 
 ### 1.3 Brand Archetype
 
@@ -63,14 +63,14 @@ This document establishes the comprehensive brand identity for Kids Petite, a hi
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                                                             │
-│    KIDS PETITE                                               │
+│    BABY PETITE                                               │
 │    Curated Style for Little Ones                            │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
 
 **Logo Elements:**
-- **Wordmark:** "KIDS PETITE" in Inter font (all caps, tight tracking)
+- **Wordmark:** "BABY PETITE" in Inter font (all caps, tight tracking)
 - **Tagline:** "Curated Style for Little Ones" in Inter font (regular weight)
 
 #### Logo Variations
@@ -88,7 +88,7 @@ Maintain minimum clear space around the logo equal to the height of the "K" in "
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                                                             │
-│  [Clear Space]  KIDS PETITE  [Clear Space]                  │
+│  [Clear Space]  BABY PETITE  [Clear Space]                  │
 │                                                             │
 │  [Clear Space]  Curated Style for Little Ones               │
 │                                                             │
@@ -482,7 +482,7 @@ Hi [Name],
 
 Shop Now
 
-Kids Petite
+Baby Petite
 ```
 
 #### Social Media Post
@@ -495,7 +495,7 @@ New collection available now.
 
 Shop at link in bio.
 
-#KidsPetite #KidsFashion
+#BabyPetite #BabyFashion
 ```
 
 ---
@@ -508,7 +508,7 @@ Shop at link in bio.
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  KIDS PETITE                    Search  Cart (0)            │
+│  BABY PETITE                    Search  Cart (0)            │
 │  Curated Style for Little Ones                            │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
@@ -548,7 +548,7 @@ Shop at link in bio.
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                                                             │
-│         KIDS PETITE                                          │
+│         BABY PETITE                                          │
 │         Curated Style for Little Ones                        │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
@@ -561,7 +561,7 @@ Shop at link in bio.
 │                                                             │
 │  Follow: [Instagram] [Facebook] [Pinterest]                 │
 │                                                             │
-│  Kids Petite                                                │
+│  Baby Petite                                                │
 │  [Unsubscribe] [View in Browser] [Privacy]                  │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
@@ -575,7 +575,7 @@ Shop at link in bio.
 ┌─────────────────────────────────────────────────────────────┐
 │  [Profile Image - KP Monogram]                              │
 │                                                             │
-│  KIDS PETITE                                                │
+│  BABY PETITE                                                │
 │  Curated Style for Little Ones                              │
 │                                                             │
 │  babypetite.com                                             │
@@ -593,7 +593,7 @@ Shop at link in bio.
 ┌─────────────────────────────────────────────────────────────┐
 │  [Product Image - Clean, White Background]                  │
 │                                                             │
-│  KIDS PETITE                                                │
+│  BABY PETITE                                                │
 │                                                             │
 │  Style that speaks.                                         │
 │                                                             │
@@ -610,11 +610,11 @@ Shop at link in bio.
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                                                             │
-│    KIDS PETITE                                               │
+│    BABY PETITE                                               │
 │    Curated Style for Little Ones                            │
 │                                                             │
 │    [Thank You]                                              │
-│    Thank you for choosing Kids Petite.                      │
+│    Thank you for choosing Baby Petite.                      │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```

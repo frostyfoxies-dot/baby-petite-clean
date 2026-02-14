@@ -1,6 +1,6 @@
-# Kids Petite - Documentation Index
+# Baby Petite - Documentation Index
 
-**Project:** Kids Petite Children's Clothing E-Commerce Platform  
+**Project:** Baby Petite Children's Clothing E-Commerce Platform  
 **Version:** 2.1  
 **Date:** February 2026  
 **Status:** Production Ready - Sprint 1 & 2 Complete
@@ -9,7 +9,7 @@
 
 ## Overview
 
-This documentation suite provides comprehensive specifications for the Kids Petite children's clothing e-commerce platform. All documents are production-ready and designed for immediate development handoff.
+This documentation suite provides comprehensive specifications for the Baby Petite children's clothing e-commerce platform. All documents are production-ready and designed for immediate development handoff.
 
 ### Implementation Progress
 
@@ -26,7 +26,7 @@ All critical P0 infrastructure tasks have been completed:
 
 ## Brand Identity
 
-**Brand Name:** Kids Petite  
+**Brand Name:** Baby Petite  
 **Tagline:** Curated Style for Little Ones  
 **Positioning:** High-density, minimalist e-commerce platform for children's clothing
 
@@ -136,7 +136,7 @@ All critical P0 infrastructure tasks have been completed:
    ```bash
    # Clone repository
    git clone <repository-url>
-   cd kids-petite-platform
+   cd baby-petite-platform
    
    # Install dependencies
    pnpm install
@@ -159,7 +159,7 @@ All critical P0 infrastructure tasks have been completed:
 ### Project Structure
 
 ```
-kids-petite-platform/
+baby-petite-platform/
 ├── Docs/                    # Documentation (this folder)
 ├── src/
 │   ├── app/                # Next.js App Router
@@ -328,7 +328,7 @@ APPLE_PAY_MERCHANT_IDENTIFIER=merchant.com.yourdomain
 
 # Google Pay (Optional - for custom merchant configuration)
 GOOGLE_PAY_MERCHANT_ID=your_merchant_id
-GOOGLE_PAY_MERCHANT_NAME=Kids Petite
+GOOGLE_PAY_MERCHANT_NAME=Baby Petite
 ```
 
 ---
@@ -435,7 +435,7 @@ GOOGLE_PAY_MERCHANT_NAME=Kids Petite
 
 ## License
 
-All documentation is proprietary and confidential to Kids Petite.
+All documentation is proprietary and confidential to Baby Petite.
 
 ---
 

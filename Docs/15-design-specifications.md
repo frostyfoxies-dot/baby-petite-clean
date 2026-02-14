@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-This document defines comprehensive design specifications for micro-interactions and visual hierarchy across the Kids Petite e-commerce platform. These specifications ensure consistent, accessible, and delightful user experiences while maintaining the brand's minimalist aesthetic.
+This document defines comprehensive design specifications for micro-interactions and visual hierarchy across the Baby Petite e-commerce platform. These specifications ensure consistent, accessible, and delightful user experiences while maintaining the brand's minimalist aesthetic.
 
 ---
 

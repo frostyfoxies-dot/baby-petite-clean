@@ -1,7 +1,7 @@
 /**
  * Sanity CMS Integration
  *
- * This module exports all Sanity-related functionality for the Kids Petite e-commerce platform.
+ * This module exports all Sanity-related functionality for the Baby Petite e-commerce platform.
  *
  * @example
  * ```ts

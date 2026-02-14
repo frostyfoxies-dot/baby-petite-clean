@@ -119,7 +119,7 @@ export const useUserStore = create<UserStore>()(
       },
     }),
     {
-      name: 'kids-petite-user-storage',
+      name: 'baby-petite-user-storage',
       partialize: (state) => ({
         user: state.user,
         isAuthenticated: state.isAuthenticated,

@@ -70,7 +70,7 @@ export function DashboardClient({
       <div>
         <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
         <p className="text-gray-600 mt-1">
-          Welcome to the Kids Petite admin dashboard
+          Welcome to the Baby Petite admin dashboard
         </p>
       </div>
 

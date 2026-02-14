@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-This document defines the complete e-commerce features for the Kids Petite children's clothing platform. It covers detailed user journeys for browsing, checkout, payments, and account management. Each feature is specified with user flows, requirements, and acceptance criteria. The platform emphasizes high-density product display, minimalist interface, and efficient shopping experience.
+This document defines the complete e-commerce features for the Baby Petite children's clothing platform. It covers detailed user journeys for browsing, checkout, payments, and account management. Each feature is specified with user flows, requirements, and acceptance criteria. The platform emphasizes high-density product display, minimalist interface, and efficient shopping experience.
 
 ---
 
@@ -859,7 +859,7 @@ sequenceDiagram
 
 ## 14. Conclusion
 
-The Kids Petite e-commerce features specification provides:
+The Baby Petite e-commerce features specification provides:
 
 ✅ **Complete Feature Set:** All essential e-commerce functionality  
 ✅ **Detailed User Journeys:** Clear flows for each feature  

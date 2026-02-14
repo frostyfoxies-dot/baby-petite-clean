@@ -1,4 +1,4 @@
-# Kids Petite - Master Technical & Operational Specification
+# Baby Petite - Master Technical & Operational Specification
 
 ## 1. Executive Summary
 

@@ -3,13 +3,13 @@
 **Document Version:** 1.0  
 **Date:** February 2026  
 **Status:** Draft - Pending Clarification  
-**Project:** Kids Petite E-commerce Platform
+**Project:** Baby Petite E-commerce Platform
 
 ---
 
 ## Executive Summary
 
-This document outlines a comprehensive strategy for sourcing products from AliExpress for dropshipping, with a detailed workflow for leveraging AI image generation to recreate product photography. The strategy ensures cohesive visual identity and strict brand consistency across all store assets, aligned with the Kids Petite brand guidelines.
+This document outlines a comprehensive strategy for sourcing products from AliExpress for dropshipping, with a detailed workflow for leveraging AI image generation to recreate product photography. The strategy ensures cohesive visual identity and strict brand consistency across all store assets, aligned with the Baby Petite brand guidelines.
 
 ---
 
@@ -17,7 +17,7 @@ This document outlines a comprehensive strategy for sourcing products from AliEx
 
 ### 1.1 Platform Overview
 
-- **Brand:** Kids Petite - Children's clothing e-commerce platform
+- **Brand:** Baby Petite - Children's clothing e-commerce platform
 - **Tech Stack:** Next.js 15, Sanity CMS, PostgreSQL, Stripe, OpenAI
 - **Design Philosophy:** High-density, minimalist interface with product-focused photography
 - **Brand Colors:** White (#FFFFFF), Yellow (#FFD700), Gray scale

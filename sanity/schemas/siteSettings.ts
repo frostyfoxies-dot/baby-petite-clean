@@ -168,7 +168,7 @@ export default defineType({
           name: 'titleTemplate',
           title: 'Title Template',
           type: 'string',
-          description: 'Template for page titles. Use %s for page title (e.g., "%s | Kids Petite")',
+          description: 'Template for page titles. Use %s for page title (e.g., "%s | Baby Petite")',
         }),
         defineField({
           name: 'defaultOgImage',

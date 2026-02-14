@@ -1,4 +1,4 @@
-# Kids Petite - Production Deployment & Configuration Guide
+# Baby Petite - Production Deployment & Configuration Guide
 
 **Last Updated:** 2026-02-14  
 **Target Platform:** Railway (backend + DB) + Vercel (frontend)  
@@ -27,7 +27,7 @@ Before you begin, ensure you have:
 
 1. Login to Railway
 2. Click **"New Project"**
-3. Connect your GitHub repo (kids-petite)
+3. Connect your GitHub repo (baby-petite)
 4. Choose **"Deploy from GitHub"**
 5. Select repository
 6. Railway will detect `railway.json` and provision:

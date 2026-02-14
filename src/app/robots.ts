@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 /**
- * Robots.txt configuration for Kids Petite
+ * Robots.txt configuration for Baby Petite
  * Controls which pages search engines can crawl
  */
 export default function robots(): MetadataRoute.Robots {

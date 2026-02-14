@@ -3,8 +3,8 @@ import { Container } from '@/components/layout/container';
 import { RotateCcw, Package, Clock, AlertCircle } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Returns & Exchanges | Kids Petite',
-  description: 'Learn about Kids Petite\'s return and exchange policy. Easy returns within 30 days of purchase.',
+  title: 'Returns & Exchanges | Baby Petite',
+  description: 'Learn about Baby Petite\'s return and exchange policy. Easy returns within 30 days of purchase.',
 };
 
 /**
@@ -36,7 +36,7 @@ export default function ReturnsPage() {
             </h2>
             <div className="prose prose-lg text-gray-600 space-y-4">
               <p>
-                At Kids Petite, we want you to be completely satisfied with your purchase. If you're not happy with your order, we offer easy returns within 30 days of purchase.
+                At Baby Petite, we want you to be completely satisfied with your purchase. If you're not happy with your order, we offer easy returns within 30 days of purchase.
               </p>
               <p>
                 <strong>Return eligibility:</strong>

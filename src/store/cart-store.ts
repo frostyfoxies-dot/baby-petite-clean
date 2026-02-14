@@ -199,7 +199,7 @@ export const useCartStore = create<CartStore>()(
       },
     }),
     {
-      name: 'kids-petite-cart-storage',
+      name: 'baby-petite-cart-storage',
       partialize: (state) => ({
         items: state.items,
         discountCode: state.discountCode,

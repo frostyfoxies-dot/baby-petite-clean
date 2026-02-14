@@ -45,7 +45,7 @@ function generateHtmlResponse(
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${title} - Kids Petite</title>
+  <title>${title} - Baby Petite</title>
   <style>
     * {
       margin: 0;
@@ -138,7 +138,7 @@ function generateHtmlResponse(
 </head>
 <body>
   <div class="container">
-    <div class="logo">Kids Petite</div>
+    <div class="logo">Baby Petite</div>
     <div class="icon ${isSuccess ? 'success' : 'error'}">
       ${isSuccess ? '✓' : '✕'}
     </div>
@@ -146,7 +146,7 @@ function generateHtmlResponse(
     <p>${message}</p>
     <a href="${emailConfig.baseUrl}" class="button">Continue Shopping</a>
     <div class="footer">
-      <p>Kids Petite — Quality clothing for your little ones</p>
+      <p>Baby Petite — Quality clothing for your little ones</p>
       <p style="margin-top: 8px;">
         <a href="${emailConfig.baseUrl}/privacy">Privacy Policy</a> · 
         <a href="${emailConfig.baseUrl}/terms">Terms of Service</a>

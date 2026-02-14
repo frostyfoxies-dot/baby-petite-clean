@@ -1,6 +1,6 @@
-# Contributing to Kids Petite
+# Contributing to Baby Petite
 
-Thank you for your interest in contributing to Kids Petite! This document provides guidelines and instructions for contributing.
+Thank you for your interest in contributing to Baby Petite! This document provides guidelines and instructions for contributing.
 
 ## Table of Contents
 
@@ -43,8 +43,8 @@ Thank you for your interest in contributing to Kids Petite! This document provid
 
 1. Fork and clone the repository:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/kids-petite.git
-   cd kids-petite
+   git clone https://github.com/YOUR_USERNAME/baby-petite.git
+   cd baby-petite
    ```
 
 2. Install dependencies:

@@ -1,5 +1,5 @@
 /**
- * Notification types for the Kids Petite e-commerce platform
+ * Notification types for the Baby Petite e-commerce platform
  */
 
 /** Notification type enumeration */

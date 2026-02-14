@@ -84,7 +84,7 @@ export function EmailLayout({ children, preview }: EmailLayoutProps) {
           }
         `}</style>
       </Head>
-      <Preview>{preview || 'Kids Petite'}</Preview>
+      <Preview>{preview || 'Baby Petite'}</Preview>
       <Body
         style={{
           backgroundColor: brandColors.background,
@@ -140,7 +140,7 @@ export interface EmailHeaderProps {
  */
 export function EmailHeader({
   logoUrl = 'https://babypetite.com/logo.png',
-  logoAlt = 'Kids Petite',
+  logoAlt = 'Baby Petite',
   logoWidth = 150,
   logoHeight = 40,
 }: EmailHeaderProps) {
@@ -629,7 +629,7 @@ export function EmailFooter({
           margin: '0 0 16px 0',
         }}
       >
-        Kids Petite — Quality clothing for your little ones
+        Baby Petite — Quality clothing for your little ones
       </Text>
 
       {showSocial && (
@@ -677,7 +677,7 @@ export function EmailFooter({
           margin: '0 0 8px 0',
         }}
       >
-        © {year} Kids Petite. All rights reserved.
+        © {year} Baby Petite. All rights reserved.
       </Text>
 
       <Text

@@ -2,7 +2,7 @@
 
 ## Overview
 
-Kids Petite uses SendGrid for all transactional emails. Templates are dynamic and must be created in the SendGrid UI with the following designs and variables.
+Baby Petite uses SendGrid for all transactional emails. Templates are dynamic and must be created in the SendGrid UI with the following designs and variables.
 
 **Sender:** `noreply@babypetite.com` (needs domain verification)
 
@@ -11,7 +11,7 @@ Kids Petite uses SendGrid for all transactional emails. Templates are dynamic an
 ## 1. Order Confirmation Template
 
 **Template Name:** `order_confirmation`  
-**Subject:** `Your Kids Petite Order #{order_number} is Confirmed!`
+**Subject:** `Your Baby Petite Order #{order_number} is Confirmed!`
 
 **Purpose:** Sent immediately after payment succeeds.
 
@@ -30,13 +30,13 @@ Kids Petite uses SendGrid for all transactional emails. Templates are dynamic an
 {{shipping_method}} (e.g., "Standard Shipping (5-7 business days)")
 {{tracking_number}} (empty at first, will be added later via dynamic template if shipping later)
 {{tracking_url}}
-{{company_name}} Kids Petite
+{{company_name}} Baby Petite
 {{support_email}} support@babypetite.com
 {{website_url}} https://babypetite.up.railway.app
 ```
 
 **Design:**
-- Header: Kids Petite logo (linked to homepage)
+- Header: Baby Petite logo (linked to homepage)
 - Hero: "Thank you for your order!" in warm yellow
 - Order summary table
 - Shipping address block
@@ -48,7 +48,7 @@ Kids Petite uses SendGrid for all transactional emails. Templates are dynamic an
 ## 2. Shipping Update Template
 
 **Template Name:** `shipping_update`  
-**Subject:** `Your Kids Petite Order #{order_number} is on its way!`
+**Subject:** `Your Baby Petite Order #{order_number} is on its way!`
 
 **Purpose:** Sent when order status changes to SHIPPED.
 
@@ -75,7 +75,7 @@ Kids Petite uses SendGrid for all transactional emails. Templates are dynamic an
 ## 3. Registry Invitation Template
 
 **Template Name:** `registry_invite`  
-**Subject:** `{{inviter_name}} has created a Baby Registry on Kids Petite`
+**Subject:** `{{inviter_name}} has created a Baby Registry on Baby Petite`
 
 **Purpose:** Email sent to friends/family when a user shares their baby registry.
 
@@ -101,7 +101,7 @@ Kids Petite uses SendGrid for all transactional emails. Templates are dynamic an
 ## 4. Password Reset Template
 
 **Template Name:** `password_reset`  
-**Subject:** `Reset your Kids Petite password`
+**Subject:** `Reset your Baby Petite password`
 
 **Variables:**
 ```
@@ -117,7 +117,7 @@ Kids Petite uses SendGrid for all transactional emails. Templates are dynamic an
 ## 5. Email Verification Template
 
 **Template Name:** `email_verification`  
-**Subject:** `Verify your email address for Kids Petite`
+**Subject:** `Verify your email address for Baby Petite`
 
 **Variables:**
 ```
@@ -130,7 +130,7 @@ Kids Petite uses SendGrid for all transactional emails. Templates are dynamic an
 ## 6. Order Cancellation Template
 
 **Template Name:** `order_cancelled`  
-**Subject:** `Your Kids Petite Order #{order_number} has been cancelled`
+**Subject:** `Your Baby Petite Order #{order_number} has been cancelled`
 
 **Variables:**
 ```

@@ -18,14 +18,14 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Kids Petite - Curated Style for Little Ones',
-    template: '%s | Kids Petite',
+    default: 'Baby Petite - Curated Style for Little Ones',
+    template: '%s | Baby Petite',
   },
-  description: 'Discover curated children\'s clothing at Kids Petite. High-quality, adorable pieces for every occasion. Shop our collection of baby and kids fashion.',
+  description: 'Discover curated children\'s clothing at Baby Petite. High-quality, adorable pieces for every occasion. Shop our collection of baby and kids fashion.',
   keywords: ['kids clothing', 'baby clothes', 'children fashion', 'kids boutique', 'baby registry'],
-  authors: [{ name: 'Kids Petite' }],
-  creator: 'Kids Petite',
-  publisher: 'Kids Petite',
+  authors: [{ name: 'Baby Petite' }],
+  creator: 'Baby Petite',
+  publisher: 'Baby Petite',
   formatDetection: {
     email: false,
     address: false,
@@ -36,22 +36,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: process.env.NEXT_PUBLIC_SITE_URL || 'https://babypetite.com',
-    siteName: 'Kids Petite',
-    title: 'Kids Petite - Curated Style for Little Ones',
-    description: 'Discover curated children\'s clothing at Kids Petite. High-quality, adorable pieces for every occasion.',
+    siteName: 'Baby Petite',
+    title: 'Baby Petite - Curated Style for Little Ones',
+    description: 'Discover curated children\'s clothing at Baby Petite. High-quality, adorable pieces for every occasion.',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Kids Petite',
+        alt: 'Baby Petite',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kids Petite - Curated Style for Little Ones',
-    description: 'Discover curated children\'s clothing at Kids Petite.',
+    title: 'Baby Petite - Curated Style for Little Ones',
+    description: 'Discover curated children\'s clothing at Baby Petite.',
     images: ['/og-image.jpg'],
     creator: '@babypetite',
   },
@@ -92,7 +92,7 @@ export default function RootLayout({
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Kids Petite',
+    name: 'Baby Petite',
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
     sameAs: [
@@ -105,7 +105,7 @@ export default function RootLayout({
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Kids Petite',
+    name: 'Baby Petite',
     url: siteUrl,
     potentialAction: {
       '@type': 'SearchAction',
@@ -147,7 +147,7 @@ export default function RootLayout({
             <ChatProvider>
               <div className="flex flex-col min-h-screen">
                 <Header
-                  logo="Kids Petite"
+                  logo="Baby Petite"
                   navLinks={[
                     { label: 'Shop', href: '/products' },
                     { label: 'Categories', href: '/category' },
@@ -160,7 +160,7 @@ export default function RootLayout({
                   {children}
                 </main>
                 <Footer
-                  logo="Kids Petite"
+                  logo="Baby Petite"
                   linkGroups={[
                     {
                       title: 'Shop',

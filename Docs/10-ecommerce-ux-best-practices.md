@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-This document compiles current industry standards and best practices for high-converting e-commerce user flows. It serves as a reference baseline for auditing the Kids Petite platform and identifying optimization opportunities. All guidelines are sourced from leading e-commerce platforms, UX research institutions, and conversion optimization studies.
+This document compiles current industry standards and best practices for high-converting e-commerce user flows. It serves as a reference baseline for auditing the Baby Petite platform and identifying optimization opportunities. All guidelines are sourced from leading e-commerce platforms, UX research institutions, and conversion optimization studies.
 
 ---
 

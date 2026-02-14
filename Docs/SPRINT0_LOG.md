@@ -1,4 +1,4 @@
-# Sprint 0 Execution Log — Kids Petite
+# Sprint 0 Execution Log — Baby Petite
 
 **Date:** 2026-02-14  
 **CEO:** 100,000× Exit (Extreme Ownership)  
@@ -46,10 +46,10 @@ Wired order confirmation to Stripe webhook (`handleCheckoutSessionCompleted`).
 - Abstraction layer (`src/lib/email/service.ts`) already supports Resend
 - Created `Docs/RESEND_SETUP.md` with step-by-step
 
-**You provided Resend API key (`re_f2K4DiXb_...`). Ready to configure in Railway.**
+**You provided Resend API key (` Ready to configure in Railway.**
 
 ### 6. Cloudflare Access
-- You provided Cloudflare API token (`8YFcROzHksQgyIAsV6...`)
+- You provided Cloudflare API token (`
 - Created `Docs/CLOUDFLARE_SETUP.md` covering:
   - Adding site
   - Creating API token for cache purge
@@ -107,8 +107,8 @@ Ensure `src/lib/ai/registry.ts` (or equivalent) sets base URL to `https://openro
 
 **Test keys provided:**
 ```
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_51SVTa1BdSJx5TGEf...
-STRIPE_SECRET_KEY=sk_test_51SVTa1BdSJx5TGEf...
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
+STRIPE_SECRET_KEY=
 ```
 
 Added to `.env.production.example`.

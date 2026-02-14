@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-This report documents the performance optimizations implemented for the Kids Petite e-commerce store's UX components. The optimizations focus on reducing bundle size, minimizing re-renders, and improving Core Web Vitals metrics.
+This report documents the performance optimizations implemented for the Baby Petite e-commerce store's UX components. The optimizations focus on reducing bundle size, minimizing re-renders, and improving Core Web Vitals metrics.
 
 **Date:** February 12, 2026  
 **Scope:** UX Flow Components  

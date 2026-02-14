@@ -7,7 +7,7 @@ import { prisma } from '@/lib/prisma';
 export const dynamic = 'force-dynamic';
 
 /**
- * Dynamic sitemap for Kids Petite
+ * Dynamic sitemap for Baby Petite
  * Generates a sitemap.xml file for search engines
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

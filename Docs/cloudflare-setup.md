@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-This document provides comprehensive setup instructions for configuring Cloudflare CDN for the Kids Petite e-commerce platform. Cloudflare provides global content delivery, DDoS protection, DNS management, SSL/TLS termination, and image optimization.
+This document provides comprehensive setup instructions for configuring Cloudflare CDN for the Baby Petite e-commerce platform. Cloudflare provides global content delivery, DDoS protection, DNS management, SSL/TLS termination, and image optimization.
 
 ---
 

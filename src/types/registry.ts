@@ -1,5 +1,5 @@
 /**
- * Registry types for the Kids Petite e-commerce platform
+ * Registry types for the Baby Petite e-commerce platform
  */
 
 import type { User } from './user';

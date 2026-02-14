@@ -2,7 +2,7 @@
 
 ## Overview
 
-Kids Petite uses Algolia for instant search. The free tier includes:
+Baby Petite uses Algolia for instant search. The free tier includes:
 - 10,000 records
 - 100,000 operations/month
 - No credit card required (initially)
@@ -22,7 +22,7 @@ This is sufficient for a baby clothing store with up to ~5,000 products and vari
 ### 2. Create an Application
 
 1. In Algolia dashboard, click **"Create Application"**
-2. Name: `kids-petite` (or your preferred name)
+2. Name: `baby-petite` (or your preferred name)
 3. Region: Choose closest to your users (e.g., `us` for US, `de` for Europe)
 4. Plan: **Free** (10k records, 100k operations)
 5. Click **"Create Application"**

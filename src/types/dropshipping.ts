@@ -1,5 +1,5 @@
 /**
- * Dropshipping types for the Kids Petite e-commerce platform
+ * Dropshipping types for the Baby Petite e-commerce platform
  * AliExpress integration v2.2
  */
 
@@ -88,7 +88,7 @@ export interface UpdateSupplierInput {
  * Variant mapping for AliExpress SKU tracking
  */
 export interface VariantMapping {
-  /** Local variant SKU in Kids Petite system */
+  /** Local variant SKU in Baby Petite system */
   localVariantSku: string;
   /** AliExpress SKU ID */
   aliExpressSku: string;
@@ -97,7 +97,7 @@ export interface VariantMapping {
 }
 
 /**
- * Links Kids Petite products to AliExpress source
+ * Links Baby Petite products to AliExpress source
  */
 export interface ProductSource {
   /** Unique identifier */
@@ -194,7 +194,7 @@ export interface DropshipShippingAddress {
 export interface DropshipOrder {
   /** Unique identifier */
   id: string;
-  /** Related Kids Petite order ID */
+  /** Related Baby Petite order ID */
   orderId: string;
   /** AliExpress order ID (populated after placing order) */
   aliExpressOrderId?: string;
@@ -258,7 +258,7 @@ export interface DropshipOrderItem {
   unitCost: number;
   /** Total cost for this line item */
   totalCost: number;
-  /** Original Kids Petite order item ID */
+  /** Original Baby Petite order item ID */
   orderItemId: string;
   /** Record creation timestamp */
   createdAt: Date;

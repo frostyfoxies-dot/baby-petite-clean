@@ -3,8 +3,8 @@ import { Container } from '@/components/layout/container';
 import { FileText, AlertTriangle, Scale, Users } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | Kids Petite',
-  description: 'Kids Petite\'s terms of service. Read our terms and conditions for using our website and services.',
+  title: 'Terms of Service | Baby Petite',
+  description: 'Baby Petite\'s terms of service. Read our terms and conditions for using our website and services.',
 };
 
 /**
@@ -33,7 +33,7 @@ export default function TermsPage() {
           <div className="max-w-4xl mx-auto">
             <div className="prose prose-lg text-gray-600 space-y-4">
               <p>
-                Welcome to Kids Petite. These Terms of Service ("Terms") govern your use of our website and services. By accessing or using Kids Petite, you agree to be bound by these Terms.
+                Welcome to Baby Petite. These Terms of Service ("Terms") govern your use of our website and services. By accessing or using Baby Petite, you agree to be bound by these Terms.
               </p>
               <p>
                 Please read these Terms carefully before using our website. If you do not agree with these Terms, you may not use our website or services.
@@ -52,7 +52,7 @@ export default function TermsPage() {
             </h2>
             <div className="prose prose-lg text-gray-600 space-y-4">
               <p>
-                By accessing or using Kids Petite, you acknowledge that you have read, understood, and agree to be bound by these Terms. If you do not agree to these Terms, you must not use our website.
+                By accessing or using Baby Petite, you acknowledge that you have read, understood, and agree to be bound by these Terms. If you do not agree to these Terms, you must not use our website.
               </p>
               <p>
                 We reserve the right to modify these Terms at any time. Your continued use of the website after any changes constitutes acceptance of the updated Terms.
@@ -155,7 +155,7 @@ export default function TermsPage() {
                 Shipping times are estimates and are not guaranteed. We are not responsible for delays caused by shipping carriers, customs, or other factors beyond our control.
               </p>
               <p>
-                <strong>Risk of Loss:</strong> All items purchased from Kids Petite are made pursuant to a shipment contract. This means that the risk of loss and title for such items pass to you upon our delivery to the carrier.
+                <strong>Risk of Loss:</strong> All items purchased from Baby Petite are made pursuant to a shipment contract. This means that the risk of loss and title for such items pass to you upon our delivery to the carrier.
               </p>
               <p>
                 <strong>International Orders:</strong> You are responsible for any customs duties, taxes, or import fees imposed by your country. We are not responsible for packages held by customs.
@@ -197,13 +197,13 @@ export default function TermsPage() {
               </div>
               <div className="prose prose-lg text-gray-600 space-y-4">
                 <p>
-                  All content on this website, including text, graphics, logos, images, and software, is the property of Kids Petite or its content suppliers and is protected by copyright and other intellectual property laws.
+                  All content on this website, including text, graphics, logos, images, and software, is the property of Baby Petite or its content suppliers and is protected by copyright and other intellectual property laws.
                 </p>
                 <p>
                   You may not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any of the material on our website without our prior written consent.
                 </p>
                 <p>
-                  The Kids Petite name, logo, and all related names, logos, product and service names, designs, and slogans are trademarks of Kids Petite or its affiliates. You may not use such marks without our prior written permission.
+                  The Baby Petite name, logo, and all related names, logos, product and service names, designs, and slogans are trademarks of Baby Petite or its affiliates. You may not use such marks without our prior written permission.
                 </p>
               </div>
             </div>
@@ -251,7 +251,7 @@ export default function TermsPage() {
               </div>
               <div className="prose prose-lg text-gray-600 space-y-4">
                 <p>
-                  To the fullest extent permitted by law, Kids Petite shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, use, goodwill, or other intangible losses.
+                  To the fullest extent permitted by law, Baby Petite shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, use, goodwill, or other intangible losses.
                 </p>
                 <p>
                   Our total liability to you for all claims arising from or related to these Terms or your use of our website shall not exceed the amount you paid to us, if any, for accessing or using our website.
@@ -274,7 +274,7 @@ export default function TermsPage() {
             </h2>
             <div className="prose prose-lg text-gray-600 space-y-4">
               <p>
-                You agree to indemnify, defend, and hold harmless Kids Petite and its affiliates, officers, directors, employees, and agents from and against any claims, damages, obligations, losses, liabilities, costs, or debt, and expenses (including but not limited to attorney's fees).
+                You agree to indemnify, defend, and hold harmless Baby Petite and its affiliates, officers, directors, employees, and agents from and against any claims, damages, obligations, losses, liabilities, costs, or debt, and expenses (including but not limited to attorney's fees).
               </p>
               <p>
                 This includes claims resulting from or relating to your use of our website, your violation of these Terms, or your violation of any rights of another.

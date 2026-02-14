@@ -1,15 +1,15 @@
-# AliExpress-to-Kids Petite Dropshipping Integration - v2.2 Implementation Plan
+# AliExpress-to-Baby Petite Dropshipping Integration - v2.2 Implementation Plan
 
 **Document Version:** 2.2  
 **Date:** February 2026  
 **Status:** Draft for Review  
-**Project:** Kids Petite E-commerce Platform
+**Project:** Baby Petite E-commerce Platform
 
 ---
 
 ## Executive Summary
 
-This document outlines the technical implementation plan for integrating AliExpress product sourcing with the Kids Petite e-commerce platform. Version 2.2 focuses on core functionality with relaxed supplier vetting criteria, prioritizing product availability and basic quality metrics over communication quality, return policies, and response times.
+This document outlines the technical implementation plan for integrating AliExpress product sourcing with the Baby Petite e-commerce platform. Version 2.2 focuses on core functionality with relaxed supplier vetting criteria, prioritizing product availability and basic quality metrics over communication quality, return policies, and response times.
 
 ---
 
@@ -71,7 +71,7 @@ flowchart TB
 | Product Extraction | AliExpress URL | Raw product data | Temporary JSON |
 | Data Transformation | Raw data | Structured product | Sanity + PostgreSQL |
 | Image Processing | Original images | Processed images | Cloudflare R2 |
-| Order Fulfillment | Kids Petite order | AliExpress order data | PostgreSQL |
+| Order Fulfillment | Baby Petite order | AliExpress order data | PostgreSQL |
 
 ---
 
@@ -202,7 +202,7 @@ enum SupplierStatus {
   SUSPENDED
 }
 
-/// Links Kids Petite products to AliExpress source
+/// Links Baby Petite products to AliExpress source
 model ProductSource {
   id                String   @id @default(cuid())
   
@@ -551,7 +551,7 @@ flowchart TD
 ### 4.3 SKU Generation Strategy
 
 ```typescript
-// Generate unique SKUs for Kids Petite products
+// Generate unique SKUs for Baby Petite products
 function generateSKU(aliExpressProductId: string, variant?: AliExpressVariant): string {
   const prefix = 'KP';
   const productHash = hashProductId(aliExpressProductId).slice(0, 6);
@@ -601,7 +601,7 @@ function calculateRetailPrice(
 ```mermaid
 sequenceDiagram
     participant C as Customer
-    participant KP as Kids Petite
+    participant KP as Baby Petite
     participant DB as PostgreSQL
     participant AE as AliExpress
     participant S as Supplier
@@ -965,7 +965,7 @@ flowchart LR
 ### 14.2 Image Storage Structure
 
 ```
-cloudflare-r2://kids-petite-products/
+cloudflare-r2://baby-petite-products/
 ├── imported/
 │   ├── {product-id}/
 │   │   ├── primary.webp

@@ -1,6 +1,6 @@
 /**
  * Unit Tests for Data Transformation Service
- * Tests for product data transformation from AliExpress to Kids Petite format
+ * Tests for product data transformation from AliExpress to Baby Petite format
  */
 
 import { describe, it, expect, beforeEach, vi } from 'vitest';
@@ -107,7 +107,7 @@ describe('ProductTransformer', () => {
   // ============================================
 
   describe('transformProduct', () => {
-    it('should transform AliExpress data to Kids Petite format', () => {
+    it('should transform AliExpress data to Baby Petite format', () => {
       const result = transformer.transformProduct(
         mockAliExpressData,
         mockCategoryPricing,
@@ -199,7 +199,7 @@ describe('ProductTransformer', () => {
         'cat-dresses'
       );
 
-      expect(result.metaTitle).toContain('Kids Petite');
+      expect(result.metaTitle).toContain('Baby Petite');
       expect(result.metaTitle.length).toBeLessThanOrEqual(60);
       expect(result.metaDescription.length).toBeLessThanOrEqual(160);
     });
@@ -912,7 +912,7 @@ describe('ProductTransformer', () => {
         'cat-dresses'
       );
 
-      expect(result.metaTitle).toContain(' | Kids Petite');
+      expect(result.metaTitle).toContain(' | Baby Petite');
     });
 
     it('should truncate meta title to 60 characters', () => {
@@ -937,7 +937,7 @@ describe('ProductTransformer', () => {
         'cat-dresses'
       );
 
-      expect(result.metaDescription).toContain(' Shop now at Kids Petite.');
+      expect(result.metaDescription).toContain(' Shop now at Baby Petite.');
     });
 
     it('should truncate meta description to 160 characters', () => {

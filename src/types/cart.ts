@@ -1,5 +1,5 @@
 /**
- * Cart types for the Kids Petite e-commerce platform
+ * Cart types for the Baby Petite e-commerce platform
  */
 
 import type { ProductVariant } from './product';

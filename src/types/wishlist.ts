@@ -1,5 +1,5 @@
 /**
- * Wishlist types for the Kids Petite e-commerce platform
+ * Wishlist types for the Baby Petite e-commerce platform
  */
 
 import type { ProductVariant } from './product';

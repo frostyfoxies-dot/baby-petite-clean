@@ -49,13 +49,13 @@ We need an API token so the app can purge cache when products are updated.
 5. Zone resources:
    - Select `babypetite.com` (or your domain)
 6. Click **"Create Token"**
-7. Copy the token (looks like `8YFcROzHksQgyIAsV6-jKOYOIjXAboWQjqOnOYH9`)
+7. Copy the token (looks like `
 
 Add to Railway environment variables:
 
 ```
 CLOUDFLARE_ZONE_ID=your_zone_id_here
-CLOUDFLARE_API_TOKEN=8YFcROzHksQgyIAsV6-jKOYOIjXAboWQjqOnOYH9
+CLOUDFLARE_API_TOKEN=
 ```
 
 **How to find Zone ID:**

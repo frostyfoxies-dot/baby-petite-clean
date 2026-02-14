@@ -1,5 +1,5 @@
 /**
- * Kids Petite Custom Hooks
+ * Baby Petite Custom Hooks
  * Central export for all custom React hooks
  */
 

@@ -3,8 +3,8 @@ import { Container } from '@/components/layout/container';
 import { Truck, Package, Clock, Globe } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Shipping Information | Kids Petite',
-  description: 'Learn about Kids Petite\'s shipping policies, delivery times, and international shipping options.',
+  title: 'Shipping Information | Baby Petite',
+  description: 'Learn about Baby Petite\'s shipping policies, delivery times, and international shipping options.',
 };
 
 /**

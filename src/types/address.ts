@@ -1,5 +1,5 @@
 /**
- * Address types for the Kids Petite e-commerce platform
+ * Address types for the Baby Petite e-commerce platform
  */
 
 /** Address type enumeration */

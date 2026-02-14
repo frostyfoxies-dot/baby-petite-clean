@@ -475,7 +475,7 @@ describe('productSchema', () => {
   it('should accept optional fields', () => {
     const result = productSchema.safeParse({
       ...validProduct,
-      brand: 'Kids Petite',
+      brand: 'Baby Petite',
       tags: ['baby', 'cotton'],
       isFeatured: true,
       gender: 'unisex',

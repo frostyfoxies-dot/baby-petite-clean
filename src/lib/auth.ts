@@ -9,7 +9,7 @@ import crypto from 'crypto';
 /**
  * NextAuth.js v4 Configuration
  *
- * Configures authentication for the Kids Petite e-commerce platform with:
+ * Configures authentication for the Baby Petite e-commerce platform with:
  * - Credentials provider (email/password)
  * - Google OAuth provider
  * - Custom session callback

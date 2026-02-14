@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-This accessibility audit covers 6 newly created UX components in the Kids Petite e-commerce store. The audit identifies WCAG 2.1 AA compliance issues and provides recommended fixes for each component.
+This accessibility audit covers 6 newly created UX components in the Baby Petite e-commerce store. The audit identifies WCAG 2.1 AA compliance issues and provides recommended fixes for each component.
 
 ### Components Audited
 

@@ -18,7 +18,7 @@ export default function AuthLayout({
           <Link href="/" className="flex items-center gap-2">
             <Heart className="w-6 h-6 text-yellow-dark" />
             <span className="text-lg font-semibold text-gray-900">
-              Kids Petite
+              Baby Petite
             </span>
           </Link>
         </div>
@@ -34,7 +34,7 @@ export default function AuthLayout({
       {/* Footer */}
       <div className="bg-white border-t border-gray-200 py-4">
         <div className="container mx-auto px-4 text-center text-sm text-gray-500">
-          <p>© {new Date().getFullYear()} Kids Petite. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Baby Petite. All rights reserved.</p>
         </div>
       </div>
     </div>

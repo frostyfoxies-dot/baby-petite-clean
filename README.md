@@ -1,4 +1,4 @@
-# Kids Petite - Baby Clothing E-Commerce Platform
+# Baby Petite - Baby Clothing E-Commerce Platform
 
 A modern, value-oriented baby clothing e-commerce platform with AI-powered registry features.
 
@@ -58,8 +58,8 @@ A modern, value-oriented baby clothing e-commerce platform with AI-powered regis
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-org/kids-petite.git
-   cd kids-petite
+   git clone https://github.com/your-org/baby-petite.git
+   cd baby-petite
    ```
 
 2. Install dependencies:

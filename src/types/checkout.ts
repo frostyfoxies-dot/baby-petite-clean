@@ -1,5 +1,5 @@
 /**
- * Checkout types for the Kids Petite e-commerce platform
+ * Checkout types for the Baby Petite e-commerce platform
  */
 
 import type { AddressInput } from './address';

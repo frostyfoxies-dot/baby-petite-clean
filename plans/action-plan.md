@@ -1,4 +1,4 @@
-# Kids Petite E-commerce Platform: Prioritized Action Plan
+# Baby Petite E-commerce Platform: Prioritized Action Plan
 
 **Document Version:** 1.1  
 **Created:** February 2026  
@@ -10,7 +10,7 @@
 
 ## Executive Summary
 
-This action plan provides a structured roadmap to address the 35 gaps identified in the Kids Petite e-commerce platform gap analysis. The plan organizes work into four distinct phases, prioritizing production-blocking issues first, followed by MVP enhancements, Phase 2 features, and technical debt remediation.
+This action plan provides a structured roadmap to address the 35 gaps identified in the Baby Petite e-commerce platform gap analysis. The plan organizes work into four distinct phases, prioritizing production-blocking issues first, followed by MVP enhancements, Phase 2 features, and technical debt remediation.
 
 ### Key Metrics
 

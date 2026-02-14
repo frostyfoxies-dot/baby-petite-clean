@@ -52,7 +52,7 @@ export class FulfillmentNotificationService {
 
     this.fromEmail = process.env.SENDGRID_FROM_EMAIL || 'noreply@babypetite.com';
     this.adminEmail = process.env.ADMIN_EMAIL || 'admin@babypetite.com';
-    this.storeName = process.env.STORE_NAME || 'Kids Petite';
+    this.storeName = process.env.STORE_NAME || 'Baby Petite';
     this.storeUrl = process.env.NEXT_PUBLIC_STORE_URL || 'https://babypetite.com';
   }
 

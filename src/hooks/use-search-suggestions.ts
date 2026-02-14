@@ -105,7 +105,7 @@ export interface UseSearchSuggestionsReturn {
   removeRecentSearch: (query: string) => void;
 }
 
-const RECENT_SEARCHES_KEY = 'kids-petite-recent-searches';
+const RECENT_SEARCHES_KEY = 'baby-petite-recent-searches';
 
 /**
  * Hook for fetching search suggestions with debouncing and caching

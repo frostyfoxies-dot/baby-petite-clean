@@ -84,7 +84,7 @@ export interface FooterProps {
  * @example
  * ```tsx
  * <Footer
- *   logo="Kids Petite"
+ *   logo="Baby Petite"
  *   linkGroups={[
  *     {
  *       title: 'Shop',
@@ -101,12 +101,12 @@ export interface FooterProps {
  * ```
  */
 export function Footer({
-  logo = 'Kids Petite',
+  logo = 'Baby Petite',
   linkGroups = [],
   socialLinks = [],
   showNewsletter = true,
   onNewsletterSubmit,
-  copyright = `© ${new Date().getFullYear()} Kids Petite. All rights reserved.`,
+  copyright = `© ${new Date().getFullYear()} Baby Petite. All rights reserved.`,
   className,
 }: FooterProps) {
   const [email, setEmail] = React.useState('');

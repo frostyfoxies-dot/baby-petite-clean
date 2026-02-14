@@ -354,7 +354,7 @@ export function generateCartAbandonmentText(
   lines.push('');
   lines.push('---');
   lines.push('');
-  lines.push('Kids Petite — Quality clothing for your little ones');
+  lines.push('Baby Petite — Quality clothing for your little ones');
   lines.push(`Support: ${emailConfig.supportEmail}`);
   lines.push('');
   lines.push(`Unsubscribe: ${emailConfig.baseUrl}/api/email/unsubscribe`);

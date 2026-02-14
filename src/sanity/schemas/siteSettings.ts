@@ -20,7 +20,7 @@ export const siteSettings = defineType({
       type: 'string',
       description: 'The name of your store',
       validation: (Rule) => Rule.required().error('Site name is required'),
-      initialValue: 'Kids Petite',
+      initialValue: 'Baby Petite',
     }),
     defineField({
       name: 'siteTagline',

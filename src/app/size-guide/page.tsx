@@ -3,8 +3,8 @@ import { Container } from '@/components/layout/container';
 import { Ruler, Baby, Shirt } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Size Guide | Kids Petite',
-  description: 'Find the perfect fit for your child with Kids Petite\'s comprehensive size guide.',
+  title: 'Size Guide | Baby Petite',
+  description: 'Find the perfect fit for your child with Baby Petite\'s comprehensive size guide.',
 };
 
 /**

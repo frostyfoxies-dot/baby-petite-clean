@@ -1,6 +1,6 @@
 /**
  * Data Transformation Service
- * Transforms AliExpress product data to Kids Petite format
+ * Transforms AliExpress product data to Baby Petite format
  */
 
 import type {
@@ -198,7 +198,7 @@ const SIZE_MAP: Record<string, string> = {
 
 /**
  * Product Transformer Service
- * Transforms AliExpress product data to Kids Petite format
+ * Transforms AliExpress product data to Baby Petite format
  */
 export class ProductTransformer {
   private priceCalculator: PriceCalculator;
@@ -208,7 +208,7 @@ export class ProductTransformer {
   }
 
   /**
-   * Transform AliExpress data to Kids Petite format
+   * Transform AliExpress data to Baby Petite format
    *
    * @param aliExpressData - Raw data from AliExpress scraper
    * @param categoryPricing - Category pricing configuration
@@ -641,7 +641,7 @@ export class ProductTransformer {
    * Generate meta title for SEO
    */
   private generateMetaTitle(name: string): string {
-    const suffix = ' | Kids Petite';
+    const suffix = ' | Baby Petite';
     const maxLength = 60 - suffix.length;
 
     if (name.length > maxLength) {
@@ -656,7 +656,7 @@ export class ProductTransformer {
    */
   private generateMetaDescription(shortDescription: string): string {
     const maxLength = 160;
-    const suffix = ' Shop now at Kids Petite.';
+    const suffix = ' Shop now at Baby Petite.';
 
     if (shortDescription.length + suffix.length > maxLength) {
       return shortDescription.substring(0, maxLength - suffix.length - 3) + '...' + suffix;

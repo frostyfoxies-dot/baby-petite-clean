@@ -41,7 +41,7 @@ export function PaymentRequestButton({
   amount,
   currency = 'USD',
   countryCode = 'US',
-  label = 'Kids Petite Order',
+  label = 'Baby Petite Order',
   onSuccess,
   onError,
   onCancel,

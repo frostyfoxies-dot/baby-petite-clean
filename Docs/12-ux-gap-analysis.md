@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-This document provides a detailed gap analysis comparing industry best practices against the current Kids Petite e-commerce implementation. The analysis identifies friction points that impact user experience and conversion rates across six key areas.
+This document provides a detailed gap analysis comparing industry best practices against the current Baby Petite e-commerce implementation. The analysis identifies friction points that impact user experience and conversion rates across six key areas.
 
 ### Gap Summary by Severity
 

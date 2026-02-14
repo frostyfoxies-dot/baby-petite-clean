@@ -3,8 +3,8 @@ import { Container } from '@/components/layout/container';
 import { Shield, Eye, Lock, Database } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Kids Petite',
-  description: 'Kids Petite\'s privacy policy. Learn how we collect, use, and protect your personal information.',
+  title: 'Privacy Policy | Baby Petite',
+  description: 'Baby Petite\'s privacy policy. Learn how we collect, use, and protect your personal information.',
 };
 
 /**
@@ -38,10 +38,10 @@ export default function PrivacyPage() {
           <div className="max-w-4xl mx-auto">
             <div className="prose prose-lg text-gray-600 space-y-4">
               <p>
-                At Kids Petite, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and make purchases.
+                At Baby Petite, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and make purchases.
               </p>
               <p>
-                By using Kids Petite, you consent to the data practices described in this policy. If you do not agree with the terms of this privacy policy, please do not access our website.
+                By using Baby Petite, you consent to the data practices described in this policy. If you do not agree with the terms of this privacy policy, please do not access our website.
               </p>
             </div>
           </div>

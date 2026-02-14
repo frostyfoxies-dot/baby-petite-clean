@@ -194,7 +194,7 @@ class ZendeskProvider implements ChatProvider {
           connectOnPageLoad: true,
           title: { '*': 'Chat with us' },
           concierge: {
-            name: 'Kids Petite Support',
+            name: 'Baby Petite Support',
             title: { '*': 'Support Team' },
           },
         },

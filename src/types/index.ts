@@ -1,5 +1,5 @@
 /**
- * Barrel export all types for the Kids Petite e-commerce platform
+ * Barrel export all types for the Baby Petite e-commerce platform
  */
 
 // Core entity types

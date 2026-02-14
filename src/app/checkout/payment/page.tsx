@@ -182,7 +182,7 @@ export default function CheckoutPaymentPage() {
               <PaymentRequestButton
                 amount={totalAmountCents}
                 currency="USD"
-                label="Kids Petite Order"
+                label="Baby Petite Order"
                 onSuccess={(paymentIntentId) => {
                   console.log('Payment successful:', paymentIntentId);
                   // Payment request button handles the payment flow

@@ -115,13 +115,13 @@ export async function generateMetadata({
 
   if (!query) {
     return {
-      title: 'Search | Kids Petite',
+      title: 'Search | Baby Petite',
       description: 'Search for products in our collection',
     };
   }
 
   return {
-    title: `Search results for "${query}" | Kids Petite`,
+    title: `Search results for "${query}" | Baby Petite`,
     description: `Find products matching "${query}" in our collection`,
     robots: {
       index: false, // Don't index search pages

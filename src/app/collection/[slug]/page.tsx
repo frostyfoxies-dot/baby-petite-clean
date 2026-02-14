@@ -199,10 +199,10 @@ export async function generateMetadata({
   const description = collection.seoDescription || `Shop our ${collection.name} collection`;
 
   return {
-    title: `${title} | Kids Petite`,
+    title: `${title} | Baby Petite`,
     description,
     openGraph: {
-      title: `${title} | Kids Petite`,
+      title: `${title} | Baby Petite`,
       description,
       images: collection.image ? [{ url: urlFor(collection.image).url() }] : [],
     },

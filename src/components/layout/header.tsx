@@ -78,7 +78,7 @@ export interface HeaderProps {
  * @example
  * ```tsx
  * <Header
- *   logo={<span className="font-bold">Kids Petite</span>}
+ *   logo={<span className="font-bold">Baby Petite</span>}
  *   navLinks={[
  *     { label: 'Shop', href: '/shop' },
  *     { label: 'Categories', href: '/categories' },
@@ -91,7 +91,7 @@ export interface HeaderProps {
  * ```
  */
 export function Header({
-  logo = 'Kids Petite',
+  logo = 'Baby Petite',
   navLinks = [],
   cartCount = 0,
   isLoggedIn = false,

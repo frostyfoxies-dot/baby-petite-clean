@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-This document defines the complete system architecture for the Kids Petite baby clothing e-commerce platform. The architecture is designed to be scalable, maintainable, and aligned with our AI-first approach. It follows modern best practices including headless architecture, microservices principles, and cloud-native deployment.
+This document defines the complete system architecture for the Baby Petite baby clothing e-commerce platform. The architecture is designed to be scalable, maintainable, and aligned with our AI-first approach. It follows modern best practices including headless architecture, microservices principles, and cloud-native deployment.
 
 ---
 
@@ -225,7 +225,7 @@ max_wal_size = 4GB
 | Storage | Sanity | Image optimization |
 
 **Sanity Configuration:**
-- Project: Kids Petite
+- Project: Baby Petite
 - Dataset: Production
 - API Version: v2024-01-01
 - CDN: Global edge locations
@@ -910,7 +910,7 @@ The API follows OpenAPI 3.1 specification. Full documentation available at:
 
 ## 13. Conclusion
 
-The Kids Petite system architecture is designed to be:
+The Baby Petite system architecture is designed to be:
 
 ✅ **Scalable:** Handles growth from MVP to enterprise  
 ✅ **Secure:** Multiple layers of protection  

@@ -1,7 +1,7 @@
 /**
  * Email Module Index
  *
- * Exports all email-related functionality for the Kids Petite e-commerce platform.
+ * Exports all email-related functionality for the Baby Petite e-commerce platform.
  */
 
 // Configuration

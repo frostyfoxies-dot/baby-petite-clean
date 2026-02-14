@@ -2,14 +2,14 @@
 
 **Document Version:** 1.0  
 **Date:** February 13, 2026  
-**Project:** Kids Petite E-Commerce Platform  
+**Project:** Baby Petite E-Commerce Platform  
 **Status:** Complete
 
 ---
 
 ## Executive Summary
 
-This document synthesizes findings from five independent expert audits conducted on the Kids Petite e-commerce website, providing a unified view of issues, priorities, and implementation roadmap.
+This document synthesizes findings from five independent expert audits conducted on the Baby Petite e-commerce website, providing a unified view of issues, priorities, and implementation roadmap.
 
 ### Total Issues Summary
 
@@ -623,7 +623,7 @@ export default function HomePage() {
     <section>
       <Image
         src="/hero-image.jpg"
-        alt="Kids Petite - Premium Baby Products"
+        alt="Baby Petite - Premium Baby Products"
         width={1200}
         height={600}
         priority // Add priority for above-fold images

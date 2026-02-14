@@ -1,7 +1,7 @@
 /**
  * Admin API: Import Product
  * POST /api/admin/import/product
- * Imports a product from AliExpress to Kids Petite
+ * Imports a product from AliExpress to Baby Petite
  */
 
 import { NextRequest, NextResponse } from 'next/server';

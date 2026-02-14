@@ -1,5 +1,5 @@
 /**
- * Category types for the Kids Petite e-commerce platform
+ * Category types for the Baby Petite e-commerce platform
  */
 
 import type { Product } from './product';

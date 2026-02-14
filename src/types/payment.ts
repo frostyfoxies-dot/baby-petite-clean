@@ -1,5 +1,5 @@
 /**
- * Payment types for the Kids Petite e-commerce platform
+ * Payment types for the Baby Petite e-commerce platform
  */
 
 /** Payment status enumeration */

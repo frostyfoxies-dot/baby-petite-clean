@@ -21,13 +21,13 @@
 
 1. In dashboard, click **"API Keys"** in sidebar
 2. Click **"Create API Key"**
-3. Name: `Kids Petite Production`
+3. Name: `Baby Petite Production`
 4. Copy the key (starts with `re_`)
 
 Add to Railway environment variables:
 
 ```
-RESEND_API_KEY=re_f2K4DiXb_E3kbH6QmrqXnmjsakSssg5Ex
+RESEND_API_KEY=
 ```
 
 ---
@@ -79,7 +79,7 @@ import { sendEmail } from '@/lib/email/service';
 
 await sendEmail({
   to: 'your-personal-email@gmail.com',
-  subject: 'Test from Kids Petite',
+  subject: 'Test from Baby Petite',
   html: '<h1>It works!</h1><p>Resend is configured.</p>',
 });
 EOF
@@ -122,9 +122,9 @@ Add to Railway:
 
 | Key | Value |
 |-----|-------|
-| `RESEND_API_KEY` | `re_f2K4DiXb_E3kbH6QmrqXnmjsakSssg5Ex` |
+| `RESEND_API_KEY` | ` |
 | `EMAIL_FROM` | `noreply@babypetite.com` (or your verified sender) |
-| `EMAIL_FROM_NAME` | `Kids Petite` |
+| `EMAIL_FROM_NAME` | `Baby Petite` |
 
 That's it. Resend will handle the rest.
 

@@ -136,7 +136,7 @@ export function Sidebar({ pendingOrdersCount = 0 }: SidebarProps) {
       {!collapsed && (
         <div className="p-4 border-t border-gray-200">
           <div className="text-xs text-gray-500">
-            Kids Petite Admin v2.2
+            Baby Petite Admin v2.2
           </div>
         </div>
       )}

@@ -915,7 +915,7 @@ export async function sendAbandonmentEmail(
   };
   
   await resend.emails.send({
-    from: 'Kids Petite <hello@babypetite.com>',
+    from: 'Baby Petite <hello@babypetite.com>',
     to: cart.user?.email || cart.guestEmail,
     template: templates[type],
     data: {

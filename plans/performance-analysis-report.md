@@ -1,4 +1,4 @@
-# Performance Analysis Report: AliExpress-to-Kids Petite Dropshipping Integration v2.2
+# Performance Analysis Report: AliExpress-to-Baby Petite Dropshipping Integration v2.2
 
 **Analysis Date:** February 2026  
 **Analyst:** Performance Architect  
@@ -704,7 +704,7 @@ flowchart TD
 
 ## Conclusion
 
-The AliExpress-to-Kids Petite dropshipping integration has several performance bottlenecks that impact user experience and system scalability. The most critical issues center around:
+The AliExpress-to-Baby Petite dropshipping integration has several performance bottlenecks that impact user experience and system scalability. The most critical issues center around:
 
 1. **Database query patterns** - N+1 queries and missing indexes
 2. **Resource-intensive operations** - Sequential image processing

@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-This document defines the complete database schema for the Kids Petite baby clothing e-commerce platform. The schema is designed using PostgreSQL with Prisma ORM, providing type-safe database access and excellent performance. The schema supports all e-commerce functionality including products, inventory, users, orders, registries, and AI-powered features.
+This document defines the complete database schema for the Baby Petite baby clothing e-commerce platform. The schema is designed using PostgreSQL with Prisma ORM, providing type-safe database access and excellent performance. The schema supports all e-commerce functionality including products, inventory, users, orders, registries, and AI-powered features.
 
 ---
 
@@ -1699,7 +1699,7 @@ CREATE POLICY order_isolation ON orders
 
 ## 17. Conclusion
 
-The Kids Petite database schema provides:
+The Baby Petite database schema provides:
 
 ✅ **Complete Coverage:** All e-commerce functionality supported  
 ✅ **Type Safety:** Prisma ORM ensures type-safe queries  

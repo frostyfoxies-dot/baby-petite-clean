@@ -150,7 +150,7 @@ export async function previewImportProduct(
 /**
  * Import product with selected category
  *
- * Imports a product from AliExpress to Kids Petite.
+ * Imports a product from AliExpress to Baby Petite.
  *
  * @param url - AliExpress product URL
  * @param categoryId - Target category ID

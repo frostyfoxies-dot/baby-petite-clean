@@ -421,7 +421,7 @@ Guidelines:
 - Name: ${productInfo.name}
 - Category: ${productInfo.category}
 - Target age: ${productInfo.targetAge || 'all ages'}
-- Brand: ${productInfo.brand || 'Kids Petite'}
+- Brand: ${productInfo.brand || 'Baby Petite'}
 - Key features: ${productInfo.features.join(', ')}`;
 
   try {
@@ -515,7 +515,7 @@ export async function generateSupportResponse(
     userInfo?: string;
   } = {}
 ): Promise<string> {
-  const systemPrompt = `You are a helpful customer support assistant for Kids Petite, a baby products e-commerce store. You help customers with:
+  const systemPrompt = `You are a helpful customer support assistant for Baby Petite, a baby products e-commerce store. You help customers with:
 - Order status and tracking
 - Product recommendations
 - Size guidance

@@ -1,5 +1,5 @@
 /**
- * Order types for the Kids Petite e-commerce platform
+ * Order types for the Baby Petite e-commerce platform
  */
 
 import type { User } from './user';

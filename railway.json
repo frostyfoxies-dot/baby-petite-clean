@@ -1,6 +1,6 @@
 {
   "$schema": "https://railway.app/schema.json",
-  "name": "kids-petite",
+  "name": "baby-petite",
   "services": [
     {
       "name": "web",
@@ -16,14 +16,14 @@
       },
       "domains": [
         {
-          "name": "kids-petite.up.railway.app",
+          "name": "babypetite.up.railway.app",
           "forceSsl": true
         }
       ]
     }
   ],
   "database": {
-    "name": "kids-petite-db",
+    "name": "baby-petite-db",
     "version": "16"
   }
 }

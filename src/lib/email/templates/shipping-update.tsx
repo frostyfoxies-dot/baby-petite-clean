@@ -60,7 +60,7 @@ export function ShippingUpdateEmail({
         <EmailText>
           Hi {name},
           <br />
-          Great news! Your Kids Petite order has been shipped and is on its way to you.
+          Great news! Your Baby Petite order has been shipped and is on its way to you.
         </EmailText>
       </EmailHeader>
 
@@ -149,7 +149,7 @@ export function ShippingUpdateEmail({
 
       <EmailFooter>
         <EmailText style={{ fontSize: '12px', color: '#999' }}>
-          © {new Date().getFullYear()} Kids Petite. All rights reserved.
+          © {new Date().getFullYear()} Baby Petite. All rights reserved.
         </EmailText>
       </EmailFooter>
     </EmailLayout>

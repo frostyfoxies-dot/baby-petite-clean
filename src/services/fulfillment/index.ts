@@ -2,7 +2,7 @@
  * Fulfillment Services
  *
  * This module exports all fulfillment-related services for the
- * AliExpress-to-Kids Petite dropshipping integration.
+ * AliExpress-to-Baby Petite dropshipping integration.
  */
 
 // Core fulfillment service

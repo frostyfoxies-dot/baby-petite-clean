@@ -147,10 +147,10 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${category.name} | Kids Petite`,
+    title: `${category.name} | Baby Petite`,
     description: category.description || `Shop our ${category.name} collection for kids`,
     openGraph: {
-      title: `${category.name} | Kids Petite`,
+      title: `${category.name} | Baby Petite`,
       description: category.description || `Shop our ${category.name} collection for kids`,
       images: category.imageUrl ? [{ url: category.imageUrl }] : [],
     },

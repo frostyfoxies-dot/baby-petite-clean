@@ -101,7 +101,7 @@ export function OrderConfirmationEmail({
         <EmailText>
           Hi {name},
           <br />
-          Thank you for shopping with Kids Petite! Your order has been received and is being processed.
+          Thank you for shopping with Baby Petite! Your order has been received and is being processed.
         </EmailText>
       </EmailHeader>
 
@@ -216,7 +216,7 @@ export function OrderConfirmationEmail({
 
       <EmailFooter>
         <EmailText style={{ fontSize: '12px', color: '#999' }}>
-          © {new Date().getFullYear()} Kids Petite. All rights reserved.
+          © {new Date().getFullYear()} Baby Petite. All rights reserved.
           <br />
           123 Fashion Street, Kuala Lumpur, Malaysia
         </EmailText>

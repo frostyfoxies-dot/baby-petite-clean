@@ -49,13 +49,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   
   if (!product) {
     return {
-      title: 'Product Not Found | Kids Petite',
+      title: 'Product Not Found | Baby Petite',
       description: 'The requested product could not be found.',
     };
   }
 
   return {
-    title: `${product.name} | Kids Petite`,
+    title: `${product.name} | Baby Petite`,
     description: product.metaDescription || product.shortDescription || product.description?.slice(0, 160) || 'Product details',
     alternates: {
       canonical: `${process.env.NEXT_PUBLIC_APP_URL || 'https://babypetite.com'}/products/${product.slug}`,
@@ -154,7 +154,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     sku: product.slug,
     brand: {
       '@type': 'Brand',
-      name: 'Kids Petite',
+      name: 'Baby Petite',
     },
     offers: {
       '@type': 'Offer',
@@ -165,7 +165,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       availability: inStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
       seller: {
         '@type': 'Organization',
-        name: 'Kids Petite',
+        name: 'Baby Petite',
       },
     },
     aggregateRating: product.reviews.totalReviews > 0 ? {

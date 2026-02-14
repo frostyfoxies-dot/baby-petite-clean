@@ -15,7 +15,7 @@ Then authenticate via the browser. After that, come back and I can run the deplo
 
 1. Go to [railway.app/account](https://railway.app/account)
 2. Click "New Token" 
-3. Name it "kids-petite-deploy"
+3. Name it "baby-petite-deploy"
 4. Copy the token
 5. Run this in terminal:
 ```bash

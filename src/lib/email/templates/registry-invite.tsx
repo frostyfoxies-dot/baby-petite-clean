@@ -49,7 +49,7 @@ export function RegistryInviteEmail({
           🎁 You're Invited to a Baby Registry!
         </EmailHeading>
         <EmailText>
-          <strong>{inviterName}</strong> has created a baby registry on Kids Petite and would like to share it with you.
+          <strong>{inviterName}</strong> has created a baby registry on Baby Petite and would like to share it with you.
         </EmailText>
       </EmailHeader>
 
@@ -124,7 +124,7 @@ export function RegistryInviteEmail({
 
       <EmailFooter>
         <EmailText style={{ fontSize: '12px', color: '#999' }}>
-          © {new Date().getFullYear()} Kids Petite. All rights reserved.
+          © {new Date().getFullYear()} Baby Petite. All rights reserved.
         </EmailText>
       </EmailFooter>
     </EmailLayout>
