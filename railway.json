@@ -7,7 +7,7 @@
       "source": ".",
       "build": {
         "builder": "NIXPACKS_V1",
-        "buildCommand": "export NODE_OPTIONS=--max-old-space-size=4096 && npm ci --omit=dev --no-optional && npx prisma generate && npm run build",
+        "buildCommand": "export NODE_OPTIONS=--max-old-space-size=4096 && npm ci --no-optional && npx prisma generate && npm run build",
         "startCommand": "npm run start"
       },
       "environment": {
