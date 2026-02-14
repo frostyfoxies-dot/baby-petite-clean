@@ -5,31 +5,27 @@
 
 set -e
 
-echo "🚀 Starting Kids Petite deployment steps..."
+echo "🚀 Starting Kids Petite deployment steps...";
 
 # 1. Generate Prisma client (needed at runtime)
 echo "📦 Generating Prisma client..."
 railway run npx prisma generate
 
-# 2. Compile TypeScript deploy scripts to JavaScript (avoid tsx runtime issues)
-echo "🛠️ Compiling deploy scripts..."
-railway run npx tsc -p tsconfig.scripts.json
-
-# 3. Run database migrations
+# 2. Run database migrations
 echo "📦 Running database migrations..."
 railway run npx prisma migrate deploy
 
-# 4. Sync Sanity → PostgreSQL
+# 3. Sync Sanity → PostgreSQL (using ts-node for on-the-fly transpilation)
 echo "🔄 Syncing products from Sanity to database..."
-railway run node dist/scripts/sync-sanity-to-db.js
+railway run node -r ts-node/register src/scripts/sync-sanity-to-db.ts
 
-# 5. Index products to Algolia
+# 4. Index products to Algolia
 echo "🔍 Indexing products to Algolia..."
-railway run node dist/scripts/index-products-to-algolia.js
+railway run node -r ts-node/register src/scripts/index-products-to-algolia.ts
 
-# 6. Validate environment
+# 5. Validate environment
 echo "🔐 Validating environment variables..."
-railway run node dist/scripts/validate-env.js
+railway run node -r ts-node/register src/scripts/validate-env.ts
 
 echo ""
 echo "✅ Deployment steps complete!"

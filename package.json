@@ -66,6 +66,7 @@
     "postcss": "8.x",
     "prisma": "6.x",
     "tailwindcss": "4.x",
+    "ts-node": "^10.9.2",
     "tsx": "4.19.2",
     "typescript": "5.x",
     "vitest": "2.x"
