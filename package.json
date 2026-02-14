@@ -49,6 +49,7 @@
     "stripe": "17.x",
     "styled-components": "^6.3.9",
     "tailwind-merge": "2.x",
+    "tsx": "4.19.2",
     "zod": "3.x",
     "zustand": "5.x"
   },
@@ -68,8 +69,5 @@
     "tailwindcss": "4.x",
     "typescript": "5.x",
     "vitest": "2.x"
-  },
-  "dependencies": {
-    "tsx": "4.19.2"
   }
 }
