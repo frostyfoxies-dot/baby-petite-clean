@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    "outDir": "./dist/scripts",
+    "rootDir": "./src/scripts",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmit": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/scripts/**/*.ts"],
+  "exclude": ["node_modules"]
+}

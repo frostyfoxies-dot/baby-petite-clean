@@ -17,6 +17,10 @@ import { createClient } from '@sanity/client';
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
+// For Node runtime – ensure process.env is available
+if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) throw new Error('NEXT_PUBLIC_SANITY_PROJECT_ID not set');
+if (!process.env.SANITY_API_TOKEN) throw new Error('SANITY_API_TOKEN not set');
+
 // Sanity client configuration
 const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
