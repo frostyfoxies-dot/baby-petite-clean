@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:scripts": "tsc -p tsconfig.scripts.json",
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",

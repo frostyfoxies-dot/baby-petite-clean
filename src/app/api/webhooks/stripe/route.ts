@@ -159,12 +159,6 @@ export async function POST(request: NextRequest): Promise<NextResponse<WebhookRe
  * This is triggered when a payment is successful
  */
 async function handlePaymentIntentSucceeded(paymentIntent: Stripe.PaymentIntent): Promise<void> {
-
-/**
- * Handle payment_intent.succeeded event
- * This is triggered when a payment is successful
- */
-async function handlePaymentIntentSucceeded(paymentIntent: Stripe.PaymentIntent): Promise<void> {
   console.log(`Processing successful payment intent: ${paymentIntent.id}`);
 
   // Find the payment record
