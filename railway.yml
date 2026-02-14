@@ -1,0 +1,15 @@
+# Railway Configuration File
+# https://railway.com/guides/configure-service
+
+services:
+  - name: web
+    type: web
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD
+        value: "1"
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_BASE_URL
+        value: https://babypetite.com
+      # Other required env vars are already set in Railway project
