@@ -67,7 +67,7 @@ model User {
   lastLoginAt   DateTime? @map("last_login_at")
 
   orders   Order[]
-  cart     Cart?
+  carts    Cart[]
   cartItems CartItem[]
 
   @@index([email])
