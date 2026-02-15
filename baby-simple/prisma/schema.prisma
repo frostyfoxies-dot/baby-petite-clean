@@ -68,7 +68,6 @@ model User {
 
   orders   Order[]
   carts    Cart[]
-  cartItems CartItem[]
 
   @@index([email])
   @@index([role])
@@ -95,7 +94,6 @@ model Category {
   parent   Category?  @relation("CategoryToCategory", fields: [parentId], references: [id])
   children Category[] @relation("CategoryToCategory")
   products Product[]
-  collections Collection[]
 
   @@index([slug])
   @@index([parentId])
@@ -168,6 +166,7 @@ model Product {
   collection Collection? @relation(fields: [collectionId], references: [id])
   cartItems  CartItem[]
   orderItems OrderItem[]
+  variants   Variant[]
 
   @@index([slug])
   @@index([sku])
