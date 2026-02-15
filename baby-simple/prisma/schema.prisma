@@ -148,7 +148,6 @@ model Product {
   height          Decimal?      @db.Decimal(8, 2)
   depth           Decimal?      @db.Decimal(8, 2)
   images          Json          // Array of image objects: {url, alt, order, isPrimary}
-  variants        Json?         // Array of variant definitions
   inventory       Int           @default(0)
   trackInventory  Boolean       @default(true) @map("track_inventory")
   isActive        Boolean       @default(true) @map("is_active")
